@@ -69,9 +69,9 @@ export default function Footer() {
           </div>
 
           {/* Права колонка (форма та навігація) */}
-          <div className="flex flex-col grow-3 items-start gap-6 z-10 text-white">
+          <div className="flex flex-col grow-3 items-start px-6 md:px-12 gap-6 z-10 text-white">
             {/* Форма зворотнього зв'язку */}
-            <div className="w-full max-w-xl">
+            <div className="w-full">
               <form className="flex flex-col gap-3">
                 <Input
                   type="text"

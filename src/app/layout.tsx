@@ -2,6 +2,7 @@ import Footer from "@/features/footer";
 import { Header } from "@/features/header";
 import type { Metadata } from "next";
 import { Golos_Text } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -27,7 +28,10 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
-          <Footer />
+          <footer id="contacts">
+            <Footer />
+          </footer>
+          <Toaster richColors />
         </Providers>
       </body>
     </html>

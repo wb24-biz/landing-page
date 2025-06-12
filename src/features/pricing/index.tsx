@@ -68,7 +68,7 @@ export default function PricingPlans() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <section className="mx-auto container py-12" id="pricing">
+      <section >
         <h2 className="text-3xl font-bold text-center mb-10 text-[#002366]">
           Тарифи
         </h2>

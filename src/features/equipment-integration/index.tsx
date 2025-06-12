@@ -27,7 +27,7 @@ function EquipmentIntegration() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <section className="relative overflow-hidden px-12 py-12 container mx-auto rounded-3xl">
+      <section >
         <Image
           src="/images/bg-equipment.svg"
           alt=""

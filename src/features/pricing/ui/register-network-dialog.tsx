@@ -1,21 +1,17 @@
+import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/kit/button";
 import { Input } from "@/shared/ui/kit/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/shared/ui/kit/select"; // Added shadcn/ui Select imports
 import { Textarea } from "@/shared/ui/kit/textarea";
 import {
   Dialog,
   DialogPanel,
   DialogTitle,
+  Field,
+  Select,
   Transition,
 } from "@headlessui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { X } from "lucide-react";
+import { ChevronDownIcon, X } from "lucide-react";
 import { Fragment } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -24,6 +20,11 @@ import {
   registerNetworkSchema,
 } from "../model/register-network-schema";
 import { useConnectRegistration } from "../model/use-connect-registration";
+import { CountryOption, useFetchCountries } from "../model/use-fetch-countries";
+import {
+  MachineTypeOption,
+  useFetchMachineTypes,
+} from "../model/use-fetch-machine-types";
 import { TariffOption, useFetchTariffs } from "../model/use-fetch-tariffs";
 
 export function RegisterNetworkDialog({
@@ -38,7 +39,7 @@ export function RegisterNetworkDialog({
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-    control, // Added control for Controller component
+    control,
   } = useForm<RegisterNetworkFormData>({
     resolver: zodResolver(registerNetworkSchema),
     defaultValues: {
@@ -60,13 +61,25 @@ export function RegisterNetworkDialog({
     error: tariffsError,
   } = useFetchTariffs();
 
+  const {
+    data: countries,
+    isLoading: isLoadingCountries,
+    error: countriesError,
+  } = useFetchCountries();
+
+  const {
+    data: machineTypes,
+    isLoading: isLoadingMachineTypes,
+    error: machineTypesError,
+  } = useFetchMachineTypes();
+
   const onSubmit: SubmitHandler<RegisterNetworkFormData> = (data) => {
     connectRegistrationMutation.mutate(data, {
       onSuccess: () => {
         toast.success("Заявку успішно відправлено!");
         console.log("Form submitted successfully!", data);
-        reset(); // Reset form fields
-        onOpenChange(false); // Close dialog
+        reset();
+        onOpenChange(false);
       },
       onError: (error: any) => {
         toast.error(
@@ -109,11 +122,11 @@ export function RegisterNetworkDialog({
               noValidate
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
+                <div className="md:col-span-2">
                   <Input
                     {...register("registrarName")}
                     placeholder="Ім'я реєстратора*"
-                    className="h-12 text-xl placeholder:text-lg"
+                    className="h-12 text-xl placeholder:text-lg "
                     aria-invalid={errors.registrarName ? "true" : "false"}
                   />
                   {errors.registrarName && (
@@ -163,11 +176,62 @@ export function RegisterNetworkDialog({
                   )}
                 </div>
                 <div>
-                  <Input
-                    {...register("networkType")}
-                    placeholder="Тип мережі"
-                    className="h-12 placeholder:text-lg text-xl"
-                    aria-invalid={errors.networkType ? "true" : "false"}
+                  <Controller
+                    control={control}
+                    name="networkType"
+                    render={({ field: networkTypeField }) => (
+                      <div className="w-full">
+                        <Field>
+                          <div className="relative">
+                            <Select
+                              {...networkTypeField}
+                              disabled={
+                                isLoadingMachineTypes || !!machineTypesError
+                              }
+                              className={cn(
+                                "h-12 placeholder:text-muted-foreground placeholder:text-lg text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
+                                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+                                "*:text-black",
+                                "disabled:opacity-50"
+                              )}
+                            >
+                              <option
+                                value=""
+                                disabled
+                                className="text-muted-foreground"
+                              >
+                                Оберіть тип мережі*
+                              </option>
+                              {isLoadingMachineTypes ? (
+                                <option value="loading" disabled>
+                                  Завантаження типів...
+                                </option>
+                              ) : machineTypesError ? (
+                                <option value="error" disabled>
+                                  Помилка завантаження типів
+                                </option>
+                              ) : (
+                                machineTypes?.map(
+                                  (machineType: MachineTypeOption) => (
+                                    <option
+                                      key={machineType.type_id}
+                                      value={String(machineType.type_id)} // Or machineType.description if schema expects name
+                                    >
+                                      {machineType.description}{" "}
+                                      {/* Display description */}
+                                    </option>
+                                  )
+                                )
+                              )}
+                            </Select>
+                            <ChevronDownIcon
+                              className="group pointer-events-none absolute top-4.5 right-2.5 size-4 fill-white/60"
+                              aria-hidden="true"
+                            />
+                          </div>
+                        </Field>
+                      </div>
+                    )}
                   />
                   {errors.networkType && (
                     <p className="text-red-500 text-sm mt-1">
@@ -180,39 +244,49 @@ export function RegisterNetworkDialog({
                     control={control}
                     name="tariff"
                     render={({ field }) => (
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                        disabled={isLoadingTariffs || !!tariffsError}
-                      >
-                        <SelectTrigger
-                          className="!h-12 w-full text-xl placeholder:text-lg"
-                          aria-invalid={errors.tariff ? "true" : "false"}
-                        >
-                          <SelectValue placeholder="Оберіть тариф*" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {isLoadingTariffs ? (
-                            <SelectItem value="loading" disabled>
-                              Завантаження тарифів...
-                            </SelectItem>
-                          ) : tariffsError ? (
-                            <SelectItem value="error" disabled>
-                              Помилка завантаження тарифів
-                            </SelectItem>
-                          ) : (
-                            tariffs?.map((tariff: TariffOption) => (
-                              <SelectItem
-                                key={tariff.tariff_id}
-                                value={String(tariff.tariff_id)}
-                                className="text-lg"
-                              >
-                                {tariff.name}
-                              </SelectItem>
-                            ))
-                          )}
-                        </SelectContent>
-                      </Select>
+                      <div className="w-full max-w-md">
+                        <Field>
+                          <div className="relative">
+                            <Select
+                              value={field.value}
+                              onChange={field.onChange}
+                              disabled={isLoadingTariffs || !!tariffsError}
+                              className={cn(
+                                "h-12 placeholder:text-lg text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
+                                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+                                "*:text-black"
+                              )}
+                            >
+                              <option value="" disabled>
+                                Оберіть тариф*
+                              </option>
+                              {isLoadingTariffs ? (
+                                <div className="px-2 py-1.5 text-gray-500">
+                                  Завантаження тарифів...
+                                </div>
+                              ) : tariffsError ? (
+                                <div className="px-2 py-1.5 text-red-500">
+                                  Помилка завантаження тарифів
+                                </div>
+                              ) : (
+                                tariffs?.map((tariff: TariffOption) => (
+                                  <option
+                                    key={tariff.tariff_id}
+                                    value={String(tariff.tariff_id)}
+                                    className="text-lg px-2 py-1.5 rounded-md data-[hover]:bg-blue-100 data-[selected]:bg-blue-500 data-[selected]:text-white cursor-pointer"
+                                  >
+                                    {tariff.name}
+                                  </option>
+                                ))
+                              )}
+                            </Select>
+                            <ChevronDownIcon
+                              className="group pointer-events-none absolute top-4.5 right-2.5 size-4 fill-white/60"
+                              aria-hidden="true"
+                            />
+                          </div>
+                        </Field>
+                      </div>
                     )}
                   />
                   {errors.tariff && (
@@ -221,14 +295,54 @@ export function RegisterNetworkDialog({
                     </p>
                   )}
                 </div>
-                <div className="md:col-span-2">
-                  {" "}
-                  {/* Country input can span full width on medium screens if only one left, or adjust as needed */}
-                  <Input
-                    {...register("country")}
-                    placeholder="Країна"
-                    className="h-12 placeholder:text-lg text-xl"
-                    aria-invalid={errors.country ? "true" : "false"}
+                <div className="">
+                  <Controller
+                    control={control}
+                    name="country"
+                    render={({ field: countryField }) => (
+                      <div className="w-full">
+                        <Field>
+                          <div className="relative">
+                            <Select
+                              {...countryField}
+                              disabled={isLoadingCountries || !!countriesError}
+                              className={cn(
+                                "h-12 placeholder:text-lg text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
+                                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+                                "*:text-black",
+                                "disabled:opacity-50"
+                              )}
+                            >
+                              <option value="" disabled>
+                                Оберіть країну*
+                              </option>
+                              {isLoadingCountries ? (
+                                <option value="loading" disabled>
+                                  Завантаження країн...
+                                </option>
+                              ) : countriesError ? (
+                                <option value="error" disabled>
+                                  Помилка завантаження країн
+                                </option>
+                              ) : (
+                                countries?.map((country: CountryOption) => (
+                                  <option
+                                    key={country.country_id}
+                                    value={String(country.country_id)}
+                                  >
+                                    {country.name}
+                                  </option>
+                                ))
+                              )}
+                            </Select>
+                            <ChevronDownIcon
+                              className="group pointer-events-none absolute top-4.5 right-2.5 size-4 fill-white/60"
+                              aria-hidden="true"
+                            />
+                          </div>
+                        </Field>
+                      </div>
+                    )}
                   />
                   {errors.country && (
                     <p className="text-red-500 text-sm mt-1">

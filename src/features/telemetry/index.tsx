@@ -54,7 +54,7 @@ const categories: Category[] = [
 
 export default function TelemetryCategoriesGrid() {
   return (
-    <section className="w-full container mx-auto py-8">
+    <>
       <h2 className="text-[38px] text-[#00235B] font-bold text-center mb-2">
         Телеметрія та управління
       </h2>
@@ -81,6 +81,6 @@ export default function TelemetryCategoriesGrid() {
           </Card>
         ))}
       </div>
-    </section>
+    </>
   );
 }

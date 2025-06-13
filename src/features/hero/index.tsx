@@ -4,6 +4,7 @@ import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/kit/button";
 import Image from "next/image";
 import { useState } from "react";
+import { Link as ScrollLink } from "react-scroll";
 import { ConnectWithUsDialog } from "./ui/connect-with-us-dialog";
 import { FeatureList } from "./ui/feature-list";
 
@@ -45,27 +46,37 @@ const Hero = () => {
 
   return (
     <>
-      <div className="container mx-auto">
-        <div className="h-[calc(100vh-4rem)]  flex items-center justify-center">
-          <div className="grid grid-cols-12 place-items-center ">
+      <div className="container mx-auto px-4">
+        <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center py-12 lg:h-[calc(100vh-4rem)] lg:py-0">
+          <div className="grid w-full grid-cols-1 items-center gap-y-12 lg:grid-cols-12 lg:gap-10">
             {/* Лівий контент - текст та кнопки */}
-            <div className="col-span-6 flex flex-col gap-3 z-10">
-              <h1 className="text-white text-[56px] font-extrabold tracking-tight">
+            <div className="z-10 flex flex-col items-center gap-3 lg:col-span-6 lg:items-start">
+              <h1 className="text-center text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-left lg:text-[56px]">
                 Платформа WB24 —
               </h1>
-              <p className="text-white mb-3 text-[24px] font-semibold text-balance tracking-tight">
+              <p className="mb-3 text-balance text-center text-lg font-semibold tracking-tight text-white md:text-xl lg:text-left lg:text-[24px]">
                 програмне забезпечення для керування торговими автоматами
                 реал-тайм 24/7
               </p>
               <FeatureList />
-              <div className="flex gap-3 mt-10">
-                <Button size="xl" variant="orange">
-                  Підключитися
-                </Button>
+              <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                <ScrollLink
+                  to="pricing"
+                  spy={true}
+                  smooth={true}
+                  duration={800}
+                  offset={-80}
+                  className="w-full sm:w-auto"
+                >
+                  <Button size="xl" variant="orange" className="w-full">
+                    Підключитися
+                  </Button>
+                </ScrollLink>
                 <Button
                   onClick={() => setOpen(true)}
                   size="xl"
                   variant="grayOutline"
+                  className="w-full sm:w-auto"
                 >
                   Зв'язатися з нами
                 </Button>
@@ -73,10 +84,10 @@ const Hero = () => {
             </div>
 
             {/* Правий контент - список обладнання */}
-            <div className="col-span-6 grid gap-14 z-10">
+            <div className="z-10 grid w-full gap-14 lg:col-span-6">
               {/* Верхній список обладнання */}
-              <div className="row-span-1 relative">
-                <ul className="grid grid-cols-4 py-6  px-8 border-1 border-[#fff]/30 rounded-[14px] border-dashed gap-2">
+              <div className="relative row-span-1">
+                <ul className="grid grid-cols-2 gap-2 rounded-[14px] border-1 border-dashed border-[#fff]/30 px-8 py-6 sm:grid-cols-4">
                   {squadList.map((item) => (
                     <li
                       className="flex flex-col items-center gap-3"
@@ -94,67 +105,66 @@ const Hero = () => {
                     </li>
                   ))}
                 </ul>
-                <div className="absolute -bottom-14 left-24 z-[1]">
+                <div className="absolute -bottom-20 left-24 z-[1] hidden h-full w-[450px] lg:block">
                   <img
                     src="/images/squad-arrows.svg"
                     alt="Elements"
-                    className=" h-full w-[450px]"
+                    className="h-full w-full"
                   />
                 </div>
               </div>
 
               {/* Центральний елемент */}
               <div className="row-span-1 flex items-center justify-center">
-                <div className=" p-5 w-full h-full flex items-center justify-center">
-                  {/* Тут розмістіть центральний контент */}
-                  <ul className="flex h-full items-center justify-between px-4 w-full">
+                <div className="flex h-full w-full items-center justify-center p-5">
+                  <ul className="flex w-full flex-col items-center justify-between gap-8 px-4 sm:flex-row sm:gap-4">
                     {centerList.map((item) => (
                       <li
                         className={cn(
-                          "flex flex-col text-center justify-between h-full items-center gap-3",
+                          "flex h-full flex-col items-center justify-between gap-3 text-center",
                           item.alt === "2" && "justify-center-safe"
                         )}
                         key={item.alt}
                       >
-                        <img src={item.src} alt={item.alt} />
+                        <img
+                          src={item.src}
+                          alt={item.alt}
+                          className="h-auto w-20 sm:w-auto"
+                        />
                         {item.label !== "" ? (
-                          <span className="text-center mt-auto w-2/3 inline-block text-[13px] text-white/60">
+                          <span className="mt-auto inline-block w-2/3 text-center text-[13px] text-white/60">
                             {item.label}
                           </span>
                         ) : null}
                       </li>
                     ))}
                   </ul>
-                  {/* <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-                    <img
-                      src="/images/arrows-left-right.svg"
-                      alt="Elements"
-                      className="h-auto w-auto"
-                    />
-                  </div> */}
                 </div>
               </div>
 
               {/* Нижній список обладнання */}
-              <div className="row-span-1 relative py-6 px-3 border-1 border-[#fff]/30 rounded-[14px] border-dashed">
-                <div className="absolute -top-14 right-14 z-[1]">
+              <div className="relative row-span-1 rounded-[14px] border-1 border-dashed border-[#fff]/30 px-3 py-6">
+                <div className="absolute -top-26 left-10 z-[1] hidden h-full w-full lg:block">
                   <img
                     src="/images/machine-arrows.svg"
                     alt="Elements"
-                    className=" h-full w-[520px]"
+                    className="h-full w-[85%]"
                   />
                 </div>
-                <ul className="grid grid-cols-5  gap-10">
+                <ul className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5">
                   {machineList.map((item) => (
                     <li
                       className={cn(
-                        "flex flex-col h-full w-full justify-between items-center gap-3"
-                        // item.alt === "3" && "justify-self-stretch"
+                        "flex h-full w-full flex-col items-center justify-between gap-3"
                       )}
                       key={item.alt}
                     >
-                      <img src={item.src} alt={item.alt} className="h-auto" />
-                      <span className="text-center text-wrap text-[13px] text-white/60">
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        className="h-auto w-16 sm:w-auto"
+                      />
+                      <span className="text-wrap text-center text-[13px] text-white/60">
                         {item.label}
                       </span>
                     </li>
@@ -163,9 +173,9 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          <div className="rounded-3xl bg-[#00235B] absolute inset-x-6 inset-y-5" />
+          <div className="absolute inset-x-4 inset-y-4 rounded-3xl bg-[#00235B] lg:inset-x-6 lg:inset-y-5" />
         </div>
-        <div className="absolute inset-x-13 bottom-8 z-[1]">
+        <div className="absolute inset-x-13 bottom-8 z-[1] hidden lg:block">
           <Image
             src="/images/elements.svg"
             alt="Elements"

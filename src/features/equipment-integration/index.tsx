@@ -2,28 +2,30 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { EquipmentDeviceDialog } from "./ui/equipment-device-dialog";
 
-const equipmentList = [
-  { src: "/images/3.svg", alt: "1", label: "Кавовий автомат" },
-  { src: "/images/4.svg", alt: "2", label: "Автомат продажу води" },
-  { src: "/images/7.svg", alt: "3", label: "Автомийки самообслуговування" },
-  { src: "/images/5.svg", alt: "4", label: "Снековий автомат" },
-  { src: "/images/6.svg", alt: "5", label: "Вендингові пральні" },
-];
-
-const сonnectivityModulesList = [
-  {
-    src: "/images/logo-white.svg",
-    alt: "1",
-    label: "Сервіс для керування та моніторингу",
-  },
-  { src: "/images/2.svg", alt: "2", label: "GSM/wifi модуль" },
-  { src: "/images/connect-elements.svg", alt: "3", label: "" },
-  { src: "/images/tft.svg", alt: "4", label: "TFT-модуль" },
-];
-
 function EquipmentIntegration() {
+  const t = useTranslations("EquipmentIntegration");
+
+  const translatedEquipmentList = [
+    { src: "/images/3.svg", alt: "1", label: t("equipmentList.0.label") },
+    { src: "/images/4.svg", alt: "2", label: t("equipmentList.1.label") },
+    { src: "/images/7.svg", alt: "3", label: t("equipmentList.2.label") },
+    { src: "/images/5.svg", alt: "4", label: t("equipmentList.3.label") },
+    { src: "/images/6.svg", alt: "5", label: t("equipmentList.4.label") },
+  ];
+
+  const translatedConnectivityModulesList = [
+    {
+      src: "/images/logo-white.svg",
+      alt: "1",
+      label: t("modulesList.0.label"),
+    },
+    { src: "/images/2.svg", alt: "2", label: t("modulesList.1.label") },
+    { src: "/images/connect-elements.svg", alt: "3", label: t("modulesList.2.label") },
+    { src: "/images/tft.svg", alt: "4", label: t("modulesList.3.label") },
+  ];
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -40,33 +42,28 @@ function EquipmentIntegration() {
           <div className="grid grid-cols-2 gap-6 ">
             <div className="flex flex-col items-start px-4">
               <h2 className="text-[38px] font-extrabold text-[#fff] mb-2">
-                Обладнання
+                {t("title")}
               </h2>
               <p className="text-lg text-[#fff]/80 mb-12 max-w-3xl">
-                Ви можете під'єднати своє обладнання та інтегрувати його за АРІ
-                або використовувати вже готове рішення, розроблене спеціально
-                для сервісу
+                {t("description")}
               </p>
               <div className="flex flex-col gap-4">
                 <div
                   onClick={() => setOpen(true)}
                   className="rounded-3xl border border-[#136EFF] px-8 py-4 cursor-pointer"
                 >
-                  <h4 className="text-white text-lg font-bold">GSM-WB24</h4>
+                  <h4 className="text-white text-lg font-bold">{t("button_gsm")}</h4>
                   <p className="text-[#fff]/80 text-sm font-medium">
-                    модуль обміну, управління та передавання даних
-                    на&nbsp;сервіс wb24.biz
+                    {t("gsm_desc")}
                   </p>
                 </div>
                 <div
                   onClick={() => setOpen(true)}
                   className="rounded-3xl border border-[#136EFF] px-8 py-4 cursor-pointer"
                 >
-                  <h4 className="text-white text-lg font-bold">TFT module</h4>
+                  <h4 className="text-white text-lg font-bold">{t("button_tft")}</h4>
                   <p className="text-[#fff]/80 text-sm font-medium">
-                    безконтактний зчитувач та інформаційно-платіжний термінал
-                    для безготівкової оплати з підтримкою NFC/QR, фіскалізації
-                    та видачі чеків
+                    {t("tft_desc")}
                   </p>
                 </div>
               </div>
@@ -74,7 +71,7 @@ function EquipmentIntegration() {
             <div className="flex w-full">
               <div className="relative">
                 <ul className="flex pl-8 pr-0 py-6 border-1 border-[#fff]/30 rounded-[14px] border-dashed flex-col justify-between h-full gap-8">
-                  {equipmentList.map((item) => (
+                  {translatedEquipmentList.map((item) => (
                     <li className="flex items-center gap-4 " key={item.alt}>
                       <Image
                         src={item.src}
@@ -99,7 +96,7 @@ function EquipmentIntegration() {
               </div>
               <div>
                 <ul className="flex pl-12 flex-col items-center justify-between h-full gap-8">
-                  {сonnectivityModulesList.map((item) => (
+                  {translatedConnectivityModulesList.map((item) => (
                     <li
                       className="flex flex-col text-center items-center gap-2"
                       key={item.alt}

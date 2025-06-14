@@ -8,41 +8,44 @@ import { Link as ScrollLink } from "react-scroll";
 import { ConnectWithUsDialog } from "./ui/connect-with-us-dialog";
 import { FeatureList } from "./ui/feature-list";
 
+import { useTranslations } from "next-intl";
+
 const squadList = [
-  { src: "/images/8.svg", alt: "1", label: "Господар" },
-  { src: "/images/9.svg", alt: "2", label: "Менеджер" },
-  { src: "/images/10.svg", alt: "3", label: "Диспетчер" },
-  { src: "/images/11.svg", alt: "4", label: "Майстер ремонту" },
+  { src: "/images/8.svg", alt: "1", key: "owner" },
+  { src: "/images/9.svg", alt: "2", key: "manager" },
+  { src: "/images/10.svg", alt: "3", key: "dispatcher" },
+  { src: "/images/11.svg", alt: "4", key: "repair" },
 ];
 
 const machineList = [
-  { src: "/images/3.svg", alt: "1", label: "Кавовий автомат" },
-  { src: "/images/4.svg", alt: "2", label: "Автомат продажу води" },
-  { src: "/images/7.svg", alt: "3", label: "Автомийки самообслуговування" },
-  { src: "/images/5.svg", alt: "4", label: "Снековий автомат" },
-  { src: "/images/6.svg", alt: "5", label: "Вендингові пральні" },
+  { src: "/images/3.svg", alt: "1", key: "coffee" },
+  { src: "/images/4.svg", alt: "2", key: "water" },
+  { src: "/images/7.svg", alt: "3", key: "carwash" },
+  { src: "/images/5.svg", alt: "4", key: "snack" },
+  { src: "/images/6.svg", alt: "5", key: "laundry" },
 ];
 
 const centerList = [
   {
     src: "/images/laptop.svg",
     alt: "1",
-    label: "Комп'ютер, планшет, смартфон",
+    key: "devices",
   },
   {
     src: "/images/arrows-left-right.svg",
     alt: "2",
-    label: "",
+    key: "",
   },
   {
     src: "/images/hero-logo.svg",
     alt: "3",
-    label: "Сервіс для керування та моніторингу",
+    key: "service",
   },
 ];
 
 const Hero = () => {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("Hero");
 
   return (
     <>
@@ -52,11 +55,10 @@ const Hero = () => {
             {/* Лівий контент - текст та кнопки */}
             <div className="z-10 flex flex-col items-center gap-3 lg:col-span-6 lg:items-start">
               <h1 className="text-center text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-left lg:text-[56px]">
-                Платформа WB24 —
+                {t("title")}
               </h1>
               <p className="mb-3 text-balance text-center text-lg font-semibold tracking-tight text-white md:text-xl lg:text-left lg:text-[24px]">
-                програмне забезпечення для керування торговими автоматами
-                реал-тайм 24/7
+                {t("subtitle")}
               </p>
               <FeatureList />
               <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
@@ -69,7 +71,7 @@ const Hero = () => {
                   className="w-full sm:w-auto"
                 >
                   <Button size="xl" variant="orange" className="w-full">
-                    Підключитися
+                    {t("cta_primary")}
                   </Button>
                 </ScrollLink>
                 <Button
@@ -78,12 +80,13 @@ const Hero = () => {
                   variant="grayOutline"
                   className="w-full sm:w-auto"
                 >
-                  Зв'язатися з нами
+                  {t("cta_secondary")}
                 </Button>
               </div>
             </div>
 
             {/* Правий контент - список обладнання */}
+
             <div className="z-10 grid w-full gap-14 lg:col-span-6">
               {/* Верхній список обладнання */}
               <div className="relative row-span-1">
@@ -100,7 +103,7 @@ const Hero = () => {
                         height={36}
                       />
                       <span className="text-center text-[13px] text-white/60">
-                        {item.label}
+                        {t(`squadList.${item.key}`)}
                       </span>
                     </li>
                   ))}
@@ -131,13 +134,14 @@ const Hero = () => {
                           alt={item.alt}
                           className="h-auto w-20 sm:w-auto"
                         />
-                        {item.label !== "" ? (
+                        {item.key && (
                           <span className="mt-auto inline-block w-2/3 text-center text-[13px] text-white/60">
-                            {item.label}
+                            {t(`centerList.${item.key}`)}
                           </span>
-                        ) : null}
+                        )}
                       </li>
                     ))}
+
                   </ul>
                 </div>
               </div>
@@ -165,7 +169,7 @@ const Hero = () => {
                         className="h-auto w-16 sm:w-auto"
                       />
                       <span className="text-wrap text-center text-[13px] text-white/60">
-                        {item.label}
+                        {t(`machineList.${item.key}`)}
                       </span>
                     </li>
                   ))}

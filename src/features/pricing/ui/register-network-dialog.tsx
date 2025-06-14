@@ -12,6 +12,7 @@ import {
 } from "@headlessui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDownIcon, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Fragment } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -34,6 +35,7 @@ export function RegisterNetworkDialog({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
+  const t = useTranslations("RegisterNetworkDialog");
   const {
     register,
     handleSubmit,
@@ -76,7 +78,7 @@ export function RegisterNetworkDialog({
   const onSubmit: SubmitHandler<RegisterNetworkFormData> = (data) => {
     connectRegistrationMutation.mutate(data, {
       onSuccess: () => {
-        toast.success("Заявку успішно відправлено!");
+        toast.success(t("successMessage"));
         console.log("Form submitted successfully!", data);
         reset();
         onOpenChange(false);
@@ -85,7 +87,7 @@ export function RegisterNetworkDialog({
         toast.error(
           error.response?.data?.message ||
             error.message ||
-            "Сталася помилка. Будь ласка, спробуйте ще раз."
+            t("errorMessage")
         );
         console.error("Form submission error:", error);
       },
@@ -103,18 +105,18 @@ export function RegisterNetworkDialog({
         <div className="fixed inset-0 flex items-center justify-center p-4">
           <DialogPanel className="w-full max-w-[900px] transform overflow-hidden rounded-4xl bg-white p-14 text-left align-middle shadow-xl transition-all relative">
             <DialogTitle className="text-4xl text-[#00235B] font-extrabold text-center mb-2 ">
-              Заявка
+              {t("title")}
               <button
                 type="button"
                 onClick={() => onOpenChange(false)}
                 className="absolute cursor-pointer top-4 right-6 text-gray-400 hover:text-gray-500 transition-all"
               >
-                <span className="sr-only">Close</span>
+                <span className="sr-only">{t("closeButtonSR")}</span>
                 <X className="h-8 w-8" aria-hidden="true" />
               </button>
             </DialogTitle>
             <div className="text-xl text-center mb-8 text-[#00235B]">
-              на реєстрацію мережі автоматів
+              {t("subtitle")}
             </div>
             <form
               className="w-full"
@@ -125,7 +127,7 @@ export function RegisterNetworkDialog({
                 <div className="md:col-span-2">
                   <Input
                     {...register("registrarName")}
-                    placeholder="Ім'я реєстратора*"
+                    placeholder={t("registrarNamePlaceholder")}
                     className="h-12 text-xl placeholder:text-lg "
                     aria-invalid={errors.registrarName ? "true" : "false"}
                   />
@@ -138,7 +140,7 @@ export function RegisterNetworkDialog({
                 <div>
                   <Input
                     {...register("email")}
-                    placeholder="Електронна адреса*"
+                    placeholder={t("emailPlaceholder")}
                     type="email"
                     className="h-12 placeholder:text-lg text-xl"
                     aria-invalid={errors.email ? "true" : "false"}
@@ -152,7 +154,7 @@ export function RegisterNetworkDialog({
                 <div>
                   <Input
                     {...register("phone")}
-                    placeholder="Телефон"
+                    placeholder={t("phonePlaceholder")}
                     className="h-12 placeholder:text-lg text-xl"
                     aria-invalid={errors.phone ? "true" : "false"}
                   />
@@ -165,7 +167,7 @@ export function RegisterNetworkDialog({
                 <div>
                   <Input
                     {...register("networkName")}
-                    placeholder="Найменування мережі*"
+                    placeholder={t("networkNamePlaceholder")}
                     className="h-12 placeholder:text-lg text-xl"
                     aria-invalid={errors.networkName ? "true" : "false"}
                   />
@@ -200,15 +202,15 @@ export function RegisterNetworkDialog({
                                 disabled
                                 className="text-muted-foreground"
                               >
-                                Оберіть тип мережі*
+                                {t("networkTypePlaceholder")}
                               </option>
                               {isLoadingMachineTypes ? (
                                 <option value="loading" disabled>
-                                  Завантаження типів...
+                                  {t("loadingMachineTypes")}
                                 </option>
                               ) : machineTypesError ? (
                                 <option value="error" disabled>
-                                  Помилка завантаження типів
+                                  {t("errorMachineTypes")}
                                 </option>
                               ) : (
                                 machineTypes?.map(
@@ -258,15 +260,15 @@ export function RegisterNetworkDialog({
                               )}
                             >
                               <option value="" disabled>
-                                Оберіть тариф*
+                                {t("tariffPlaceholder")}
                               </option>
                               {isLoadingTariffs ? (
                                 <div className="px-2 py-1.5 text-gray-500">
-                                  Завантаження тарифів...
+                                  {t("loadingTariffs")}
                                 </div>
                               ) : tariffsError ? (
                                 <div className="px-2 py-1.5 text-red-500">
-                                  Помилка завантаження тарифів
+                                  {t("errorTariffs")}
                                 </div>
                               ) : (
                                 tariffs?.map((tariff: TariffOption) => (
@@ -314,15 +316,15 @@ export function RegisterNetworkDialog({
                               )}
                             >
                               <option value="" disabled>
-                                Оберіть країну*
+                                {t("countryPlaceholder")}
                               </option>
                               {isLoadingCountries ? (
                                 <option value="loading" disabled>
-                                  Завантаження країн...
+                                  {t("loadingCountries")}
                                 </option>
                               ) : countriesError ? (
                                 <option value="error" disabled>
-                                  Помилка завантаження країн
+                                  {t("errorCountries")}
                                 </option>
                               ) : (
                                 countries?.map((country: CountryOption) => (
@@ -354,7 +356,7 @@ export function RegisterNetworkDialog({
               <div className="mb-6">
                 <Textarea
                   {...register("additional")}
-                  placeholder="Додаткова інформація"
+                  placeholder={t("additionalInfoPlaceholder")}
                   rows={5}
                   className="placeholder:text-lg text-xl w-full"
                   aria-invalid={errors.additional ? "true" : "false"}
@@ -376,8 +378,8 @@ export function RegisterNetworkDialog({
                   }
                 >
                   {isSubmitting || connectRegistrationMutation.isPending
-                    ? "Відправка..."
-                    : "Відправити"}
+                    ? t("submittingButton")
+                    : t("submitButton")}
                 </Button>
               </div>
             </form>

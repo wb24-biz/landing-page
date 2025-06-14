@@ -1,10 +1,33 @@
+"use client";
+
 import { Button } from "@/shared/ui/kit/button";
 import { Input } from "@/shared/ui/kit/input";
 import { Textarea } from "@/shared/ui/kit/textarea";
+import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { Link as ScrollLink } from "react-scroll";
+import { useRouter, usePathname } from "@/i18n/navigation";
 
 export default function Footer() {
+  const t = useTranslations("Footer");
+
+  const footerNavItems = [
+    { label: t("nav.service"), to: "service" },
+    { label: t("nav.functional"), to: "functional" },
+    { label: t("nav.equipment"), to: "equipment" },
+    { label: t("nav.pricing"), to: "pricing" },
+    { label: t("nav.contacts"), to: "contacts" },
+  ];
+  const router = useRouter();
+  const pathname = usePathname();
+  const currentLocale = useLocale();
+
+  const handleSelect = (locale: string) => {
+    if (locale !== currentLocale) {
+      router.replace(pathname, { locale });
+    }
+  };
   return (
     <footer className="container relative mx-auto mb-8">
       <div className="h-auto md:h-[calc(100vh-16rem)] flex items-center justify-center py-4">
@@ -14,9 +37,9 @@ export default function Footer() {
             <div className="space-y-6 ">
               <div className="space-y-2">
                 <h3 className="text-2xl font-medium mb-8">
-                  Якщо у вас виникли запитання
+                  {t("title.line1")}
                   <br />
-                  або потрібна додаткова інформація
+                  {t("title.line2")}
                 </h3>
 
                 <Link
@@ -59,12 +82,10 @@ export default function Footer() {
               </div>
 
               <p className="text-sm md:text-base text-white mb-8 max-w-xs">
-                Програмне забезпечення для керування торговими автоматами
+                {t("description")}
               </p>
 
-              <div className="text-sm text-white/60">
-                Усі права захищені. ©2025
-              </div>
+              <div className="text-sm text-white/60">{t("copyright")}</div>
             </div>
           </div>
 
@@ -75,11 +96,11 @@ export default function Footer() {
               <form className="flex flex-col gap-3">
                 <Input
                   type="text"
-                  placeholder="Ваш контакт для зворотнього зв'язку"
+                  placeholder={t("form.contact_placeholder")}
                   className="bg-white border-none rounded-xl text-black placeholder:text-[#6A7281] placeholder:text-base py-6"
                 />
                 <Textarea
-                  placeholder="Ваше запитання"
+                  placeholder={t("form.question_placeholder")}
                   className="bg-white border-none rounded-xl text-black placeholder:text-[#6A7281] placeholder:text-base h-24"
                 />
                 <Button
@@ -88,7 +109,7 @@ export default function Footer() {
                   size="xl"
                   className="w-[150px] text-base font-semibold"
                 >
-                  Відправити
+                  {t("form.submit_button")}
                 </Button>
               </form>
             </div>
@@ -97,49 +118,56 @@ export default function Footer() {
             <div className="grid grid-cols-3 gap-x-12 gap-y-4 w-full mt-8">
               <div>
                 <div className="flex flex-col gap-4 text-white/70">
-                  <Link
-                    href="#service"
-                    className="hover:text-white transition-colors"
-                  >
-                    Сервіс
-                  </Link>
-                  <Link
-                    href="#service"
-                    className="hover:text-white transition-colors"
-                  >
-                    Функціонал
-                  </Link>
-                  <Link
-                    href="#equipment"
-                    className="hover:text-white transition-colors"
-                  >
-                    Обладнання
-                  </Link>
-                  <Link
-                    href="#pricing"
-                    className="hover:text-white transition-colors"
-                  >
-                    Тарифи
-                  </Link>
-                  <Link
-                    href="#contacts"
-                    className="hover:text-white transition-colors"
-                  >
-                    Контакти
-                  </Link>
+                  {footerNavItems.map((item) => (
+                    <ScrollLink
+                      key={item.to}
+                      to={item.to}
+                      spy={true}
+                      smooth={true}
+                      duration={800}
+                      offset={-80} // Adjust offset as needed
+                      className="hover:text-white transition-colors cursor-pointer"
+                    >
+                      {item.label}
+                    </ScrollLink>
+                  ))}
                 </div>
               </div>
 
               <div>
-                <div className="flex flex-col gap-4 text-white/70">
-                  <button className="text-left hover:text-white transition-colors">
-                    Українська
+                <div className="flex flex-col gap-4">
+                  <button
+                    onClick={() => handleSelect('ua')}
+                    disabled={currentLocale === 'ua'}
+                    className={`text-left transition-colors ${
+                      currentLocale === 'ua'
+                        ? 'text-white font-bold'
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    {t("lang.ua")}
                   </button>
-                  <button className="text-left hover:text-white transition-colors">
-                    Русский
+                  <button
+                    onClick={() => handleSelect('ru')}
+                    disabled={currentLocale === 'ru'}
+                    className={`text-left transition-colors ${
+                      currentLocale === 'ru'
+                        ? 'text-white font-bold'
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    {t("lang.ru")}
                   </button>
-                  <button className="text-left hover:text-white transition-colors">
-                    English
+                  <button
+                    onClick={() => handleSelect('en')}
+                    disabled={currentLocale === 'en'}
+                    className={`text-left transition-colors ${
+                      currentLocale === 'en'
+                        ? 'text-white font-bold'
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    {t("lang.en")}
                   </button>
                 </div>
               </div>

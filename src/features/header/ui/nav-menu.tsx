@@ -2,20 +2,22 @@
 
 import { NavigationMenuProps } from "@radix-ui/react-navigation-menu";
 import { Link as ScrollLink } from "react-scroll";
-
-const menuItems = [
-  { label: "Сервіс", to: "service" },
-  { label: "Функціонал", to: "functional" },
-  { label: "Обладнання", to: "equipment" },
-  { label: "Тарифи", to: "pricing" },
-  { label: "Контакти", to: "contacts" },
-];
+import { useTranslations } from "next-intl";
 
 export const NavMenu = (props: NavigationMenuProps) => {
+  const t = useTranslations("NavMenu");
+
+  const translatedMenuItems = [
+    { label: t("menu.0.label"), to: "service" },
+    { label: t("menu.1.label"), to: "functional" },
+    { label: t("menu.2.label"), to: "equipment" },
+    { label: t("menu.3.label"), to: "pricing" },
+    { label: t("menu.4.label"), to: "contacts" },
+  ];
   return (
     <nav {...props}>
       <ul className="flex items-center gap-6 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start">
-        {menuItems.map((item) => (
+        {translatedMenuItems.map((item) => (
           <li key={item.label}>
             <ScrollLink
               to={item.to}

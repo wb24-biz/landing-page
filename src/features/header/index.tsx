@@ -3,8 +3,10 @@ import LanguageSelector from "./ui/language-selector";
 import { Logo } from "./ui/logo";
 import { NavMenu } from "./ui/nav-menu";
 import { NavigationSheet } from "./ui/navigation-sheet";
+import { useTranslations } from "next-intl";
 
 export const Header = () => {
+  const t = useTranslations("Header");
   return (
     <div className="relative z-10 top-12">
       <nav className="h-16">
@@ -19,7 +21,7 @@ export const Header = () => {
           <div className="flex items-center gap-3">
             <LanguageSelector />
             <Button className="bg-[#002869] hover:bg-[#0057b7] hover:text-[#ffd700] transition-all duration-300 font-bold text-white h-14 px-10 text-base rounded-full">
-              Увійти
+              {t("loginButton")}
             </Button>
 
             {/* Mobile Menu */}

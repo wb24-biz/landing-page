@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "title": "WB24 Platform —",
+    "subtitle": "software for managing vending machines real-time 24/7",
+    "connectButton": "Connect",
+    "contactButton": "Contact Us"
+  },
+  "header": {
+    "service": "Service",
+    "functional": "Features",
+    "equipment": "Equipment",
+    "pricing": "Pricing",
+    "contacts": "Contacts",
+    "login": "Sign In"
+  },
+  "footer": {
+    "questionsTitle": "If you have questions or need additional information",
+    "description": "Software for managing vending machines",
+    "rightsReserved": "All rights reserved. 2025",
+    "contactPlaceholder": "Your contact for feedback",
+    "questionPlaceholder": "Your question",
+    "submitButton": "Send"
+  },
+  "squad": {
+    "owner": "Owner",
+    "manager": "Manager",
+    "dispatcher": "Dispatcher",
+    "repairMaster": "Repair Master"
+  },
+  "machines": {
+    "coffee": "Coffee Machine",
+    "water": "Water Vending Machine",
+    "carWash": "Self-Service Car Wash",
+    "snack": "Snack Machine",
+    "laundry": "Vending Laundry"
+  },
+  "center": {
+    "devices": "Computer, tablet, smartphone",
+    "service": "Management and monitoring service"
+  },
+  "languages": {
+    "ukrainian": "Українська",
+    "english": "English",
+    "russian": "Русский"
+  }
+}

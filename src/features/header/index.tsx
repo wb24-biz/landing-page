@@ -1,10 +1,35 @@
 import { Button } from "@/shared/ui/kit/button";
+import { getTranslations } from 'next-intl/server';
+import { getLocale } from 'next-intl/server';
 import LanguageSelector from "./ui/language-selector";
 import { Logo } from "./ui/logo";
 import { NavMenu } from "./ui/nav-menu";
 import { NavigationSheet } from "./ui/navigation-sheet";
 
-export const Header = () => {
+export const Header = async () => {
+  const t = await getTranslations('header');
+  const languageT = await getTranslations('languages');
+  const locale = await getLocale();
+
+  const navTranslations = {
+    service: t('service'),
+    functional: t('functional'),
+    equipment: t('equipment'),
+    pricing: t('pricing'),
+    contacts: t('contacts'),
+  };
+
+  const languageTranslations = {
+    ukrainian: languageT('ukrainian'),
+    english: languageT('english'),
+    russian: languageT('russian'),
+  };
+
+  // Debug logging
+  console.log('Header DEBUG - current locale:', locale);
+  console.log('Header DEBUG - nav translations:', navTranslations);
+  console.log('Header DEBUG - language translations:', languageTranslations);
+
   return (
     <div className="relative z-10 top-12">
       <nav className="h-16">
@@ -13,16 +38,21 @@ export const Header = () => {
             <Logo />
 
             {/* Desktop Menu */}
-            <NavMenu className="hidden md:block" />
+            <div className="hidden md:block">
+              <NavMenu translations={navTranslations} />
+            </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <LanguageSelector />
-            <Button className="bg-[#002869] hover:bg-[#0057b7] hover:text-[#ffd700] transition-all duration-300 font-bold text-white h-14 px-10 text-base rounded-full">
-              Увійти
+          <div className="flex items-center gap-4">
+            {/* Language Selector */}
+            <LanguageSelector translations={languageTranslations} currentLocale={locale} />
+
+            {/* Login Button */}
+            <Button variant="secondary" size="sm" className="rounded-full bg-white text-[#002869] hover:bg-gray-100">
+              {t('login')}
             </Button>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu Trigger */}
             <div className="md:hidden">
               <NavigationSheet />
             </div>

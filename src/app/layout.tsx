@@ -5,6 +5,7 @@ import { Golos_Text } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { Providers } from "./providers";
+import { StagewiseToolbarDevOnly } from "./stagewise-toolbar";
 
 const golosText = Golos_Text({
   variable: "--font-golos-text",
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${golosText.variable} antialiased`}>
         <Providers>
+          <StagewiseToolbarDevOnly />
           <Header />
           {children}
           <footer id="contacts">

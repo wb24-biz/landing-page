@@ -1,13 +1,10 @@
 import { Button } from "@/shared/ui/kit/button";
 import { Input } from "@/shared/ui/kit/input";
 import { Textarea } from "@/shared/ui/kit/textarea";
-import { getTranslations } from 'next-intl/server';
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Footer() {
-  const t = await getTranslations();
-
+export default function Footer() {
   return (
     <footer className="container relative mx-auto mb-8">
       <div className="h-auto md:h-[calc(100vh-16rem)] flex items-center justify-center py-4">
@@ -17,7 +14,9 @@ export default async function Footer() {
             <div className="space-y-6 ">
               <div className="space-y-2">
                 <h3 className="text-2xl font-medium mb-8">
-                  {t('footer.questionsTitle')}
+                  Якщо у вас виникли запитання
+                  <br />
+                  або потрібна додаткова інформація
                 </h3>
 
                 <Link
@@ -28,7 +27,7 @@ export default async function Footer() {
                     src="/images/mail.svg"
                     width={24}
                     height={24}
-                    alt="Email"
+                    alt="Telegram"
                   />{" "}
                   <span className="text-3xl">info@wb24.biz</span>
                 </Link>
@@ -60,11 +59,11 @@ export default async function Footer() {
               </div>
 
               <p className="text-sm md:text-base text-white mb-8 max-w-xs">
-                {t('footer.description')}
+                Програмне забезпечення для керування торговими автоматами
               </p>
 
               <div className="text-sm text-white/60">
-                {t('footer.rightsReserved')}
+                Усі права захищені. ©2025
               </div>
             </div>
           </div>
@@ -76,11 +75,11 @@ export default async function Footer() {
               <form className="flex flex-col gap-3">
                 <Input
                   type="text"
-                  placeholder={t('footer.contactPlaceholder')}
+                  placeholder="Ваш контакт для зворотнього зв'язку"
                   className="bg-white border-none rounded-xl text-black placeholder:text-[#6A7281] placeholder:text-base py-6"
                 />
                 <Textarea
-                  placeholder={t('footer.questionPlaceholder')}
+                  placeholder="Ваше запитання"
                   className="bg-white border-none rounded-xl text-black placeholder:text-[#6A7281] placeholder:text-base h-24"
                 />
                 <Button
@@ -89,7 +88,7 @@ export default async function Footer() {
                   size="xl"
                   className="w-[150px] text-base font-semibold"
                 >
-                  {t('footer.submitButton')}
+                  Відправити
                 </Button>
               </form>
             </div>
@@ -102,31 +101,31 @@ export default async function Footer() {
                     href="#service"
                     className="hover:text-white transition-colors"
                   >
-                    {t('header.service')}
+                    Сервіс
                   </Link>
                   <Link
                     href="#service"
                     className="hover:text-white transition-colors"
                   >
-                    {t('header.functional')}
+                    Функціонал
                   </Link>
                   <Link
                     href="#equipment"
                     className="hover:text-white transition-colors"
                   >
-                    {t('header.equipment')}
+                    Обладнання
                   </Link>
                   <Link
                     href="#pricing"
                     className="hover:text-white transition-colors"
                   >
-                    {t('header.pricing')}
+                    Тарифи
                   </Link>
                   <Link
                     href="#contacts"
                     className="hover:text-white transition-colors"
                   >
-                    {t('header.contacts')}
+                    Контакти
                   </Link>
                 </div>
               </div>
@@ -134,13 +133,13 @@ export default async function Footer() {
               <div>
                 <div className="flex flex-col gap-4 text-white/70">
                   <button className="text-left hover:text-white transition-colors">
-                    {t('languages.ukrainian')}
+                    Українська
                   </button>
                   <button className="text-left hover:text-white transition-colors">
-                    {t('languages.russian')}
+                    Русский
                   </button>
                   <button className="text-left hover:text-white transition-colors">
-                    {t('languages.english')}
+                    English
                   </button>
                 </div>
               </div>

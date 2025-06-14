@@ -2,49 +2,47 @@
 
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/kit/button";
-import { useTranslations } from 'next-intl';
 import Image from "next/image";
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { ConnectWithUsDialog } from "./ui/connect-with-us-dialog";
 import { FeatureList } from "./ui/feature-list";
 
+const squadList = [
+  { src: "/images/8.svg", alt: "1", label: "Господар" },
+  { src: "/images/9.svg", alt: "2", label: "Менеджер" },
+  { src: "/images/10.svg", alt: "3", label: "Диспетчер" },
+  { src: "/images/11.svg", alt: "4", label: "Майстер ремонту" },
+];
+
+const machineList = [
+  { src: "/images/3.svg", alt: "1", label: "Кавовий автомат" },
+  { src: "/images/4.svg", alt: "2", label: "Автомат продажу води" },
+  { src: "/images/7.svg", alt: "3", label: "Автомийки самообслуговування" },
+  { src: "/images/5.svg", alt: "4", label: "Снековий автомат" },
+  { src: "/images/6.svg", alt: "5", label: "Вендингові пральні" },
+];
+
+const centerList = [
+  {
+    src: "/images/laptop.svg",
+    alt: "1",
+    label: "Комп'ютер, планшет, смартфон",
+  },
+  {
+    src: "/images/arrows-left-right.svg",
+    alt: "2",
+    label: "",
+  },
+  {
+    src: "/images/hero-logo.svg",
+    alt: "3",
+    label: "Сервіс для керування та моніторингу",
+  },
+];
+
 const Hero = () => {
   const [open, setOpen] = useState(false);
-  const t = useTranslations();
-
-  const squadList = [
-    { src: "/images/8.svg", alt: "1", label: t('squad.owner') },
-    { src: "/images/9.svg", alt: "2", label: t('squad.manager') },
-    { src: "/images/10.svg", alt: "3", label: t('squad.dispatcher') },
-    { src: "/images/11.svg", alt: "4", label: t('squad.repairMaster') },
-  ];
-
-  const machineList = [
-    { src: "/images/3.svg", alt: "1", label: t('machines.coffee') },
-    { src: "/images/4.svg", alt: "2", label: t('machines.water') },
-    { src: "/images/7.svg", alt: "3", label: t('machines.carWash') },
-    { src: "/images/5.svg", alt: "4", label: t('machines.snack') },
-    { src: "/images/6.svg", alt: "5", label: t('machines.laundry') },
-  ];
-
-  const centerList = [
-    {
-      src: "/images/laptop.svg",
-      alt: "1",
-      label: t('center.devices'),
-    },
-    {
-      src: "/images/arrows-left-right.svg",
-      alt: "2",
-      label: "",
-    },
-    {
-      src: "/images/hero-logo.svg",
-      alt: "3",
-      label: t('center.service'),
-    },
-  ];
 
   return (
     <>
@@ -54,10 +52,11 @@ const Hero = () => {
             {/* Лівий контент - текст та кнопки */}
             <div className="z-10 flex flex-col items-center gap-3 lg:col-span-6 lg:items-start">
               <h1 className="text-center text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-left lg:text-[56px]">
-                {t('hero.title')}
+                Платформа WB24 —
               </h1>
               <p className="mb-3 text-balance text-center text-lg font-semibold tracking-tight text-white md:text-xl lg:text-left lg:text-[24px]">
-                {t('hero.subtitle')}
+                програмне забезпечення для керування торговими автоматами
+                реал-тайм 24/7
               </p>
               <FeatureList />
               <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
@@ -70,7 +69,7 @@ const Hero = () => {
                   className="w-full sm:w-auto"
                 >
                   <Button size="xl" variant="orange" className="w-full">
-                    {t('hero.connectButton')}
+                    Підключитися
                   </Button>
                 </ScrollLink>
                 <Button
@@ -79,7 +78,7 @@ const Hero = () => {
                   variant="grayOutline"
                   className="w-full sm:w-auto"
                 >
-                  {t('hero.contactButton')}
+                  Зв'язатися з нами
                 </Button>
               </div>
             </div>

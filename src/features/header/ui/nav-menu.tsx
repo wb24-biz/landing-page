@@ -3,25 +3,15 @@
 import { NavigationMenuProps } from "@radix-ui/react-navigation-menu";
 import { Link as ScrollLink } from "react-scroll";
 
-interface NavMenuProps extends NavigationMenuProps {
-  translations: {
-    service: string;
-    functional: string;
-    equipment: string;
-    pricing: string;
-    contacts: string;
-  };
-}
+const menuItems = [
+  { label: "Сервіс", to: "service" },
+  { label: "Функціонал", to: "functional" },
+  { label: "Обладнання", to: "equipment" },
+  { label: "Тарифи", to: "pricing" },
+  { label: "Контакти", to: "contacts" },
+];
 
-export const NavMenu = ({ translations, ...props }: NavMenuProps) => {
-  const menuItems = [
-    { label: translations.service, to: "service" },
-    { label: translations.functional, to: "functional" },
-    { label: translations.equipment, to: "equipment" },
-    { label: translations.pricing, to: "pricing" },
-    { label: translations.contacts, to: "contacts" },
-  ];
-
+export const NavMenu = (props: NavigationMenuProps) => {
   return (
     <nav {...props}>
       <ul className="flex items-center gap-6 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start">

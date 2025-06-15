@@ -85,9 +85,7 @@ export function RegisterNetworkDialog({
       },
       onError: (error: any) => {
         toast.error(
-          error.response?.data?.message ||
-            error.message ||
-            t("errorMessage")
+          error.response?.data?.message || error.message || t("errorMessage")
         );
         console.error("Form submission error:", error);
       },

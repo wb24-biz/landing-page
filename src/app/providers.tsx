@@ -9,7 +9,7 @@ import type { AbstractIntlMessages } from "next-intl";
 export function Providers({ children, locale, messages }: { children: React.ReactNode; locale: string; messages: AbstractIntlMessages }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <NextIntlClientProvider locale={locale} messages={messages}>
+      <NextIntlClientProvider locale={locale} messages={messages} timeZone="UTC">
         {children}
       </NextIntlClientProvider>
     </QueryClientProvider>

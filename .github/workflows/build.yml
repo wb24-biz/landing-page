@@ -1,0 +1,48 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: actions/setup-node@v4
+      
+    - uses: actions/cache@v4
+      with:
+        path: ./node_modules
+        key: ${{ runner.os }}-node-${{ hashFiles('./package.json', './yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: install node
+      run: yarn install
+
+    - name: test
+      uses: yarn test --coverage --coverageDirectory='coverage'
+
+    - name: build node
+      run: yarn build
+
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.LANDING_SSH_PRIVATE_KEY }}
+        known_hosts: unnecessary
+
+    - name: Adding Known Hosts
+      run: ssh-keyscan -p ${{ secrets.LANDING_SSH_PORT}} -H ${{ secrets.LANDING_SSH_HOST }}  >> ~/.ssh/known_hosts
+
+    - name: Deploy with rsync dashboard
+      run: rsync -avz --delete-before -e "ssh -p ${{ secrets.LANDING_SSH_PORT }}" ./dist/ ${{ secrets.LANDING_SSH_USER }}@${{ secrets.LANDING_SSH_HOST }}:/opt/landing24/

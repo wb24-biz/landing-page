@@ -27,7 +27,7 @@ jobs:
       run: yarn install
 
     - name: test
-      uses: yarn test --coverage --coverageDirectory='coverage'
+      run: yarn test --coverage --coverageDirectory='coverage'
 
     - name: build node
       run: yarn build

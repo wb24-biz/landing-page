@@ -190,7 +190,7 @@ export function RegisterNetworkDialog({
                               }
                               className={cn(
                                 "h-12 placeholder:text-muted-foreground placeholder:text-lg text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
-                                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+                                "focus:border-[#136EFF] [&:not(:placeholder-shown)]:border-[#136EFF]",
                                 "*:text-black",
                                 "disabled:opacity-50"
                               )}
@@ -253,7 +253,7 @@ export function RegisterNetworkDialog({
                               disabled={isLoadingTariffs || !!tariffsError}
                               className={cn(
                                 "h-12 placeholder:text-lg text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
-                                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+                                "focus:border-[#136EFF] [&:not(:placeholder-shown)]:border-[#136EFF]",
                                 "*:text-black"
                               )}
                             >
@@ -308,7 +308,7 @@ export function RegisterNetworkDialog({
                               disabled={isLoadingCountries || !!countriesError}
                               className={cn(
                                 "h-12 placeholder:text-lg text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
-                                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+                                "focus:border-[#136EFF] [&:not(:placeholder-shown)]:border-[#136EFF]",
                                 "*:text-black",
                                 "disabled:opacity-50"
                               )}

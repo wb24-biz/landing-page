@@ -28,12 +28,7 @@ export default function Home() {
       >
         <FunctionalFeatures />
       </section>
-      <section
-        id="equipment"
-        className="relative overflow-hidden px-12 py-12 container mx-auto rounded-3xl"
-      >
-        <EquipmentIntegration />
-      </section>
+      <EquipmentIntegration />
       <section id="pricing" className="mx-auto container py-12">
         <PricingPlans />
       </section>

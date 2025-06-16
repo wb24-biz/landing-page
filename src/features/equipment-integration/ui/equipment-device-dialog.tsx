@@ -13,8 +13,8 @@ import {
   Smartphone,
   X,
 } from "lucide-react";
-import { Fragment } from "react";
 import { useTranslations } from "next-intl";
+import { Fragment } from "react";
 
 export function EquipmentDeviceDialog({
   open,
@@ -38,7 +38,10 @@ export function EquipmentDeviceDialog({
                 className="absolute cursor-pointer top-0 right-0 text-gray-400 hover:text-gray-500 transition-all"
               >
                 <span className="sr-only">{t("close")}</span>
-                <X className="h-8 w-8" aria-hidden="true" />
+                <X
+                  className="h-8 w-8 hover:text-[#136EFF] transition-colors"
+                  aria-hidden="true"
+                />
               </button>
             </DialogTitle>
             <div className="w-full grid grid-cols-2">
@@ -54,7 +57,9 @@ export function EquipmentDeviceDialog({
                     </div>
                   </div>
                   <div className=" px-6 py-4 flex-1">
-                    <div className="text-[#6A7281] text-sm">{t("service_fee")}</div>
+                    <div className="text-[#6A7281] text-sm">
+                      {t("service_fee")}
+                    </div>
                     <div className="text-2xl font-normal text-[#363A41]">
                       {t("service_fee_value")}
                     </div>
@@ -68,13 +73,16 @@ export function EquipmentDeviceDialog({
                 </div>
                 <div className="grid grid-cols-2 gap-3 text-base text-[#363A41] mt-2">
                   <div className="flex items-center gap-2 text-base">
-                    <Settings className="text-blue-600" size={16} /> {t("features.0")}
+                    <Settings className="text-blue-600" size={16} />{" "}
+                    {t("features.0")}
                   </div>
                   <div className="flex items-center gap-2 text-base">
-                    <Smartphone className="text-blue-600" size={16} /> {t("features.1")}
+                    <Smartphone className="text-blue-600" size={16} />{" "}
+                    {t("features.1")}
                   </div>
                   <div className="flex items-center gap-2 text-base">
-                    <Database className="text-blue-600" size={16} /> {t("features.2")}
+                    <Database className="text-blue-600" size={16} />{" "}
+                    {t("features.2")}
                   </div>
                   <div className="flex items-center gap-2 text-base">
                     <Network className="text-blue-600" size={16} />{" "}

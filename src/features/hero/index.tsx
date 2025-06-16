@@ -49,15 +49,15 @@ const Hero = () => {
 
   return (
     <>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6 md:px-4">
         <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center py-12 lg:h-[calc(100vh-4rem)] lg:py-0">
           <div className="grid w-full grid-cols-1 items-center gap-y-12 lg:grid-cols-12 lg:gap-10">
             {/* Лівий контент - текст та кнопки */}
-            <div className="z-10 flex flex-col items-center gap-3 lg:col-span-6 lg:items-start">
+            <div className="z-10 flex flex-col items-start md:items-center gap-3 lg:col-span-6 lg:items-start">
               <h1 className="text-center text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-left lg:text-[56px]">
-                {t("title")}
+                {t("title").replace("\n", "")}
               </h1>
-              <p className="mb-3 text-balance text-center text-lg font-semibold tracking-tight text-white md:text-xl lg:text-left lg:text-[24px]">
+              <p className="mb-3 text-balance md:text-center text-[20px] font-semibold tracking-tight text-white md:text-xl lg:text-left lg:text-[24px]">
                 {t("subtitle")}
               </p>
               <FeatureList />
@@ -87,7 +87,7 @@ const Hero = () => {
 
             {/* Правий контент - список обладнання */}
 
-            <div className="z-10 grid w-full gap-14 lg:col-span-6">
+            <div className="z-10 hidden md:grid w-full gap-14 lg:col-span-6">
               {/* Верхній список обладнання */}
               <div className="relative row-span-1">
                 <ul className="grid grid-cols-2 gap-2 rounded-[14px] border-1 border-dashed border-[#fff]/30 px-8 py-6 sm:grid-cols-4">
@@ -141,7 +141,6 @@ const Hero = () => {
                         )}
                       </li>
                     ))}
-
                   </ul>
                 </div>
               </div>
@@ -177,7 +176,7 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          <div className="absolute inset-x-4 inset-y-4 rounded-3xl bg-[#00235B] lg:inset-x-6 lg:inset-y-5" />
+          <div className="absolute inset-x-2 inset-y-4 rounded-3xl bg-[#00235B] lg:inset-x-6 lg:inset-y-5" />
         </div>
         <div className="absolute inset-x-13 bottom-8 z-[1] hidden lg:block">
           <Image

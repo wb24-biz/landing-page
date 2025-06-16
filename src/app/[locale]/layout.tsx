@@ -48,7 +48,10 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html
+      lang={locale}
+      className="scrollbar-thumb-sky-700 scrollbar-track-sky-300"
+    >
       <body className={`${golosText.variable} antialiased`}>
         <Providers locale={locale} messages={messages}>
           <Header />

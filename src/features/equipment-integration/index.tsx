@@ -1,8 +1,8 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
-import { useTranslations } from "next-intl";
 import { EquipmentDeviceDialog } from "./ui/equipment-device-dialog";
 
 function EquipmentIntegration() {
@@ -23,13 +23,20 @@ function EquipmentIntegration() {
       label: t("modulesList.0.label"),
     },
     { src: "/images/2.svg", alt: "2", label: t("modulesList.1.label") },
-    { src: "/images/connect-elements.svg", alt: "3", label: t("modulesList.2.label") },
+    {
+      src: "/images/connect-elements.svg",
+      alt: "3",
+      label: t("modulesList.2.label"),
+    },
     { src: "/images/tft.svg", alt: "4", label: t("modulesList.3.label") },
   ];
   const [open, setOpen] = useState(false);
   return (
     <>
-      <section >
+      <section
+        id="equipment"
+        className="relative overflow-hidden px-4 sm:px-12 py-12 container mx-auto rounded-3xl"
+      >
         <Image
           src="/images/bg-equipment.svg"
           alt=""
@@ -39,12 +46,12 @@ function EquipmentIntegration() {
           draggable={false}
         />
         <div className="relative z-10">
-          <div className="grid grid-cols-2 gap-6 ">
-            <div className="flex flex-col items-start px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 ">
+            <div className="flex flex-col items-center sm:items-start px-4">
               <h2 className="text-[38px] font-extrabold text-[#fff] mb-2">
                 {t("title")}
               </h2>
-              <p className="text-lg text-[#fff]/80 mb-12 max-w-3xl">
+              <p className="text-lg text-center sm:text-left text-[#fff]/80 mb-12 max-w-3xl">
                 {t("description")}
               </p>
               <div className="flex flex-col gap-4">
@@ -52,7 +59,9 @@ function EquipmentIntegration() {
                   onClick={() => setOpen(true)}
                   className="rounded-3xl border border-[#136EFF] px-8 py-4 cursor-pointer"
                 >
-                  <h4 className="text-white text-lg font-bold">{t("button_gsm")}</h4>
+                  <h4 className="text-white text-lg font-bold">
+                    {t("button_gsm")}
+                  </h4>
                   <p className="text-[#fff]/80 text-sm font-medium">
                     {t("gsm_desc")}
                   </p>
@@ -61,14 +70,16 @@ function EquipmentIntegration() {
                   onClick={() => setOpen(true)}
                   className="rounded-3xl border border-[#136EFF] px-8 py-4 cursor-pointer"
                 >
-                  <h4 className="text-white text-lg font-bold">{t("button_tft")}</h4>
+                  <h4 className="text-white text-lg font-bold">
+                    {t("button_tft")}
+                  </h4>
                   <p className="text-[#fff]/80 text-sm font-medium">
                     {t("tft_desc")}
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex w-full">
+            <div className="flex flex-col sm:flex-row w-full">
               <div className="relative">
                 <ul className="flex pl-8 pr-0 py-6 border-1 border-[#fff]/30 rounded-[14px] border-dashed flex-col justify-between h-full gap-8">
                   {translatedEquipmentList.map((item) => (

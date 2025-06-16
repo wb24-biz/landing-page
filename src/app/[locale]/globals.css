@@ -127,3 +127,31 @@ html {
     @apply bg-background text-foreground font-[var(--font-golos-text)];
   }
 }
+
+/* Custom Scrollbar Styles */
+/* For Webkit-based browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px; /* Corresponds to 'thin' */
+  height: 8px; /* For horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: #7dd3fc; /* sky-300 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0369a1; /* sky-700 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #075985; /* sky-800 for hover */
+}
+
+/* For Firefox */
+/* This will merge with other html styles */
+html {
+  scrollbar-width: thin; /* 'auto', 'thin', or 'none' */
+  scrollbar-color: #12acff87 #fff;
+}

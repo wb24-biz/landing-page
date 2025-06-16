@@ -33,7 +33,7 @@ export function ConnectWithUsDialog({
                 className="absolute cursor-pointer top-4 right-6 text-gray-400 hover:text-gray-500 transition-all"
               >
                 <span className="sr-only">{t("closeButtonSR")}</span>
-                <X className="h-8 w-8" aria-hidden="true" />
+                <X className="h-8 w-8 hover:text-[#136EFF]" aria-hidden="true" />
               </button>
             </DialogTitle>
             <div className="text-xl text-center mb-8 text-[#00235B]">

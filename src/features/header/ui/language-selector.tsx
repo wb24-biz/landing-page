@@ -1,8 +1,12 @@
 "use client";
 
-import { Popover, PopoverContent, PopoverTrigger } from "@/shared/ui/kit/popover";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/shared/ui/kit/popover";
 import { useLocale } from "next-intl";
 
 const languageLabels: Record<string, string> = {
@@ -25,7 +29,7 @@ export default function LanguageSelector() {
 
   return (
     <Popover>
-      <PopoverTrigger className="z-50 cursor-pointer rounded-full">
+      <PopoverTrigger className="z-50 hidden md:block cursor-pointer rounded-full">
         <div className="w-14 font-semibold z-50 h-14 p-2 bg-[#002869] hover:bg-[#0057b7] hover:text-[#ffd700] hover:font-bold transition-all duration-300 flex items-center justify-center rounded-full text-white text-sm">
           {currentLocale.toUpperCase()}
         </div>
@@ -34,7 +38,9 @@ export default function LanguageSelector() {
         {languages.map((locale) => (
           <button
             key={locale}
-            className={`w-full text-left px-3 py-2 flex items-center hover:bg-slate-100 rounded-md ${locale === currentLocale ? "font-bold text-[#0057b7]" : ""}`}
+            className={`w-full text-left px-3 py-2 flex items-center hover:bg-slate-100 rounded-md ${
+              locale === currentLocale ? "font-bold text-[#0057b7]" : ""
+            }`}
             onClick={() => handleSelect(locale)}
             disabled={locale === currentLocale}
           >

@@ -10,6 +10,9 @@ import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
 
 export default function Footer() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const currentLocale = useLocale();
   const t = useTranslations("Footer");
 
   const footerNavItems = [
@@ -19,25 +22,38 @@ export default function Footer() {
     { label: t("nav.pricing"), to: "pricing" },
     { label: t("nav.contacts"), to: "contacts" },
   ];
-  const router = useRouter();
-  const pathname = usePathname();
-  const currentLocale = useLocale();
 
   const handleSelect = (locale: string) => {
     if (locale !== currentLocale) {
       router.replace(pathname, { locale });
     }
   };
+
   return (
     <div className="relative">
-      <footer className="container mx-auto mb-4" id="contacts">
-        <div className="h-auto md:h-[calc(100vh-24rem)]  flex items-center justify-center py-2">
-          <div className="flex flex-col lg:flex-row justify-between gap-12 w-full">
+      <footer className="container mx-auto mb-4 z-10 px-2" id="contacts">
+        <div className="h-auto md:min-h-[calc(100vh-24rem)] flex items-center justify-center">
+          <div
+            className="
+              flex flex-col 
+              lg:flex-row 
+              justify-between 
+              gap-12 
+              w-full
+              px-4
+              py-8
+              md:px-8
+              lg:px-0
+              md:py-12
+              relative
+              z-10
+            "
+          >
             {/* Ліва колонка (контакти та лого) */}
-            <div className="flex flex-col justify-between grow items-start gap-6 z-10 text-white">
-              <div className="space-y-6 ">
+            <div className="flex flex-col justify-between grow items-start gap-6 text-white w-full lg:w-auto">
+              <div className="space-y-6 w-full">
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-medium mb-8">
+                  <h3 className="text-base sm:text-2xl font-medium mb-4 sm:mb-8 leading-snug">
                     {t("title.line1")}
                     <br />
                     {t("title.line2")}
@@ -51,9 +67,11 @@ export default function Footer() {
                       src="/images/mail.svg"
                       width={24}
                       height={24}
-                      alt="Telegram"
-                    />{" "}
-                    <span className="text-3xl">info@wb24.biz</span>
+                      alt="Mail"
+                    />
+                    <span className="text-lg sm:text-2xl break-all">
+                      info@wb24.biz
+                    </span>
                   </Link>
 
                   <Link
@@ -66,39 +84,41 @@ export default function Footer() {
                       height={24}
                       alt="Telegram"
                     />
-                    <span className="text-3xl">@wb24_biz_bot</span>
+                    <span className="text-lg sm:text-2xl">@wb24_biz_bot</span>
                   </Link>
                 </div>
               </div>
 
-              <div className=" pt-0">
-                {/* Лого та опис */}
+              <div className="pt-0 hidden md:block w-full">
                 <div className="flex items-center gap-3 mb-3">
                   <Image
                     src="/images/logo-footer.svg"
-                    width={190}
-                    height={52}
+                    width={120}
+                    height={32}
                     alt="WB24 Logo"
+                    className="w-[120px] h-auto sm:w-[190px]"
                   />
                 </div>
 
-                <p className="text-sm md:text-base text-white mb-8 max-w-xs">
+                <p className="text-xs sm:text-sm md:text-base text-white mb-4 sm:mb-8 max-w-xs">
                   {t("description")}
                 </p>
 
-                <div className="text-sm text-white/60">{t("copyright")}</div>
+                <div className="text-xs sm:text-sm text-white/60">
+                  {t("copyright")}
+                </div>
               </div>
             </div>
 
             {/* Права колонка (форма та навігація) */}
-            <div className="flex flex-col grow-3 items-start gap-6 z-10 text-white">
-              {/* Форма зворотнього зв'язку */}
-              <div className="w-full">
+            <div className="flex flex-col grow-3 items-start gap-6 text-white w-full lg:w-auto">
+              {/* Форма */}
+              <div className="w-full max-w-none sm:max-w-xs md:max-w-sm lg:max-w-none">
                 <form className="flex flex-col gap-3">
                   <Input
                     type="text"
                     placeholder={t("form.contact_placeholder")}
-                    className="bg-white border-none rounded-xl text-black placeholder:text-[#6A7281] placeholder:text-base py-6"
+                    className="bg-white border-none rounded-xl text-black placeholder:text-[#6A7281] placeholder:text-base h-12"
                   />
                   <Textarea
                     placeholder={t("form.question_placeholder")}
@@ -108,17 +128,29 @@ export default function Footer() {
                     type="submit"
                     variant="primaryBlue"
                     size="xl"
-                    className="w-[150px] text-base font-semibold"
+                    className="w-full sm:w-[150px] text-base font-semibold"
                   >
                     {t("form.submit_button")}
                   </Button>
                 </form>
               </div>
 
-              {/* Навігаційні посилання */}
-              <div className="grid grid-cols-3 gap-x-12 gap-y-4 w-full mt-8">
-                <div>
-                  <div className="flex flex-col gap-4 text-white/70">
+              {/* Навігаційні посилання, мови, соцмережі (адаптив grid->flex-col) */}
+              <div
+                className="
+                grid grid-cols-2 
+                sm:grid-cols-3 
+                gap-x-0 
+                gap-y-6 
+                sm:gap-x-8 
+                sm:gap-y-4 
+                w-full 
+                mt-8
+                "
+              >
+                {/* Навігація */}
+                <div className="mb-2 sm:mb-0">
+                  <div className="flex flex-col gap-4 text-white/70 items-start">
                     {footerNavItems.map((item) => (
                       <ScrollLink
                         key={item.to}
@@ -126,8 +158,8 @@ export default function Footer() {
                         spy={true}
                         smooth={true}
                         duration={800}
-                        offset={-80} // Adjust offset as needed
-                        className="hover:text-white transition-colors cursor-pointer"
+                        offset={-80}
+                        className="hover:text-white transition-colors cursor-pointer text-base sm:text-base"
                       >
                         {item.label}
                       </ScrollLink>
@@ -135,8 +167,9 @@ export default function Footer() {
                   </div>
                 </div>
 
-                <div>
-                  <div className="flex flex-col gap-4">
+                {/* Мови */}
+                <div className="mb-2 sm:mb-0">
+                  <div className="flex flex-col gap-4 sm:gap-4">
                     <button
                       onClick={() => handleSelect("ua")}
                       disabled={currentLocale === "ua"}
@@ -170,41 +203,92 @@ export default function Footer() {
                     >
                       {t("lang.en")}
                     </button>
+
+                    <div className="flex md:hidden gap-4 sm:justify-start justify-start">
+                      <Link href="https://youtube.com">
+                        <Image
+                          src="/images/youtube.svg"
+                          width={36}
+                          height={36}
+                          alt="YouTube"
+                        />
+                      </Link>
+                      <Link href="https://facebook.com">
+                        <Image
+                          src="/images/facebook.svg"
+                          width={36}
+                          height={36}
+                          alt="Facebook"
+                        />
+                      </Link>
+                    </div>
                   </div>
                 </div>
-                {/* Соціальні мережі */}
-                <div className="flex gap-4">
+                {/* Соцмережі */}
+                <div className="hidden md:flex gap-4 sm:justify-start justify-start">
                   <Link href="https://youtube.com">
                     <Image
                       src="/images/youtube.svg"
-                      width={40}
-                      height={40}
+                      width={36}
+                      height={36}
                       alt="YouTube"
                     />
                   </Link>
                   <Link href="https://facebook.com">
                     <Image
                       src="/images/facebook.svg"
-                      width={40}
-                      height={40}
+                      width={36}
+                      height={36}
                       alt="Facebook"
                     />
                   </Link>
                 </div>
               </div>
+
+              <div className="pt-0 block md:hidden w-full">
+                <div className="flex items-center gap-3 mb-3">
+                  <Image
+                    src="/images/logo-footer.svg"
+                    width={160}
+                    height={32}
+                    alt="WB24 Logo"
+                    className="w-[160px] h-auto sm:w-[190px]"
+                  />
+                </div>
+
+                <p className="text-base sm:text-lg  text-white mb-6 sm:mb-8 max-w-xs">
+                  {t("description")}
+                </p>
+
+                <div className="text-xs sm:text-sm text-white/60">
+                  {t("copyright")}
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Фоновий блок */}
-          <div className="absolute inset-x-4 inset-y-4 rounded-3xl bg-[#00235B] lg:inset-x-6 lg:inset-y-5" />
+          {/* Фоновий блок адаптивний */}
+          <div
+            className="
+            absolute 
+            inset-x-2 
+            inset-y-0 
+            rounded-3xl 
+            bg-[#00235B] 
+            z-0
+            md:inset-x-4 md:inset-y-4 
+            lg:inset-x-6 lg:inset-y-0
+          "
+          />
         </div>
-        <div className="absolute inset-x-13 top-6 z-[1]">
+        {/* Фонові SVG елементи (адаптив розміри) */}
+        <div className="absolute inset-x-2 sm:inset-x-13 top-2 sm:top-6 z-0 pointer-events-none select-none">
           <Image
             src="/images/elements-footer.svg"
             alt="Elements"
-            width={1472}
-            height={516}
-            className="object-contain rounded-3xl"
+            width={600}
+            height={210}
+            className="object-contain rounded-3xl w-full h-auto max-h-[200px] sm:max-h-[280px] lg:max-h-[400px] mx-auto"
           />
         </div>
       </footer>

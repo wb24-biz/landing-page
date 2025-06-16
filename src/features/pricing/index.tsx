@@ -125,18 +125,20 @@ export default function PricingPlans() {
                   <span className="text-3xl font-normal text-black">
                     {plan.price}
                   </span>
-                  <span className="text-sm text-[#6A7281]">{plan.period}</span>
+                  <span className="text-sm max-w-[150px] text-[#6A7281]">
+                    {plan.period}
+                  </span>
                   {plan.note && !plan.highlight && (
-                    <span className="text-sm text-[#6A7281]">{plan.note}</span>
+                    <span className="text-sm max-w-[200px] text-[#6A7281]">
+                      {plan.note}
+                    </span>
                   )}
                 </div>
                 <Button
                   onClick={() => setOpen(true)}
+                  variant="orange"
                   className={cn(
-                    "w-full py-2 text-base font-semibold rounded-xl",
-                    plan.highlight
-                      ? "bg-orange-400 hover:bg-orange-500 text-white"
-                      : "bg-orange-300 hover:bg-orange-400 text-white"
+                    "w-full py-6 text-base font-semibold rounded-xl"
                   )}
                   size="lg"
                 >

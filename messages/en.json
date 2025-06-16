@@ -38,14 +38,29 @@
     "title": "Telemetry and management",
     "description": "Telemetry and management of vending equipment is used for monitoring both a single vending machine and large networks in various directions",
     "categories": {
-      "0": { "title": "Drinking water vending machines", "description": "(water machines)" },
+      "0": {
+        "title": "Drinking water vending machines",
+        "description": "(water machines)"
+      },
       "1": { "title": "Coffee machines", "description": "(coffee machines)" },
       "2": { "title": "Self-service car washes", "description": "(Car Wash)" },
-      "3": { "title": "Technical fluids vending machines", "description": "(technical fluids, oils, antifreeze, etc.)" },
-      "4": { "title": "Snack vending machines", "description": "(drinks, food, toys, condomats, flowers, etc.)" },
-      "5": { "title": "Service vending machines", "description": "(tickets, information, photo, copy, etc.)" },
+      "3": {
+        "title": "Technical fluids vending machines",
+        "description": "(technical fluids, oils, antifreeze, etc.)"
+      },
+      "4": {
+        "title": "Snack vending machines",
+        "description": "(drinks, food, toys, condomats, flowers, etc.)"
+      },
+      "5": {
+        "title": "Service vending machines",
+        "description": "(tickets, information, photo, copy, etc.)"
+      },
       "6": { "title": "Self-service laundries", "description": "(laundromat)" },
-      "7": { "title": "Attractions", "description": "(toy machines, arcade games, etc.)" }
+      "7": {
+        "title": "Attractions",
+        "description": "(toy machines, arcade games, etc.)"
+      }
     }
   },
   "EquipmentIntegration": {
@@ -93,7 +108,7 @@
       "line2": "or need additional information"
     },
     "description": "Software for vending machine management",
-    "copyright": "All rights reserved. 2025",
+    "copyright": "All rights reserved. ©2025",
     "contact_title": "If you have any questions or need additional information",
     "email": "info@wb24.biz",
     "telegram": "@wb24_biz_bot",
@@ -141,6 +156,30 @@
     "showMore": "Show more",
     "hide": "Hide",
     "features": {
+      "real-time": {
+        "title": "Track sales in real time",
+        "description": "Stay up to date with sales volumes in real time to respond quickly to demand changes"
+      },
+      "inventory": {
+        "title": "Monitor product, consumables, and ingredient availability",
+        "description": "Timely replenish consumables and ingredients to avoid downtime and increase sales"
+      },
+      "alerts": {
+        "title": "Track failures and emergency situations",
+        "description": "Receive timely information about failures and emergencies for prompt resolution"
+      },
+      "security": {
+        "title": "Respond quickly to hacking and vandalism attempts",
+        "description": "Security system enables quick response to hacking and vandalism attempts, ensuring your equipment's protection"
+      },
+      "remote": {
+        "title": "Change equipment settings remotely",
+        "description": "Change equipment settings remotely without visiting the location, saving time and resources"
+      },
+      "temperature-control": {
+        "title": "Manage temperature and react promptly to critical temperature changes and leaks in equipment",
+        "description": "Descriptive text needed here in two or three lines"
+      },
       "payment": {
         "title": "Accept payments via acquiring system",
         "description": "Accept payments through all available acquiring systems (Visa, MasterCard, Google Pay, Apple Pay)"
@@ -158,7 +197,7 @@
         "description": "Descriptive text needed here in two or three lines"
       },
       "analytics": {
-        "title": "Make decisions based on equipment statistics and sales analytics",
+        "title": "Make decisions based on analysis of equipment operation statistics and sales volumes",
         "description": "Descriptive text needed here in two or three lines"
       },
       "access-control": {
@@ -176,26 +215,6 @@
       "remote-update": {
         "title": "Remote software updates",
         "description": "Descriptive text needed here in two or three lines"
-      },
-      "real-time": {
-        "title": "Track sales in real time",
-        "description": "Stay up to date with sales volumes in real time to respond quickly to demand changes"
-      },
-      "inventory": {
-        "title": "Monitor product, consumables, and ingredient availability",
-        "description": "Timely replenish consumables and ingredients to avoid downtime and increase sales"
-      },
-      "alerts": {
-        "title": "Track failures and emergency situations",
-        "description": "Receive timely information about failures and emergencies for prompt resolution"
-      },
-      "security": {
-        "title": "Respond quickly to hacking and vandalism attempts",
-        "description": "Security systems enable quick response to hacking and vandalism attempts, ensuring your equipment's protection"
-      },
-      "remote": {
-        "title": "Change equipment settings remotely",
-        "description": "Change equipment settings remotely without visiting the location, saving time and resources"
       }
     }
   },
@@ -203,52 +222,52 @@
     "mainTitle": "Pricing Plans",
     "individualTariffNote": "* individual tariff possible by agreement",
     "plans": {
-        "0": {
-            "title": "Free Plan",
-            "price": "$0",
-            "period": "",
-            "description": [
-                "1 machine",
-                "1 user",
-                "1 cash register (SaaS POS)",
-                "up to 100 days of order history storage"
-            ],
-            "buttonLabel": "Connect",
-            "note": "evaluate all features and pay nothing"
-        },
-        "1": {
-            "title": "Standard Plan",
-            "price": "$0.12",
-            "period": "per machine per day",
-            "description": [
-                "from 2 machines",
-                "up to 5 users",
-                "up to 10 workgroups",
-                "∞ cash registers (SaaS POS)",
-                "up to 3 acquiring integrations",
-                "up to 12 months of order history storage",
-                "Telegram integration",
-                "Maintenance calendar"
-            ],
-            "buttonLabel": "Connect",
-            "note": "Bestseller"
-        },
-        "2": {
-            "title": "Premium Plan",
-            "price": "$3",
-            "period": "per machine per month",
-            "description": [
-                "from 30 machines",
-                "up to 30 users",
-                "∞ cash registers (SaaS POS)",
-                "∞ acquiring integrations",
-                "∞ order history storage time",
-                "Telegram integration",
-                "Maintenance calendar"
-            ],
-            "buttonLabel": "Connect",
-            "note": ""
-        }
+      "0": {
+        "title": "Free Plan",
+        "price": "$0",
+        "period": "",
+        "description": [
+          "1 machine",
+          "1 user",
+          "1 cash register (SaaS POS)",
+          "up to 100 days of order history storage"
+        ],
+        "buttonLabel": "Connect",
+        "note": "evaluate all features and pay nothing"
+      },
+      "1": {
+        "title": "Standard Plan",
+        "price": "$0.12",
+        "period": "per machine per day",
+        "description": [
+          "from 2 machines",
+          "up to 5 users",
+          "up to 10 workgroups",
+          "∞ cash registers (SaaS POS)",
+          "up to 3 acquiring integrations",
+          "up to 12 months of order history storage",
+          "Telegram integration",
+          "Maintenance calendar"
+        ],
+        "buttonLabel": "Connect",
+        "note": "Bestseller"
+      },
+      "2": {
+        "title": "Premium Plan",
+        "price": "$3",
+        "period": "per machine per month",
+        "description": [
+          "from 30 machines",
+          "up to 30 users",
+          "∞ cash registers (SaaS POS)",
+          "∞ acquiring integrations",
+          "∞ order history storage time",
+          "Telegram integration",
+          "Maintenance calendar"
+        ],
+        "buttonLabel": "Connect",
+        "note": ""
+      }
     }
   },
   "ConnectWithUsDialog": {

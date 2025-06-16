@@ -1,10 +1,10 @@
 import dynamic from "next/dynamic";
 
 const Hero = dynamic(() => import("@/features/hero"));
+const TelemetryCategoriesGrid = dynamic(() => import("@/features/telemetry"));
 const EquipmentIntegration = dynamic(
   () => import("@/features/equipment-integration")
 );
-const TelemetryCategoriesGrid = dynamic(() => import("@/features/telemetry"));
 const FunctionalFeatures = dynamic(
   () => import("@/features/functional-features"),
   {
@@ -21,9 +21,7 @@ export default function Home() {
       <section id="service">
         <Hero />
       </section>
-      <section id="telemetry" className="w-full container mx-auto py-8">
-        <TelemetryCategoriesGrid />
-      </section>
+      <TelemetryCategoriesGrid />
       <section
         id="functional"
         className="py-16 rounded-[40px] my-12 bg-[url('/images/frame.svg')] bg-center bg-no-repeat bg-cover"

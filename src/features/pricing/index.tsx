@@ -156,7 +156,7 @@ export default function PricingPlans() {
           </div>
         ))}
       </div>
-      <p className="text-xs sm:text-sm text-gray-600 mt-2 px-4 md:px-4 lg:px-0">
+      <p className="text-xs sm:text-sm text-gray-600 mt-2 px-2 md:px-4 lg:px-0">
         {safeT(
           "individualTariffNote",
           "* individual tariff possible by agreement"

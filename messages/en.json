@@ -1,4 +1,9 @@
 {
+  "SEO": {
+    "title": "WB24 Platform — Vending Management Software",
+    "description": "Real-time 24/7 software for managing your vending machine network. Track sales, control inventory, and receive instant notifications.",
+    "keywords": "vending, vending management, telemetry, real-time monitoring, vending software, wb24"
+  },
   "HomePage": {
     "title": "Hello world!",
     "about": "Go to the about page"

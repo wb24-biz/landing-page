@@ -3,7 +3,7 @@ import { Header } from "@/features/header";
 import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { Golos_Text } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Toaster } from "sonner";
@@ -20,34 +20,55 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export const metadata: Metadata = {
-  title: "WB24 Platform",
-  description: "Software for vending management real-time 24/7",
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", type: "image/png" }],
-  },
-  manifest: "/site.webmanifest",
-  openGraph: {
-    title: "WB24 Platform",
-    description: "Software for vending management real-time 24/7",
-    url: "http://test24.wb24.biz/",
-    siteName: "WB24 Platform",
-    images: [
-      {
-        url: "/android-chrome-512x512.png", // Path to your OG image
-        width: 512,
-        height: 512,
-        alt: "WB24 Platform Logo",
-      },
-    ],
-    type: "website",
-  },
-};
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: "SEO" });
+  const baseUrl = "http://test24.wb24.biz";
+
+  return {
+    metadataBase: new URL(baseUrl),
+    title: t("title"),
+    description: t("description"),
+    keywords: t("keywords"),
+    authors: [{ name: "WB24", url: baseUrl }],
+    themeColor: "#ffffff",
+    icons: {
+      icon: [
+        { url: "/favicon.ico" },
+        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      ],
+      apple: [{ url: "/apple-touch-icon.png", type: "image/png" }],
+    },
+    manifest: "/site.webmanifest",
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      url: `${baseUrl}/${locale}`,
+      siteName: "WB24 Platform",
+      images: [
+        {
+          url: "/android-chrome-512x512.png",
+          width: 512,
+          height: 512,
+          alt: "WB24 Platform Logo",
+        },
+      ],
+      type: "website",
+      locale: locale,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: ["/android-chrome-512x512.png"],
+      creator: "@wb24_biz_bot",
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

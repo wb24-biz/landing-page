@@ -32,6 +32,21 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", type: "image/png" }],
   },
   manifest: "/site.webmanifest",
+  openGraph: {
+    title: "WB24 Platform",
+    description: "Software for vending management real-time 24/7",
+    url: "http://test24.wb24.biz/",
+    siteName: "WB24 Platform",
+    images: [
+      {
+        url: "/android-chrome-512x512.png", // Path to your OG image
+        width: 512,
+        height: 512,
+        alt: "WB24 Platform Logo",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default async function RootLayout({

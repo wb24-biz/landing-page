@@ -9,14 +9,14 @@ import { NavigationSheet } from "./ui/navigation-sheet";
 export const Header = () => {
   const t = useTranslations("Header");
   return (
-    <div className="relative z-10 top-12">
-      <nav className="h-16">
-        <div className="h-full flex items-center justify-between container mx-auto px-4 sm:px-2 lg:px-2 ">
-          <div className="flex bg-[#002869] pl-2 md:pl-6 px-6 py-4 rounded-full items-center gap-8">
+    <div className="relative z-10 top-10 md:top-14">
+      <nav className="h-4">
+        <div className="h-full flex items-center justify-between container mx-auto px-4 sm:px-2 md:px-10 lg:px-2 ">
+          <div className="flex md:bg-[#002869] pl-2 md:pl-6 px-6 py-4 rounded-full items-center gap-8">
             <Logo />
 
             {/* Desktop Menu */}
-            <NavMenu className="hidden md:block" />
+            <NavMenu className="hidden lg:block" />
           </div>
 
           <div className="flex items-center gap-3">
@@ -25,14 +25,15 @@ export const Header = () => {
               href="https://my.wb24.biz"
               target="_blank"
               rel="noopener noreferrer"
+              className="hidden lg:block"
             >
-              <Button className="bg-[#002869] hidden md:block hover:bg-[#0057b7]  hover:text-[#ffd700] transition-all duration-300 font-bold text-white h-14 px-10 text-base rounded-full">
+              <Button className="bg-[#002869]  hover:bg-[#0057b7]  hover:text-[#ffd700] transition-all duration-300 font-bold text-white h-14 px-10 text-base rounded-full">
                 {t("loginButton")}
               </Button>
             </Link>
 
             {/* Mobile Menu */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <NavigationSheet />
             </div>
           </div>

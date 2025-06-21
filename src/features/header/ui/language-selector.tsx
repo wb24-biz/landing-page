@@ -29,7 +29,7 @@ export default function LanguageSelector() {
 
   return (
     <Popover>
-      <PopoverTrigger className="z-50 hidden md:block cursor-pointer rounded-full">
+      <PopoverTrigger className="z-50 hidden lg:block cursor-pointer rounded-full">
         <div className="w-14 font-semibold z-50 h-14 p-2 bg-[#002869] hover:bg-[#0057b7] hover:text-[#ffd700] hover:font-bold transition-all duration-300 flex items-center justify-center rounded-full text-white text-sm">
           {currentLocale.toUpperCase()}
         </div>

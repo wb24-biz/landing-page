@@ -13,7 +13,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDownIcon, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import {
@@ -31,9 +31,13 @@ import { TariffOption, useFetchTariffs } from "../model/use-fetch-tariffs";
 export function RegisterNetworkDialog({
   open,
   onOpenChange,
+  tariff_id,
+  setTariffId,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  tariff_id: number | null;
+  setTariffId: (tariff_id: number | null) => void;
 }) {
   const t = useTranslations("RegisterNetworkDialog");
   const {
@@ -42,6 +46,7 @@ export function RegisterNetworkDialog({
     formState: { errors, isSubmitting },
     reset,
     control,
+    setValue,
   } = useForm<RegisterNetworkFormData>({
     resolver: zodResolver(registerNetworkSchema),
     defaultValues: {
@@ -50,11 +55,17 @@ export function RegisterNetworkDialog({
       phone: "",
       networkName: "",
       networkType: "",
-      tariff: "",
+      tariff: String(tariff_id),
       country: "",
       additional: "",
     },
   });
+
+  useEffect(() => {
+    if (tariff_id) {
+      setValue("tariff", String(tariff_id));
+    }
+  }, [tariff_id, setValue]);
 
   const connectRegistrationMutation = useConnectRegistration();
   const {
@@ -97,16 +108,24 @@ export function RegisterNetworkDialog({
       <Dialog
         as="div"
         className="relative z-50"
-        onClose={() => onOpenChange(false)}
+        onClose={() => {
+          onOpenChange(false);
+          setTariffId(null);
+          reset();
+        }}
       >
         <div className="fixed inset-0 bg-[#00235BE5]" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          <DialogPanel className="w-full max-w-[900px] transform overflow-hidden rounded-4xl bg-white px-4 py-6 md:p-14  text-left align-middle shadow-xl transition-all relative">
+          <DialogPanel className="w-full max-w-[900px] transform overflow-hidden rounded-4xl bg-white px-4 py-6 md:p-14 text-left align-middle shadow-xl transition-all relative">
             <DialogTitle className="text-4xl text-[#00235B] font-extrabold text-center mb-2 ">
               {t("title")}
               <button
                 type="button"
-                onClick={() => onOpenChange(false)}
+                onClick={() => {
+                  onOpenChange(false);
+                  setTariffId(null);
+                  reset();
+                }}
                 className="absolute cursor-pointer top-4 right-6 text-gray-400 hover:text-gray-500 transition-all"
               >
                 <span className="sr-only">{t("closeButtonSR")}</span>

@@ -14,17 +14,19 @@ type Plan = {
   buttonLabel: string;
   highlight?: boolean;
   note?: string;
+  tariff_id: number;
 };
 
 const plansStructure = [
-  { highlight: false, baseKey: "plans.0" },
-  { highlight: true, baseKey: "plans.1" },
-  { highlight: false, baseKey: "plans.2" },
+  { highlight: false, baseKey: "plans.0", tariff_id: 1 },
+  { highlight: true, baseKey: "plans.1", tariff_id: 2 },
+  { highlight: false, baseKey: "plans.2", tariff_id: 3 },
 ];
 
 export default function PricingPlans() {
   const t = useTranslations("PricingPlans");
   const [open, setOpen] = useState(false);
+  const [tariff_id, setTariffId] = useState<number | null>(null);
 
   // Helper function for safe translation fetching with a fallback.
   const safeT = (key: string, fallback: string = "") => {
@@ -61,6 +63,7 @@ export default function PricingPlans() {
     }
     const note = safeT(`${planStructure.baseKey}.note`);
     return {
+      tariff_id: planStructure.tariff_id,
       title: safeT(
         `${planStructure.baseKey}.title`,
         planStructure.baseKey.split(".").pop() || "Plan"
@@ -73,6 +76,8 @@ export default function PricingPlans() {
       note: note || undefined,
     };
   });
+
+  console.log("tariff_id", tariff_id);
 
   return (
     <>
@@ -91,7 +96,7 @@ export default function PricingPlans() {
             w-full
             overflow-x-auto
             sm:overflow-x-visible
-            px-2 sm:px-0
+            px-2 md:px-4 lg:px-0
           "
         >
           {plans.map((plan, index) => (
@@ -140,7 +145,10 @@ export default function PricingPlans() {
                   )}
                 </div>
                 <Button
-                  onClick={() => setOpen(true)}
+                  onClick={() => {
+                    setOpen(true);
+                    setTariffId(plan.tariff_id);
+                  }}
                   variant="orange"
                   className="w-full py-4 sm:py-6 text-base font-semibold rounded-xl"
                   size="lg"
@@ -151,7 +159,7 @@ export default function PricingPlans() {
             </div>
           ))}
         </div>
-        <p className="text-xs sm:text-sm text-gray-600 mt-2 px-2 sm:px-0">
+        <p className="text-xs sm:text-sm text-gray-600 mt-2 px-2 md:px-4 lg:px-0">
           {safeT(
             "individualTariffNote",
             "* individual tariff possible by agreement"
@@ -159,7 +167,12 @@ export default function PricingPlans() {
         </p>
       </section>
 
-      <RegisterNetworkDialog open={open} onOpenChange={setOpen} />
+      <RegisterNetworkDialog
+        open={open}
+        onOpenChange={setOpen}
+        tariff_id={tariff_id}
+        setTariffId={setTariffId}
+      />
     </>
   );
 }

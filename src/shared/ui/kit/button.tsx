@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
 const buttonVariants = cva(
-  "inline-flex items-center cursor-pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex items-center cursor-pointer justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-6 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
@@ -26,8 +26,7 @@ const buttonVariants = cva(
           "border border-[#FFFFFF66] font-bold text-lg bg-transparent text-[#fff]/60 hover:bg-[#fff]/10 dark:border-[#fff]/60 dark:text-[#fff]/60 dark:hover:bg-[#fff]/10",
         blueText:
           "bg-transparent text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300",
-        primaryBlue:
-          "bg-[#136EFF] text-white hover:bg-[#136EFF]/80",
+        primaryBlue: "bg-[#136EFF] text-white hover:bg-[#136EFF]/80",
         secondaryBlue:
           "bg-blue-900 text-white hover:bg-blue-950 dark:bg-blue-800 dark:hover:bg-blue-900",
         outlineBlue:

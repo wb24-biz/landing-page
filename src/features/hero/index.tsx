@@ -48,20 +48,20 @@ const Hero = () => {
   const t = useTranslations("Hero");
 
   return (
-    <>
-      <div className="container mx-auto px-6 md:px-4">
-        <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center py-12 lg:h-[calc(100vh-4rem)] lg:py-0">
+    <div className="rounded-3xl mx-3 md:mx-4 lg:mx-8 bg-[#00235B]">
+      <div className="container mx-auto px-4 md:px-8 lg:px-4">
+        <div className="flex min-h-[calc(100vh-14rem)] items-center justify-center py-16 lg:h-[calc(100vh-4rem)] lg:py-0">
           <div className="grid w-full grid-cols-1 items-center gap-y-12 lg:grid-cols-12 lg:gap-10">
             {/* Лівий контент - текст та кнопки */}
-            <div className="z-10 flex flex-col items-start md:items-center gap-3 lg:col-span-6 lg:items-start">
-              <h1 className="text-center text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-left lg:text-[56px]">
-                {t("title").replace("\n", "")}
+            <div className="z-10 flex flex-col items-start gap-3 lg:col-span-6 lg:items-start">
+              <h1 className=" w-2/3 md:w-full text-4xl font-extrabold tracking-tight text-white md:text-5xl lg:text-left lg:text-[56px]">
+                {t("title")}
               </h1>
-              <p className="mb-3 text-balance md:text-center text-[20px] font-semibold tracking-tight text-white md:text-xl lg:text-left lg:text-[24px]">
+              <p className="mb-3 text-balance text-[20px] font-semibold tracking-tight text-white md:text-xl lg:text-left lg:text-[24px]">
                 {t("subtitle")}
               </p>
               <FeatureList />
-              <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+              <div className="mt-6 md:mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <ScrollLink
                   to="pricing"
                   spy={true}
@@ -87,7 +87,7 @@ const Hero = () => {
 
             {/* Правий контент - список обладнання */}
 
-            <div className="z-10 hidden md:grid w-full gap-14 lg:col-span-6">
+            <div className="z-10 hidden lg:grid w-full gap-14 lg:col-span-6">
               {/* Верхній список обладнання */}
               <div className="relative row-span-1">
                 <ul className="grid grid-cols-2 gap-2 rounded-[14px] border-1 border-dashed border-[#fff]/30 px-8 py-6 sm:grid-cols-4">
@@ -176,20 +176,18 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          <div className="absolute inset-x-2 inset-y-4 rounded-3xl bg-[#00235B] lg:inset-x-6 lg:inset-y-5" />
         </div>
-        <div className="absolute inset-x-13 bottom-8 z-[1] hidden lg:block">
+        <div className="absolute h-full inset-x-4 md:inset-x-8 lg:inset-x-10 bottom-0 lg:-bottom-18 z-[1]">
           <Image
             src="/images/elements.svg"
             alt="Elements"
-            width={1472}
-            height={516}
+            fill
             className="object-contain"
           />
         </div>
       </div>
       <ConnectWithUsDialog open={open} onOpenChange={setOpen} />
-    </>
+    </div>
   );
 };
 

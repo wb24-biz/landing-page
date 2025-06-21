@@ -23,7 +23,10 @@ import { useTranslations } from "next-intl";
 export default function TelemetryCategoriesGrid() {
   const t = useTranslations("Telemetry");
   return (
-    <section id="telemetry" className="w-full container mx-auto px-4 py-4 sm:py-6 lg:py-8">
+    <section
+      id="telemetry"
+      className="w-full container mx-auto px-4 mt-16 sm:py-6 lg:py-18 lg:pt-10"
+    >
       <h2 className="text-2xl sm:text-3xl lg:text-[38px] text-[#00235B] font-bold text-center mb-1 sm:mb-2">
         {t("title")}
       </h2>

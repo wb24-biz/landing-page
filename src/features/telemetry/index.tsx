@@ -25,7 +25,7 @@ export default function TelemetryCategoriesGrid() {
   return (
     <section
       id="telemetry"
-      className="w-full container mx-auto px-4 mt-16 sm:py-6 lg:py-18 lg:pt-10"
+      className="w-full container mx-auto px-0 md:px-4 mt-16 sm:py-6 lg:py-18 lg:pt-10"
     >
       <h2 className="text-2xl sm:text-3xl lg:text-[38px] text-[#00235B] font-bold text-center mb-1 sm:mb-2">
         {t("title")}

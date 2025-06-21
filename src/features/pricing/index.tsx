@@ -77,17 +77,14 @@ export default function PricingPlans() {
     };
   });
 
-  console.log("tariff_id", tariff_id);
-
   return (
     <>
-      <section>
-        <h2 className="text-[28px] sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-[#002366]">
-          {safeT("mainTitle", "Pricing Plans")}
-        </h2>
-        {/* Wrapper адаптив: горизонтальний скрол на моб, 1/2/3 колонки */}
-        <div
-          className="
+      <h2 className="text-[28px] sm:text-3xl font-bold text-center mb-6 sm:mb-10 text-[#002366]">
+        {safeT("mainTitle", "Pricing Plans")}
+      </h2>
+      {/* Wrapper адаптив: горизонтальний скрол на моб, 1/2/3 колонки */}
+      <div
+        className="
             flex flex-col 
             lg:flex-row
             gap-4 sm:gap-6
@@ -98,74 +95,73 @@ export default function PricingPlans() {
             sm:overflow-x-visible
             px-2 md:px-4 lg:px-0
           "
-        >
-          {plans.map((plan, index) => (
-            <div
-              key={`${plan.title}-${index}`}
-              className={cn(
-                "flex-1 min-w-[90vw] sm:min-w-[320px] md:min-w-[320px] max-w-full bg-white rounded-3xl border transition-all duration-300 flex flex-col items-center px-6 sm:px-6 py-3 sm:py-8",
-                plan.highlight
-                  ? "bg-[#136EFF1A] relative z-10 border-[#136EFF1A]"
-                  : "border-[#D7DDE9]"
-              )}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-[32px] sm:text-3xl font-normal">
-                  {plan.title}
+      >
+        {plans.map((plan, index) => (
+          <div
+            key={`${plan.title}-${index}`}
+            className={cn(
+              "flex-1 min-w-[90vw] sm:min-w-[320px] md:min-w-[320px] max-w-full bg-white rounded-3xl border transition-all duration-300 flex flex-col items-center px-6 sm:px-6 py-3 sm:py-8",
+              plan.highlight
+                ? "bg-[#136EFF1A] relative z-10 border-[#136EFF1A]"
+                : "border-[#D7DDE9]"
+            )}
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-[32px] sm:text-3xl font-normal">
+                {plan.title}
+              </span>
+              {plan.highlight && plan.note && (
+                <span className="text-xs font-bold mb-2 text-[#FC9433] ml-1">
+                  {plan.note}
                 </span>
-                {plan.highlight && plan.note && (
-                  <span className="text-xs font-bold mb-2 text-[#FC9433] ml-1">
+              )}
+            </div>
+            <ul className="mt-4 mb-6 space-y-2 w-full">
+              {plan.description.map((desc, i) => (
+                <li
+                  key={`${plan.title}-desc-${i}`}
+                  className="flex items-center gap-2 text-gray-800"
+                >
+                  <CheckCircle2 className="text-blue-500 w-5 h-5" />
+                  <span className="text-sm sm:text-base">{desc}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-col w-full items-center mb-4 mt-auto gap-4">
+              <div className="flex gap-2 items-center flex-wrap">
+                <span className="text-2xl sm:text-3xl font-normal text-black">
+                  {plan.price}
+                </span>
+                <span className="text-xs sm:text-sm max-w-[150px] text-[#6A7281]">
+                  {plan.period}
+                </span>
+                {plan.note && !plan.highlight && (
+                  <span className="text-xs sm:text-sm max-w-[200px] text-[#6A7281]">
                     {plan.note}
                   </span>
                 )}
               </div>
-              <ul className="mt-4 mb-6 space-y-2 w-full">
-                {plan.description.map((desc, i) => (
-                  <li
-                    key={`${plan.title}-desc-${i}`}
-                    className="flex items-center gap-2 text-gray-800"
-                  >
-                    <CheckCircle2 className="text-blue-500 w-5 h-5" />
-                    <span className="text-sm sm:text-base">{desc}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-col w-full items-center mb-4 mt-auto gap-4">
-                <div className="flex gap-2 items-center flex-wrap">
-                  <span className="text-2xl sm:text-3xl font-normal text-black">
-                    {plan.price}
-                  </span>
-                  <span className="text-xs sm:text-sm max-w-[150px] text-[#6A7281]">
-                    {plan.period}
-                  </span>
-                  {plan.note && !plan.highlight && (
-                    <span className="text-xs sm:text-sm max-w-[200px] text-[#6A7281]">
-                      {plan.note}
-                    </span>
-                  )}
-                </div>
-                <Button
-                  onClick={() => {
-                    setOpen(true);
-                    setTariffId(plan.tariff_id);
-                  }}
-                  variant="orange"
-                  className="w-full py-4 sm:py-6 text-base font-semibold rounded-xl"
-                  size="lg"
-                >
-                  {plan.buttonLabel}
-                </Button>
-              </div>
+              <Button
+                onClick={() => {
+                  setOpen(true);
+                  setTariffId(plan.tariff_id);
+                }}
+                variant="orange"
+                className="w-full py-4 sm:py-6 text-base font-semibold rounded-xl"
+                size="lg"
+              >
+                {plan.buttonLabel}
+              </Button>
             </div>
-          ))}
-        </div>
-        <p className="text-xs sm:text-sm text-gray-600 mt-2 px-2 md:px-4 lg:px-0">
-          {safeT(
-            "individualTariffNote",
-            "* individual tariff possible by agreement"
-          )}
-        </p>
-      </section>
+          </div>
+        ))}
+      </div>
+      <p className="text-xs sm:text-sm text-gray-600 mt-2 px-0 md:px-4 lg:px-0">
+        {safeT(
+          "individualTariffNote",
+          "* individual tariff possible by agreement"
+        )}
+      </p>
 
       <RegisterNetworkDialog
         open={open}

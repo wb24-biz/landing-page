@@ -1,7 +1,7 @@
 import Footer from "@/features/footer";
 import { Header } from "@/features/header";
 import { routing } from "@/i18n/routing";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { hasLocale } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { Golos_Text } from "next/font/google";
@@ -21,10 +21,11 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "SEO" });
   const baseUrl = "http://test24.wb24.biz";
 
@@ -34,7 +35,6 @@ export async function generateMetadata({
     description: t("description"),
     keywords: t("keywords"),
     authors: [{ name: "WB24", url: baseUrl }],
-    themeColor: "#ffffff",
     icons: {
       icon: [
         { url: "/favicon.ico" },
@@ -68,6 +68,12 @@ export async function generateMetadata({
       creator: "@wb24_biz_bot",
     },
   };
+}
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  width: "device-width",
+  initialScale: 1
 }
 
 export default async function RootLayout({

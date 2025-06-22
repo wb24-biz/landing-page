@@ -36,13 +36,13 @@ export function EquipmentDeviceDialog({
       <Dialog as="div" className="relative z-50" onClose={onOpenChange}>
         <div className="fixed inset-0 bg-[#00235BE5]" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
-          <DialogPanel className="w-full max-w-6xl transform overflow-hidden rounded-4xl bg-white p-8 px-12 text-left align-middle shadow-xl transition-all">
+          <DialogPanel className="w-full max-w-6xl transform overflow-hidden rounded-4xl bg-white py-8 px-6 lg:p-8 lg:px-12 text-left align-middle shadow-xl transition-all max-h-[80vh] overflow-y-auto sm:max-h-none sm:overflow-visible">
             <DialogTitle className="text-4xl text-[#00235B] font-extrabold text-center mb-8 relative">
               {equipment?.title_dialog}
               <button
                 type="button"
                 onClick={() => onOpenChange(false)}
-                className="absolute cursor-pointer top-0 right-0 text-gray-400 hover:text-gray-500 transition-all"
+                className="absolute cursor-pointer -top-4 lg:top-0 right-0 text-gray-400 hover:text-gray-500 transition-all"
               >
                 <span className="sr-only">{t("close")}</span>
                 <X

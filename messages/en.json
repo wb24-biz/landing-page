@@ -157,7 +157,7 @@
   },
   "FunctionalFeatures": {
     "title": "Functional features",
-    "description": "Using our service enables you to control your vending business online 24/7, maximize optimization, minimize equipment downtime, significantly reduce maintenance costs, and increase revenue.",
+    "description": "Manage temperature and respond in a timely manner to critical temperature changes and leaks on equipment",
     "showMore": "Show more",
     "hide": "Hide",
     "features": {
@@ -191,35 +191,35 @@
       },
       "fiscal": {
         "title": "Fiscalize sales to meet local law requirements",
-        "description": "Descriptive text needed here in two or three lines"
+        "description": "Heating or cooling of equipment/goods requires monitoring and remote control, and timely notification can prevent damage/deterioration"
       },
       "emergency-alerts": {
         "title": "Receive notifications about all emergency and abnormal situations",
-        "description": "Descriptive text needed here in two or three lines"
+        "description": "Sales fiscalization and fiscal receipt issuance ensures compliance with legislation"
       },
       "service-alerts": {
         "title": "Receive advance notifications about required service and product replenishment",
-        "description": "Descriptive text needed here in two or three lines"
+        "description": "Timely notifications in Telegram will allow you to respond quickly and reduce equipment downtime"
       },
       "analytics": {
         "title": "Make decisions based on analysis of equipment operation statistics and sales volumes",
-        "description": "Descriptive text needed here in two or three lines"
+        "description": "Automated notifications, configured by the user, and timely service will keep the equipment running without stopping"
       },
       "access-control": {
         "title": "Configure and restrict information access for partners and employees as you see fit",
-        "description": "Descriptive text needed here in two or three lines"
+        "description": "Network/equipment analytics helps make the right marketing decisions"
       },
       "remote-release": {
         "title": "Remotely release goods in case of equipment failures",
-        "description": "Descriptive text needed here in two or three lines"
+        "description": "Each user should only have access to information that matches their status and responsibilities"
       },
       "remote-restart": {
         "title": "Remotely restart equipment in case of failures",
-        "description": "Descriptive text needed here in two or three lines"
+        "description": "In case of equipment failures, products can be released remotely in the required quantity, reducing customer dissatisfaction and improving competitive ranking"
       },
       "remote-update": {
         "title": "Remote software updates",
-        "description": "Descriptive text needed here in two or three lines"
+        "description": "If an error occurs that can only be fixed by rebooting the equipment, this can be done remotely"
       }
     }
   },

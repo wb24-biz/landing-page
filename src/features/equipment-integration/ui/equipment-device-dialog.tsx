@@ -5,23 +5,30 @@ import {
   DialogTitle,
   Transition,
 } from "@headlessui/react";
-import {
-  ClipboardList,
-  Database,
-  Network,
-  Settings,
-  Smartphone,
-  X,
-} from "lucide-react";
+import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Fragment } from "react";
+
+export interface EquipmentItem {
+  id: string;
+  title: string;
+  title_dialog: string;
+  description: string;
+  features: string[];
+  price_title: string;
+  price_value: string;
+  serviceFee: string;
+  full_description?: string;
+}
 
 export function EquipmentDeviceDialog({
   open,
   onOpenChange,
+  equipment,
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  equipment: EquipmentItem | null;
 }) {
   const t = useTranslations("EquipmentDeviceDialog");
   return (
@@ -31,7 +38,7 @@ export function EquipmentDeviceDialog({
         <div className="fixed inset-0 flex items-center justify-center p-4">
           <DialogPanel className="w-full max-w-6xl transform overflow-hidden rounded-4xl bg-white p-8 px-12 text-left align-middle shadow-xl transition-all">
             <DialogTitle className="text-4xl text-[#00235B] font-extrabold text-center mb-8 relative">
-              {t("title")}
+              {equipment?.title_dialog}
               <button
                 type="button"
                 onClick={() => onOpenChange(false)}
@@ -44,59 +51,41 @@ export function EquipmentDeviceDialog({
                 />
               </button>
             </DialogTitle>
-            <div className="w-full grid grid-cols-2">
-              <div>
-                <CarouselWithThumbs />
-              </div>
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+              <CarouselWithThumbs />
               <div className="flex flex-col gap-5">
                 <div className="flex bg-[#F4F8FF] gap-6 mb-3 rounded-2xl">
-                  <div className=" px-6 py-4 flex-1">
+                  <div className="px-6 py-4 flex-1">
                     <div className="text-[#6A7281] text-sm">{t("price")}</div>
                     <div className="text-2xl font-normal text-[#363A41]">
-                      {t("price_value")}
+                      {equipment?.price_value}
                     </div>
                   </div>
-                  <div className=" px-6 py-4 flex-1">
+                  <div className="px-6 py-4 flex-1">
                     <div className="text-[#6A7281] text-sm">
                       {t("service_fee")}
                     </div>
                     <div className="text-2xl font-normal text-[#363A41]">
-                      {t("service_fee_value")}
+                      {equipment?.serviceFee}
                     </div>
                   </div>
                 </div>
                 <div className="text-[#363A41] leading-[20px] text-base mb-2">
-                  {t("desc1")}
+                  {equipment?.full_description}
                 </div>
-                <div className="text-[#363A41] leading-[20px] text-base mb-2">
-                  {t("desc2")}
-                </div>
-                <div className="grid grid-cols-2 gap-3 text-base text-[#363A41] mt-2">
-                  <div className="flex items-center gap-2 text-base">
-                    <Settings className="text-blue-600" size={16} />{" "}
-                    {t("features.0")}
+                {equipment?.features && equipment.features.length > 0 && (
+                  <div className="grid grid-cols-2 gap-3 text-base text-[#363A41] mt-2">
+                    {equipment.features.map((feature, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-2 text-base"
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                        <span>{feature}</span>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex items-center gap-2 text-base">
-                    <Smartphone className="text-blue-600" size={16} />{" "}
-                    {t("features.1")}
-                  </div>
-                  <div className="flex items-center gap-2 text-base">
-                    <Database className="text-blue-600" size={16} />{" "}
-                    {t("features.2")}
-                  </div>
-                  <div className="flex items-center gap-2 text-base">
-                    <Network className="text-blue-600" size={16} />{" "}
-                    {t("features.3")}
-                  </div>
-                  <div className="flex items-center gap-2 text-base">
-                    <ClipboardList className="text-blue-600" size={16} />{" "}
-                    {t("features.4")}
-                  </div>
-                  <div className="flex items-center gap-2 text-base">
-                    {/* <BatteryHalf className="text-blue-600" size={16} />  */}
-                    {t("features.5")}
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </DialogPanel>

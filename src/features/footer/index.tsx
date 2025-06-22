@@ -30,7 +30,7 @@ export default function Footer() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative rounded-3xl mx-3 md:mx-4 lg:mx-8 bg-[#00235B] ">
       <footer className="container mx-auto mb-4 z-10 px-2" id="contacts">
         <div className="h-auto md:min-h-[calc(100vh-24rem)] flex items-center justify-center">
           <div
@@ -268,7 +268,7 @@ export default function Footer() {
           </div>
 
           {/* Фоновий блок адаптивний */}
-          <div
+          {/* <div
             className="
             absolute 
             inset-x-2 
@@ -279,10 +279,10 @@ export default function Footer() {
             md:inset-x-4 md:inset-y-4 
             lg:inset-x-6 lg:inset-y-0
           "
-          />
+          /> */}
         </div>
         {/* Фонові SVG елементи (адаптив розміри) */}
-        <div className="absolute inset-x-2 sm:inset-x-13 top-2 sm:top-6 z-0 pointer-events-none select-none">
+        <div className="absolute h-full inset-x-4 md:inset-x-8 lg:inset-x-10 top-0 lg:-bottom-18 z-[1]">
           <Image
             src="/images/elements-footer.svg"
             alt="Elements"

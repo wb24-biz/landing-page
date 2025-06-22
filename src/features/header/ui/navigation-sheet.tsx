@@ -7,8 +7,10 @@ import { Menu } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { NavMenu } from "./nav-menu";
+import { useState } from "react";
 
 export const NavigationSheet = () => {
+  const [isOpenSheet, setIsOpenSheet] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale();
@@ -22,12 +24,13 @@ export const NavigationSheet = () => {
   };
 
   return (
-    <Sheet>
+    <Sheet open={isOpenSheet} onOpenChange={setIsOpenSheet}>
       <SheetTrigger asChild>
         <Button
           className="bg-[#002869] rounded-full size-14 p-4 text-white border-0"
           variant="outline"
           size="icon"
+          onClick={() => setIsOpenSheet(!isOpenSheet)}
         >
           <Menu />
         </Button>
@@ -68,6 +71,7 @@ export const NavigationSheet = () => {
           classNameList="flex flex-col items-start"
           orientation="vertical"
           className="mt-12 flex"
+          setIsOpenSheet={setIsOpenSheet}
         />
         <div className="mt-10 flex flex-col gap-10 sm:mb-0">
           <div className="flex flex-col gap-4 sm:gap-4">

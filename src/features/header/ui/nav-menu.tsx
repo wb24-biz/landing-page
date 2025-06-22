@@ -6,7 +6,10 @@ import { useTranslations } from "next-intl";
 import { Link as ScrollLink } from "react-scroll";
 
 export const NavMenu = (
-  props: NavigationMenuProps & { classNameList?: string }
+  props: NavigationMenuProps & {
+    classNameList?: string;
+    setIsOpenSheet?: (value: boolean) => void;
+  }
 ) => {
   const t = useTranslations("NavMenu");
 
@@ -17,6 +20,7 @@ export const NavMenu = (
     { label: t("menu.3.label"), to: "pricing" },
     { label: t("menu.4.label"), to: "contacts" },
   ];
+  
   return (
     <nav {...props}>
       <ul
@@ -26,14 +30,15 @@ export const NavMenu = (
         )}
       >
         {translatedMenuItems.map((item) => (
-          <li key={item.label}>
+          <li key={item.label} className="cursor-pointer">
             <ScrollLink
               to={item.to}
               spy={true}
               smooth={true}
               duration={500}
-              offset={-20} // Adjust offset as needed to account for fixed headers
-              className="text-white/80 text-base font-medium hover:bg-none hover:text-[#136EFF] transition-colors cursor-pointer"
+              offset={-20}
+              onClick={() => props.setIsOpenSheet?.(false)}
+              className="text-white/80 text-base font-medium hover:bg-none hover:text-[#136EFF] transition-colors cursor-pointer block w-full h-full py-2"
             >
               {item.label}
             </ScrollLink>

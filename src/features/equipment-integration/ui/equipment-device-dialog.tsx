@@ -1,4 +1,4 @@
-import CarouselWithThumbs from "@/shared/ui/carousel-09";
+import CarouselItems from "@/components/commerce-ui/image-carousel-basic-ex-01";
 import {
   Dialog,
   DialogPanel,
@@ -19,6 +19,10 @@ export interface EquipmentItem {
   price_value: string;
   serviceFee: string;
   full_description?: string;
+  images: {
+    title: string;
+    url: string;
+  }[];
 }
 
 export function EquipmentDeviceDialog({
@@ -37,7 +41,7 @@ export function EquipmentDeviceDialog({
         <div className="fixed inset-0 bg-[#00235BE5]" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
           <DialogPanel className="w-full max-w-6xl transform overflow-hidden rounded-4xl bg-white py-8 px-6 lg:p-8 lg:px-12 text-left align-middle shadow-xl transition-all max-h-[80vh] overflow-y-auto sm:max-h-none sm:overflow-visible">
-            <DialogTitle className="text-4xl text-[#00235B] font-extrabold text-center mb-8 relative">
+            <DialogTitle className="text-2xl md:text-4xl text-[#00235B] font-extrabold text-center mb-8 relative">
               {equipment?.title_dialog}
               <button
                 type="button"
@@ -52,7 +56,8 @@ export function EquipmentDeviceDialog({
               </button>
             </DialogTitle>
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
-              <CarouselWithThumbs />
+              <CarouselItems images={equipment?.images || []} />
+              {/* <CarouselWithThumbs /> */}
               <div className="flex flex-col gap-5">
                 <div className="flex bg-[#F4F8FF] gap-6 mb-3 rounded-2xl">
                   <div className="px-6 py-4 flex-1">

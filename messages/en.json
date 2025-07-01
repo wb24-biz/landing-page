@@ -208,7 +208,7 @@
       },
       "temperature-control": {
         "title": "Manage temperature and react promptly to critical temperature changes and leaks in equipment",
-        "description": "Descriptive text needed here in two or three lines"
+        "description": "Heating or cooling of equipment/goods requires monitoring and remote control, and timely notification can prevent damage/deterioration"
       },
       "payment": {
         "title": "Accept payments via acquiring system",

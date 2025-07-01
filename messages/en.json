@@ -186,6 +186,42 @@
     "showMore": "Show more",
     "hide": "Hide",
     "features": {
+      "payment": {
+        "title": "Accept payments via acquiring system",
+        "description": "Accept payments through all available acquiring systems (Visa, MasterCard, Google Pay, Apple Pay)"
+      },
+      "fiscal": {
+        "title": "Fiscalize sales to meet local law requirements",
+        "description": "Sales fiscalization and fiscal receipt issuance ensures compliance with legislation"
+      },
+      "emergency-alerts": {
+        "title": "Receive notifications about all emergency and abnormal situations",
+        "description": "Timely notifications in Telegram will allow you to respond quickly and reduce equipment downtime"
+      },
+      "service-alerts": {
+        "title": "Receive advance notifications about required service and product replenishment",
+        "description": "Automated notifications, configured by the user, and timely service will keep the equipment running without stopping"
+      },
+      "analytics": {
+        "title": "Make decisions based on analysis of equipment operation statistics and sales volumes",
+        "description": "Network/equipment analytics helps make the right marketing decisions"
+      },
+      "access-control": {
+        "title": "Configure and restrict information access for partners and employees as you see fit",
+        "description": "Each user should only have access to information that matches their status and responsibilities"
+      },
+      "remote-release": {
+        "title": "Remotely release goods in case of equipment failures",
+        "description": "In case of equipment failures, products can be released remotely in the required quantity, reducing customer dissatisfaction and improving competitive ranking"
+      },
+      "remote-restart": {
+        "title": "Remotely restart equipment in case of failures",
+        "description": "If an error occurs that can only be fixed by rebooting the equipment, this can be done remotely"
+      },
+      "remote-update": {
+        "title": "Remote software updates",
+        "description": "Fixing software errors and updates can be done remotely through the personal account"
+      },
       "real-time": {
         "title": "Track sales in real time",
         "description": "Stay up to date with sales volumes in real time to respond quickly to demand changes"
@@ -209,42 +245,6 @@
       "temperature-control": {
         "title": "Manage temperature and react promptly to critical temperature changes and leaks in equipment",
         "description": "Heating or cooling of equipment/goods requires monitoring and remote control, and timely notification can prevent damage/deterioration"
-      },
-      "payment": {
-        "title": "Accept payments via acquiring system",
-        "description": "Accept payments through all available acquiring systems (Visa, MasterCard, Google Pay, Apple Pay)"
-      },
-      "fiscal": {
-        "title": "Fiscalize sales to meet local law requirements",
-        "description": "Heating or cooling of equipment/goods requires monitoring and remote control, and timely notification can prevent damage/deterioration"
-      },
-      "emergency-alerts": {
-        "title": "Receive notifications about all emergency and abnormal situations",
-        "description": "Sales fiscalization and fiscal receipt issuance ensures compliance with legislation"
-      },
-      "service-alerts": {
-        "title": "Receive advance notifications about required service and product replenishment",
-        "description": "Timely notifications in Telegram will allow you to respond quickly and reduce equipment downtime"
-      },
-      "analytics": {
-        "title": "Make decisions based on analysis of equipment operation statistics and sales volumes",
-        "description": "Automated notifications, configured by the user, and timely service will keep the equipment running without stopping"
-      },
-      "access-control": {
-        "title": "Configure and restrict information access for partners and employees as you see fit",
-        "description": "Network/equipment analytics helps make the right marketing decisions"
-      },
-      "remote-release": {
-        "title": "Remotely release goods in case of equipment failures",
-        "description": "Each user should only have access to information that matches their status and responsibilities"
-      },
-      "remote-restart": {
-        "title": "Remotely restart equipment in case of failures",
-        "description": "In case of equipment failures, products can be released remotely in the required quantity, reducing customer dissatisfaction and improving competitive ranking"
-      },
-      "remote-update": {
-        "title": "Remote software updates",
-        "description": "If an error occurs that can only be fixed by rebooting the equipment, this can be done remotely"
       }
     }
   },

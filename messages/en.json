@@ -90,7 +90,7 @@
     "tft_desc": "contactless reader and information/payment terminal for cashless payments with NFC/QR support, fiscalization, and receipt issuing",
     "desc1_full": "The Kit Box Master telemetry controller provides complete control and management of the vending machine, connection of the acquiring terminal and other equipment, cloud fiscalization of sales, and application of loyalty systems and promotions.",
     "tft_full_desc": "Can be both in an overhead case and built into the machine case. Connecting an acquiring terminal allows you to make payments via nfc/QR, fiscalize receipts displayed on the screen.",
-    "tft_2": "TFT screen 5\"",
+    "tft_2": "TFT screen 2,8\"",
     "tft_3": "RS485/UART",
     "tft_4": "W/H/D (overhead) - 115/82/20mm",
     "tft_5": "W/H/D (built-in) - 75/92/15mm"
@@ -120,14 +120,14 @@
       "8": "W/H/D - 130/100/30mm",
       "tft_0": "QR / NFC payment",
       "tft_1": "QR / NFC receipt",
-      "tft_2": "TFT screen 5\"",
+      "tft_2": "TFT screen 2,8\"",
       "tft_3": "RS485/UART",
       "tft_4": "W/H/D (overhead) - 115/82/20mm",
       "tft_5": "W/H/D (built-in) - 75/92/15mm"
     },
     "close": "Close",
     "desc2": "Supports vending protocols MDB, Executive (Price Holding and Standard), DEX/UCS, DDCMP and is compatible with more than 250 models of vending machines and coffee machines.",
-    "tft_6": "TFT screen 5\"",
+    "tft_6": "TFT screen 2,8\"",
     "tft_7": "RS485/UART",
     "tft_8": "W/H/D (overhead) - 115/82/20mm",
     "tft_9": "W/H/D (built-in) - 75/92/15mm"
@@ -182,7 +182,7 @@
   },
   "FunctionalFeatures": {
     "title": "Functional features",
-    "description": "Manage temperature and respond in a timely manner to critical temperature changes and leaks on equipment",
+    "description": "Using our service will allow your vending business to be monitored online 24/7, optimize and minimize equipment downtime, as well as significantly reduce maintenance costs and increase revenues.",
     "showMore": "Show more",
     "hide": "Hide",
     "features": {

@@ -1,7 +1,7 @@
 import { Card } from "@/shared/ui/kit/card";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
-import { useTranslations } from "next-intl";
 type FeatureType = {
   id: string;
   icon: string;
@@ -20,6 +20,7 @@ export const FunctionalFeatureItem: React.FC<FeatureItemProps> = ({
       <div className="flex items-start gap-4">
         <div className="flex items-center justify-center size-12">
           <Image
+            className="flex-none flex-shrink-0"
             src={feature.icon}
             alt={t(`features.${feature.id}.title`)}
             width={24}

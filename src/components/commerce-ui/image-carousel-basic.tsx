@@ -77,8 +77,8 @@ const ImageContainer: React.FC<{
             <img
               src={image.url}
               alt={image.title || alt}
-              width={400}
-              height={600}
+              width={500}
+              height={700}
               className={cn(
                 "absolute inset-0 h-full w-full",
                 fit === "contain" && "object-contain",

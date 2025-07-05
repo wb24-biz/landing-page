@@ -48,8 +48,8 @@ const Hero = () => {
   const t = useTranslations("Hero");
 
   return (
-    <div className="rounded-3xl mx-3 md:mx-4 lg:mx-8 bg-[#00235B]">
-      <div className="container mx-auto px-4 md:px-8 lg:px-4">
+    <div className="rounded-3xl mx-3 md:mx-4 lg:mx-8 relative">
+      <div className="container mx-auto px-4 md:px-8 ">
         <div className="flex min-h-[calc(100vh-14rem)] items-center justify-center py-16 lg:h-[calc(100vh-4rem)] lg:py-0">
           <div className="grid w-full grid-cols-1 items-center gap-y-12 lg:grid-cols-12 lg:gap-10">
             {/* Лівий контент - текст та кнопки */}
@@ -177,12 +177,12 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <div className="absolute h-full inset-x-4 md:inset-x-8 lg:inset-x-10 bottom-0 lg:-bottom-18 z-[1]">
+        <div className="absolute h-full z-[1] w-full inset-0">
           <Image
-            src="/images/elements.svg"
+            src="/images/bg-hero.svg"
             alt="Elements"
             fill
-            className="object-contain"
+            className="object-cover rounded-2xl md:rounded-4xl"
           />
         </div>
       </div>

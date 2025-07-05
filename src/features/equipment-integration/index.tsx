@@ -273,7 +273,7 @@ function EquipmentIntegration() {
                         }
                       />
                       {item.label ? (
-                        <span className="inline-block w-full text-sm text-white/60">
+                        <span className="inline-block w-2/3 text-sm  text-white/60">
                           {item.label}
                         </span>
                       ) : null}

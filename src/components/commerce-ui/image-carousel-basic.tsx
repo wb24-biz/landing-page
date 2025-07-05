@@ -67,7 +67,7 @@ const ImageContainer: React.FC<{
   return (
     <div
       className={cn(
-        "relative w-full overflow-hidden rounded-lg bg-gray-100",
+        "relative w-full overflow-hidden rounded-lg",
         getAspectRatioClass(aspectRatio)
       )}
     >

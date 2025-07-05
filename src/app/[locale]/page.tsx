@@ -32,7 +32,6 @@ export default function Home() {
       <section id="pricing" className="mx-auto container py-12">
         <PricingPlans />
       </section>
-      {/* Here */}
     </main>
   );
 }

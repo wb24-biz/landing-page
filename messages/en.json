@@ -249,11 +249,11 @@
     }
   },
   "PricingPlans": {
-    "mainTitle": "Pricing Plans",
+    "mainTitle": "Pricing",
     "individualTariffNote": "* individual tariff possible by agreement",
     "plans": {
       "0": {
-        "title": "Free Plan",
+        "title": "Free",
         "price": "$0",
         "period": "",
         "description": [
@@ -266,7 +266,7 @@
         "note": "evaluate all features and pay nothing"
       },
       "1": {
-        "title": "Standard Plan",
+        "title": "Standard",
         "price": "$0.12",
         "period": "per machine per day",
         "description": [
@@ -283,7 +283,7 @@
         "note": "Bestseller"
       },
       "2": {
-        "title": "Premium Plan",
+        "title": "Premium",
         "price": "$3",
         "period": "per machine per month",
         "description": [

@@ -251,6 +251,20 @@
   "PricingPlans": {
     "mainTitle": "Pricing",
     "individualTariffNote": "* individual tariff possible by agreement",
+    "TariffOptions": {
+      "1": {
+        "name": "Free",
+        "description": "<p>1 network of machines</p><p>1 machine</p><p>1 user</p><p>1 cash register (PRRO)</p><p>100 days. Order history storage</p><br><br>0 UAH/machine"
+      },
+      "2": {
+        "name": "Standard",
+        "description": "<p>1 network of machines</p><p>from 1 machine</p><p>3 users</p><p>12 months. Order history storage</p><br><br>0.12 $/day per machine"
+      },
+      "3": {
+        "name": "Premium",
+        "description": "<p>1 network of machines</p><p>1 machine</p><p>1 user</p><p>1 cash register (PRRO)</p><p>100 days. Order history storage</p><br><br>0 UAH/machine"
+      }
+    },
     "plans": {
       "0": {
         "title": "Free",
@@ -298,6 +312,22 @@
         "buttonLabel": "Connect",
         "note": ""
       }
+    }
+  },
+  "MachineTypes": {
+    "1": {
+      "description": "Water vending machine",
+      "unit": "liters"
+    }
+  },
+  "Countries": {
+    "1": {
+      "name": "Ukraine",
+      "banner": ""
+    },
+    "2": {
+      "name": "Moldova",
+      "banner": ""
     }
   },
   "ConnectWithUsDialog": {

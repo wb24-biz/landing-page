@@ -12,21 +12,21 @@ type FeatureType = {
 const features: FeatureType[] = [
   { id: "real-time", icon: "/icons/9.svg" },
   { id: "inventory", icon: "/icons/10.svg" },
-  { id: "alerts", icon: "/icons/11.svg" },
+  { id: "alerts", icon: "/icons/9.svg" },
 
   { id: "security", icon: "/icons/12.svg" },
   { id: "remote", icon: "/icons/13.svg" },
-  { id: "temperature-control", icon: "/icons/14.svg" },
+  { id: "temperature-control", icon: "/icons/15.svg" },
 
   { id: "payment", icon: "/icons/15.svg" },
   { id: "fiscal", icon: "/icons/16.svg" },
   { id: "emergency-alerts", icon: "/icons/17.svg" },
 
-  { id: "service-alerts", icon: "/icons/20.svg" },
-  { id: "analytics", icon: "/icons/18.svg" },
-  { id: "access-control", icon: "/icons/19.svg" },
+  { id: "service-alerts", icon: "/icons/18.svg" },
+  { id: "analytics", icon: "/icons/19.svg" },
+  { id: "access-control", icon: "/icons/20.svg" },
 
-  { id: "remote-release", icon: "/icons/gift.svg" },
+  { id: "remote-release", icon: "/icons/21.svg" },
   { id: "remote-restart", icon: "/icons/22.svg" },
   { id: "remote-update", icon: "/icons/23.svg" },
 ];

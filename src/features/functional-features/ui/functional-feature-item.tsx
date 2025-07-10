@@ -17,8 +17,8 @@ export const FunctionalFeatureItem: React.FC<FeatureItemProps> = ({
   const t = useTranslations("FunctionalFeatures");
   return (
     <Card className="group rounded-[20px] border-none items-start gap-2 px-6 py-4 hover:shadow-lg hover:-translate-y-1 shadow-none transition-all h-full">
-      <div className="flex items-start gap-4">
-        <div className="flex items-center justify-center size-12">
+      <div className="flex flex-col sm:flex-row items-start sm:gap-4">
+        <div className="flex items-center justify-start size-12">
           <Image
             className="flex-none flex-shrink-0"
             src={feature.icon}

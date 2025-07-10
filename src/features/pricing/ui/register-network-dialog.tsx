@@ -40,6 +40,10 @@ export function RegisterNetworkDialog({
   setTariffId: (tariff_id: number | null) => void;
 }) {
   const t = useTranslations("RegisterNetworkDialog");
+  const machineTypesT = useTranslations("MachineTypes");
+  const countriesT = useTranslations("Countries");
+  const tariffOptionsT = useTranslations("PricingPlans.TariffOptions");
+
   const {
     register,
     handleSubmit,
@@ -74,6 +78,8 @@ export function RegisterNetworkDialog({
     error: tariffsError,
   } = useFetchTariffs();
 
+  console.log("tariffs", tariffs);
+
   const {
     data: countries,
     isLoading: isLoadingCountries,
@@ -85,6 +91,9 @@ export function RegisterNetworkDialog({
     isLoading: isLoadingMachineTypes,
     error: machineTypesError,
   } = useFetchMachineTypes();
+
+  console.log("machineTypes", machineTypes);
+  console.log("countries", countries);
 
   const onSubmit: SubmitHandler<RegisterNetworkFormData> = (data) => {
     connectRegistrationMutation.mutate(data, {
@@ -234,15 +243,26 @@ export function RegisterNetworkDialog({
                                 </option>
                               ) : (
                                 machineTypes?.map(
-                                  (machineType: MachineTypeOption) => (
-                                    <option
-                                      key={machineType.type_id}
-                                      value={String(machineType.type_id)} // Or machineType.description if schema expects name
-                                    >
-                                      {machineType.description}{" "}
-                                      {/* Display description */}
-                                    </option>
-                                  )
+                                  (machineType: MachineTypeOption) => {
+                                    // Use translated description if available, fallback to the description from API
+                                    const translatedDesc = machineTypesT(
+                                      `${machineType.type_id}.description`
+                                    );
+                                    const displayDesc =
+                                      translatedDesc?.includes("MachineTypes.")
+                                        ? machineType.description
+                                        : translatedDesc ||
+                                          machineType.description;
+
+                                    return (
+                                      <option
+                                        key={machineType.type_id}
+                                        value={String(machineType.type_id)}
+                                      >
+                                        {displayDesc}
+                                      </option>
+                                    );
+                                  }
                                 )
                               )}
                             </Select>
@@ -291,15 +311,27 @@ export function RegisterNetworkDialog({
                                   {t("errorTariffs")}
                                 </div>
                               ) : (
-                                tariffs?.map((tariff: TariffOption) => (
-                                  <option
-                                    key={tariff.tariff_id}
-                                    value={String(tariff.tariff_id)}
-                                    className="text-lg px-2 py-1.5 rounded-md data-[hover]:bg-blue-100 data-[selected]:bg-blue-500 data-[selected]:text-white cursor-pointer"
-                                  >
-                                    {tariff.name}
-                                  </option>
-                                ))
+                                tariffs?.map((tariff: TariffOption) => {
+                                  // Use translated name if available, fallback to the name from API
+                                  const translatedName = tariffOptionsT(
+                                    `${tariff.tariff_id}.name`
+                                  );
+                                  const displayName = translatedName?.includes(
+                                    "TariffOptions."
+                                  )
+                                    ? tariff.name
+                                    : translatedName || tariff.name;
+
+                                  return (
+                                    <option
+                                      key={tariff.tariff_id}
+                                      value={String(tariff.tariff_id)}
+                                      className="text-lg px-2 py-1.5 rounded-md data-[hover]:bg-blue-100 data-[selected]:bg-blue-500 data-[selected]:text-white cursor-pointer"
+                                    >
+                                      {displayName}
+                                    </option>
+                                  );
+                                })
                               )}
                             </Select>
                             <ChevronDownIcon
@@ -347,14 +379,35 @@ export function RegisterNetworkDialog({
                                   {t("errorCountries")}
                                 </option>
                               ) : (
-                                countries?.map((country: CountryOption) => (
-                                  <option
-                                    key={country.country_id}
-                                    value={String(country.country_id)}
-                                  >
-                                    {country.name}
-                                  </option>
-                                ))
+                                countries?.map((country: CountryOption) => {
+                                  // Use translated name if available, fallback to the name from API
+                                  const translatedName = countriesT(
+                                    `${country.country_id}.name`
+                                  );
+                                  const displayName = translatedName?.includes(
+                                    "Countries."
+                                  )
+                                    ? country.name
+                                    : translatedName || country.name;
+
+                                  const banner = countriesT(
+                                    `${country.country_id}.banner`
+                                  );
+                                  const displayBanner = banner?.includes(
+                                    "Countries."
+                                  )
+                                    ? ""
+                                    : banner;
+
+                                  return (
+                                    <option
+                                      key={country.country_id}
+                                      value={String(country.country_id)}
+                                    >
+                                      {displayBanner} {displayName}
+                                    </option>
+                                  );
+                                })
                               )}
                             </Select>
                             <ChevronDownIcon

@@ -87,13 +87,13 @@ const Hero = () => {
 
             {/* Правий контент - список обладнання */}
 
-            <div className="z-10 hidden lg:grid w-full gap-14 lg:col-span-6">
+            <div className="z-10 hidden lg:grid w-full gap-14 2xl:gap-24 lg:col-span-6 relative">
               {/* Верхній список обладнання */}
-              <div className="relative row-span-1">
-                <ul className="grid grid-cols-2 gap-2 rounded-[14px] border-1 border-dashed border-[#fff]/30 px-8 py-6 sm:grid-cols-4">
+              <div className="w-full">
+                <ul className="grid relative grid-cols-2 gap-2 sm:grid-cols-4 w-full">
                   {squadList.map((item) => (
                     <li
-                      className="flex flex-col items-center gap-3"
+                      className="flex flex-col items-center gap-3 z-10"
                       key={item.alt}
                     >
                       <Image
@@ -107,20 +107,21 @@ const Hero = () => {
                       </span>
                     </li>
                   ))}
+                  <div className="absolute -top-9 2xl:-top-7 w-full h-[200px]">
+                    <img
+                      src="/images/squad-arrows.svg"
+                      alt=""
+                      className="w-auto h-full mx-auto" // This will center the SVG and maintain aspect ratio
+                      aria-hidden="true"
+                    />
+                  </div>
                 </ul>
-                <div className="absolute -bottom-20 left-24 z-[1] hidden h-full w-[450px] lg:block">
-                  <img
-                    src="/images/squad-arrows.svg"
-                    alt="Elements"
-                    className="h-full w-full"
-                  />
-                </div>
               </div>
 
               {/* Центральний елемент */}
-              <div className="row-span-1 flex items-center justify-center">
-                <div className="flex h-full w-full items-center justify-center p-5">
-                  <ul className="flex w-full flex-col items-center justify-between gap-8 px-4 sm:flex-row sm:gap-4">
+              <div className="flex items-center justify-center">
+                <div className="flex h-full w-full items-center justify-center py-5 pb-8">
+                  <ul className="flex w-full flex-col items-center justify-around gap-8 px-4 sm:flex-row sm:gap-2">
                     {centerList.map((item) => (
                       <li
                         className={cn(
@@ -146,19 +147,20 @@ const Hero = () => {
               </div>
 
               {/* Нижній список обладнання */}
-              <div className="relative row-span-1 rounded-[14px] border-1 border-dashed border-[#fff]/30 px-3 py-6">
-                <div className="absolute -top-26 left-10 z-[1] hidden h-full w-full lg:block">
-                  <img
-                    src="/images/machine-arrows.svg"
-                    alt="Elements"
-                    className="h-full w-[85%]"
-                  />
-                </div>
-                <ul className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5">
+              <div className="">
+                <ul className="relative grid grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-5 w-full ">
+                  <div className="absolute -bottom-1 2xl:-bottom-6 w-full h-auto inset-x-0 z-20">
+                    <img
+                      src="/images/machine-arrows.svg"
+                      alt=""
+                      className="w-full h-auto object-cover"
+                      aria-hidden="true"
+                    />
+                  </div>
                   {machineList.map((item) => (
                     <li
                       className={cn(
-                        "flex h-full w-full flex-col items-center justify-between gap-3"
+                        "flex h-full w-full flex-col items-center justify-between gap-2"
                       )}
                       key={item.alt}
                     >

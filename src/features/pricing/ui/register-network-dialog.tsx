@@ -78,8 +78,6 @@ export function RegisterNetworkDialog({
     error: tariffsError,
   } = useFetchTariffs();
 
-  console.log("tariffs", tariffs);
-
   const {
     data: countries,
     isLoading: isLoadingCountries,
@@ -92,14 +90,10 @@ export function RegisterNetworkDialog({
     error: machineTypesError,
   } = useFetchMachineTypes();
 
-  console.log("machineTypes", machineTypes);
-  console.log("countries", countries);
-
   const onSubmit: SubmitHandler<RegisterNetworkFormData> = (data) => {
     connectRegistrationMutation.mutate(data, {
       onSuccess: () => {
         toast.success(t("successMessage"));
-        console.log("Form submitted successfully!", data);
         reset();
         onOpenChange(false);
       },

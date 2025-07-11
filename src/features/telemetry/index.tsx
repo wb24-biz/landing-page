@@ -37,13 +37,13 @@ export default function TelemetryCategoriesGrid() {
         {categories.map((cat, idx) => (
           <Card
             key={idx}
-            className="flex flex-col rounded-[20px] items-start gap-2 p-4 sm:p-6 hover:shadow-lg hover:-translate-y-1 shadow-none transition-all h-full"
+            className="flex flex-row md:flex-col rounded-[20px] items-start gap-4 md:gap-2 p-4 sm:p-6 hover:shadow-lg hover:-translate-y-1 shadow-none transition-all h-full"
           >
             <Image
               src={cat.icon}
               alt={t(`categories.${idx}.title`)}
-              width={36}
-              height={36}
+              width={32}
+              height={32}
             />
             <div>
               <div className="font-bold text-base sm:text-lg text-[#363A41]">

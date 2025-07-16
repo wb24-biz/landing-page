@@ -16,7 +16,7 @@ const features: FeatureType[] = [
 
   { id: "security", icon: "/icons/12.svg" },
   { id: "remote", icon: "/icons/13.svg" },
-  { id: "temperature-control", icon: "/icons/15.svg" },
+  { id: "temperature-control", icon: "/icons/14.svg" },
 
   { id: "payment", icon: "/icons/15.svg" },
   { id: "fiscal", icon: "/icons/16.svg" },

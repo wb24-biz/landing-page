@@ -1,8 +1,8 @@
 {
   "SEO": {
-    "title": "WB24 Platform — Vending Management Software",
-    "description": "Real-time 24/7 software for managing your vending machine network. Track sales, control inventory, and receive instant notifications.",
-    "keywords": "vending, vending management, telemetry, real-time monitoring, vending software, wb24"
+    "title": "WB24 — Smart vending service with telemetry, payment and fiscalization",
+    "description": "WB24 is a cloud platform for automating the vending business in Ukraine. Real-time telemetry, online payment (NFC, QR, PayPass), fiscalization through PRRO, API for integration with CRM and 1C.",
+    "keywords": "vending fiscalization, vending machine fiscalization, PRRO for vending, machine monitoring, telemetry for vending machines, personal account for vending, online payments, PayPass for machines, payment by phone, QR checks, NFC payments, storage rooms, automatic storage lockers, parcel terminals, micromarkets, wb24"
   },
   "HomePage": {
     "title": "Hello world!",
@@ -55,11 +55,11 @@
       },
       "4": {
         "title": "Snack vending machines",
-        "description": "(drinks, food, toys, condomats, flowers, etc.)"
+        "description": "(drinks, food, toys, condomats, flowers, micro-markets)"
       },
       "5": {
         "title": "Service vending machines",
-        "description": "(tickets, information, photo, copy, etc.)"
+        "description": "(tickets, information, photo, copy, automatic storage lockers, post machines)"
       },
       "6": { "title": "Self-service laundries", "description": "(laundromat)" },
       "7": {

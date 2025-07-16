@@ -8,6 +8,7 @@ import { Golos_Text } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Toaster } from "sonner";
 import { Providers } from "../providers";
+import { StructuredData } from "@/components/seo/structured-data";
 import "./globals.css";
 
 const golosText = Golos_Text({
@@ -27,7 +28,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "SEO" });
-  const baseUrl = "http://test24.wb24.biz";
+  // const baseUrl = "http://test24.wb24.biz";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://wb24.biz";
 
   return {
     metadataBase: new URL(baseUrl),
@@ -94,6 +96,9 @@ export default async function RootLayout({
       lang={locale}
       className="scrollbar-thumb-sky-700 scrollbar-track-sky-300"
     >
+      <head>
+        <StructuredData locale={locale} />
+      </head>
       <body className={`${golosText.variable} antialiased`}>
         <Providers locale={locale} messages={messages}>
           <Header />

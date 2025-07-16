@@ -1,8 +1,9 @@
-import { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "http://test24.wb24.biz";
+  // const baseUrl = "http://test24.wb24.biz";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://wb24.biz";
 
   // Add other pages here as your site grows
   const pages = [""]; // Home page

@@ -36,6 +36,9 @@ export async function generateMetadata({
     title: t("title"),
     description: t("description"),
     keywords: t("keywords"),
+    alternates: {
+      canonical: `${baseUrl}/${locale}`,
+    },
     authors: [{ name: "WB24", url: baseUrl }],
     icons: {
       icon: [

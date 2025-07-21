@@ -32,7 +32,6 @@ export async function generateMetadata({
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://wb24.biz";
 
   return {
-    metadataBase: new URL(baseUrl),
     title: t("title"),
     description: t("description"),
     keywords: t("keywords"),

@@ -54,6 +54,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/:path*\\.(png|jpg|jpeg|gif|webp|svg|ico)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
     ];
   },
   async redirects() {

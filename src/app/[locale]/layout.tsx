@@ -56,20 +56,22 @@ export async function generateMetadata({
       siteName: "WB24 Platform",
       images: [
         {
-          url: "/graph.png",
+          url: `${baseUrl}/graph.png`,
           width: 1200,
           height: 630,
           alt: "WB24 Platform Analytics Dashboard",
+          type: "image/png",
         },
       ],
       type: "website",
       locale: locale,
+      countryName: "Ukraine",
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: ["/graph.png"],
+      images: [`${baseUrl}/graph.png`],
       creator: "@wb24_biz_bot",
     },
   };

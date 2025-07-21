@@ -53,10 +53,10 @@ export async function generateMetadata({
       siteName: "WB24 Platform",
       images: [
         {
-          url: "/android-chrome-512x512.png",
-          width: 512,
-          height: 512,
-          alt: "WB24 Platform Logo",
+          url: "/graph.png",
+          width: 1200,
+          height: 630,
+          alt: "WB24 Platform Analytics Dashboard",
         },
       ],
       type: "website",
@@ -66,7 +66,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: ["/android-chrome-512x512.png"],
+      images: ["/graph.png"],
       creator: "@wb24_biz_bot",
     },
   };

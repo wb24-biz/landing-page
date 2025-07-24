@@ -142,7 +142,10 @@
       "contact_placeholder": "Ваш контакт для зворотнього зв'язку",
       "question_placeholder": "Ваше запитання",
       "submit": "Відправити",
-      "submit_button": "Відправити"
+      "submit_button": "Відправити",
+      "submitting_button": "Відправляємо...",
+      "success_message": "Повідомлення успішно відправлено!",
+      "error_message": "Сталася помилка. Спробуйте ще раз."
     },
     "nav": {
       "service": "Сервіс",
@@ -331,7 +334,10 @@
     "subtitle": "Якщо у вас виникли запитання або потрібна додаткова інформація",
     "contactPlaceholder": "Ваш контакт для зворотнього зв'язку",
     "questionPlaceholder": "Ваше запитання",
-    "submitButton": "Відправити"
+    "submitButton": "Відправити",
+    "submittingButton": "Відправляємо...",
+    "successMessage": "Повідомлення успішно відправлено!",
+    "errorMessage": "Сталася помилка. Спробуйте ще раз."
   },
   "RegisterNetworkDialog": {
     "successMessage": "Заявку успішно відправлено!",

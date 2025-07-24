@@ -8,12 +8,16 @@ import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
+import { useState } from "react";
+import { useContactForm } from "../hero/model/use-contact-form";
 
 export default function Footer() {
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale();
   const t = useTranslations("Footer");
+  const [formData, setFormData] = useState({ contact: '', message: '' });
+  const contactFormMutation = useContactForm();
 
   const footerNavItems = [
     { label: t("nav.service"), to: "service" },
@@ -27,6 +31,24 @@ export default function Footer() {
     if (locale !== currentLocale) {
       router.replace(pathname, { locale });
     }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    contactFormMutation.mutate(formData, {
+      onSuccess: () => {
+        setFormData({ contact: '', message: '' });
+      },
+      onError: (error) => {
+        console.error('Error submitting form:', error);
+      }
+    });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -114,23 +136,47 @@ export default function Footer() {
             <div className="flex flex-col grow-3 items-start gap-6 text-white w-full lg:w-auto">
               {/* Форма */}
               <div className="w-full max-w-none sm:max-w-xs md:max-w-sm lg:max-w-none">
-                <form className="flex flex-col gap-3">
+                <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
                   <Input
                     type="text"
+                    name="contact"
+                    value={formData.contact}
+                    onChange={handleInputChange}
                     placeholder={t("form.contact_placeholder")}
+                    required
+                    disabled={contactFormMutation.isPending}
                     className="bg-white border-none rounded-xl text-black placeholder:text-[#6A7281] placeholder:text-base h-12"
                   />
                   <Textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
                     placeholder={t("form.question_placeholder")}
+                    required
+                    disabled={contactFormMutation.isPending}
                     className="bg-white border-none rounded-xl text-black placeholder:text-[#6A7281] placeholder:text-base h-24"
                   />
+                  
+                  {contactFormMutation.isSuccess && (
+                    <div className="text-green-300 text-sm text-center">
+                      {t("form.success_message")}
+                    </div>
+                  )}
+                  
+                  {contactFormMutation.isError && (
+                    <div className="text-red-300 text-sm text-center">
+                      {t("form.error_message")}
+                    </div>
+                  )}
+                  
                   <Button
                     type="submit"
                     variant="primaryBlue"
                     size="xl"
+                    disabled={contactFormMutation.isPending || !formData.contact.trim() || !formData.message.trim()}
                     className="w-full sm:w-[150px] text-base font-semibold"
                   >
-                    {t("form.submit_button")}
+                    {contactFormMutation.isPending ? t("form.submitting_button") : t("form.submit_button")}
                   </Button>
                 </form>
               </div>

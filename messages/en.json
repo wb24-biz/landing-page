@@ -147,7 +147,10 @@
       "contact_placeholder": "Your contact for feedback",
       "question_placeholder": "Your question",
       "submit": "Send",
-      "submit_button": "Send"
+      "submit_button": "Send",
+      "submitting_button": "Sending...",
+      "success_message": "Message sent successfully!",
+      "error_message": "An error occurred. Please try again."
     },
     "nav": {
       "service": "Service",
@@ -336,7 +339,10 @@
     "subtitle": "If you have any questions or need more information",
     "contactPlaceholder": "Your contact for feedback",
     "questionPlaceholder": "Your question",
-    "submitButton": "Submit"
+    "submitButton": "Submit",
+    "submittingButton": "Submitting...",
+    "successMessage": "Message sent successfully!",
+    "errorMessage": "An error occurred. Please try again."
   },
   "RegisterNetworkDialog": {
     "successMessage": "Application submitted successfully!",

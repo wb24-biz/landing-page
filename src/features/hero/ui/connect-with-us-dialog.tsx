@@ -9,7 +9,8 @@ import {
 } from "@headlessui/react";
 import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import { useContactForm } from "../model/use-contact-form";
 
 export function ConnectWithUsDialog({
   open,
@@ -19,6 +20,30 @@ export function ConnectWithUsDialog({
   onOpenChange: (open: boolean) => void;
 }) {
   const t = useTranslations("ConnectWithUsDialog");
+  const [formData, setFormData] = useState({ contact: '', message: '' });
+  const contactFormMutation = useContactForm();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    contactFormMutation.mutate(formData, {
+      onSuccess: () => {
+        setFormData({ contact: '', message: '' });
+        // Close dialog after successful submission
+        setTimeout(() => {
+          onOpenChange(false);
+        }, 2000);
+      },
+      onError: (error) => {
+        console.error('Error submitting form:', error);
+      }
+    });
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
   return (
     <Transition appear show={open} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={onOpenChange}>
@@ -42,29 +67,50 @@ export function ConnectWithUsDialog({
             <div className="text-xl text-center mb-8 text-[#00235B]">
               {t("subtitle")}
             </div>
-            <form className="w-full">
+            <form className="w-full" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <Input
-                  name="registrarName"
+                  name="contact"
+                  value={formData.contact}
+                  onChange={handleInputChange}
                   placeholder={t("contactPlaceholder")}
                   required
+                  disabled={contactFormMutation.isPending}
                   className="h-12 text-xl placeholder:text-lg col-span-2"
                 />
               </div>
               <Textarea
-                name="additional"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
                 placeholder={t("questionPlaceholder")}
                 rows={5}
+                required
+                disabled={contactFormMutation.isPending}
                 className="placeholder:text-lg text-xl mb-6 col-span-2"
               />
+              
+              {contactFormMutation.isSuccess && (
+                <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
+                  {t("successMessage")}
+                </div>
+              )}
+              
+              {contactFormMutation.isError && (
+                <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                  {t("errorMessage")}
+                </div>
+              )}
+              
               <div className="flex justify-center">
                 <Button
                   type="submit"
                   size="xl"
                   variant="primaryBlue"
+                  disabled={contactFormMutation.isPending || !formData.contact.trim() || !formData.message.trim()}
                   className="font-bold text-lg"
                 >
-                  {t("submitButton")}
+                  {contactFormMutation.isPending ? t("submittingButton") : t("submitButton")}
                 </Button>
               </div>
             </form>

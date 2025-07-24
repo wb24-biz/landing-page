@@ -266,7 +266,10 @@
       "contact_placeholder": "Ваш контакт для обратной связи",
       "question_placeholder": "Ваш вопрос",
       "submit": "Отправить",
-      "submit_button": "Отправить"
+      "submit_button": "Отправить",
+      "submitting_button": "Отправляем...",
+      "success_message": "Сообщение успешно отправлено!",
+      "error_message": "Произошла ошибка. Попробуйте еще раз."
     },
     "nav": {
       "service": "Сервис",
@@ -296,7 +299,10 @@
     "subtitle": "Если у вас есть вопросы или нужна дополнительная информация",
     "contactPlaceholder": "Ваш контакт для обратной связи",
     "questionPlaceholder": "Ваш вопрос",
-    "submitButton": "Отправить"
+    "submitButton": "Отправить",
+    "submittingButton": "Отправляем...",
+    "successMessage": "Сообщение успешно отправлено!",
+    "errorMessage": "Произошла ошибка. Попробуйте еще раз."
   },
   "RegisterNetworkDialog": {
     "successMessage": "Заявка успешно отправлена!",

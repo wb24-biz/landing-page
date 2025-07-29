@@ -287,14 +287,14 @@
         "price": "$0.12",
         "period": "per machine per day",
         "description": [
-          "from 2 machines",
-          "up to 5 users",
-          "up to 10 workgroups",
-          "∞ cash registers (SaaS POS)",
-          "up to 3 acquiring integrations",
-          "up to 12 months of order history storage",
-          "Telegram integration",
-          "Maintenance calendar"
+          "from 1 machine",
+          "from 1 user",
+          "from 1 cash register (SaaS POS)",
+          "up to 15 months of order history storage",
+          "workgroups",
+          "acquiring integrations",
+          "telegram integration",
+          "intelligent service maintenance"
         ],
         "buttonLabel": "Connect",
         "note": "Bestseller"
@@ -305,12 +305,7 @@
         "period": "per machine per month",
         "description": [
           "from 30 machines",
-          "up to 30 users",
-          "∞ cash registers (SaaS POS)",
-          "∞ acquiring integrations",
-          "∞ order history storage time",
-          "Telegram integration",
-          "Maintenance calendar"
+          "all Standard plan features"
         ],
         "buttonLabel": "Connect",
         "note": ""

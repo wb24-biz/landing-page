@@ -4,19 +4,22 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import { Button } from "@/shared/ui/kit/button";
 import { Input } from "@/shared/ui/kit/input";
 import { Textarea } from "@/shared/ui/kit/textarea";
-import { useLocale, useTranslations } from "next-intl";
+import { Locale, useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useTransition } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { useState } from "react";
 import { useContactForm } from "../hero/model/use-contact-form";
+import { setUserLocale } from "@/i18n/locale";
+import { locales } from "@/i18n/config";
 
 export default function Footer() {
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale();
   const t = useTranslations("Footer");
-  const [formData, setFormData] = useState({ contact: '', message: '' });
+  const [isPending, startTransition] = useTransition();
+  const [formData, setFormData] = useState({ contact: "", message: "" });
   const contactFormMutation = useContactForm();
 
   const footerNavItems = [
@@ -27,28 +30,35 @@ export default function Footer() {
     { label: t("nav.contacts"), to: "contacts" },
   ];
 
-  const handleSelect = (locale: string) => {
-    if (locale !== currentLocale) {
-      router.replace(pathname, { locale });
+
+  function onChange(value: string) {
+    // Type-safe validation that the value is a valid locale
+    if (locales.includes(value as any)) {
+      const locale = value as Locale;
+      startTransition(() => {
+        setUserLocale(locale as any);
+      });
     }
-  };
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     contactFormMutation.mutate(formData, {
       onSuccess: () => {
-        setFormData({ contact: '', message: '' });
+        setFormData({ contact: "", message: "" });
       },
       onError: (error) => {
-        console.error('Error submitting form:', error);
-      }
+        console.error("Error submitting form:", error);
+      },
     });
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -156,27 +166,33 @@ export default function Footer() {
                     disabled={contactFormMutation.isPending}
                     className="bg-white border-none rounded-xl text-black placeholder:text-[#6A7281] placeholder:text-base h-24"
                   />
-                  
+
                   {contactFormMutation.isSuccess && (
                     <div className="text-green-300 text-sm text-center">
                       {t("form.success_message")}
                     </div>
                   )}
-                  
+
                   {contactFormMutation.isError && (
                     <div className="text-red-300 text-sm text-center">
                       {t("form.error_message")}
                     </div>
                   )}
-                  
+
                   <Button
                     type="submit"
                     variant="primaryBlue"
                     size="xl"
-                    disabled={contactFormMutation.isPending || !formData.contact.trim() || !formData.message.trim()}
+                    disabled={
+                      contactFormMutation.isPending ||
+                      !formData.contact.trim() ||
+                      !formData.message.trim()
+                    }
                     className="w-full sm:w-[150px] text-base font-semibold"
                   >
-                    {contactFormMutation.isPending ? t("form.submitting_button") : t("form.submit_button")}
+                    {contactFormMutation.isPending
+                      ? t("form.submitting_button")
+                      : t("form.submit_button")}
                   </Button>
                 </form>
               </div>
@@ -217,7 +233,7 @@ export default function Footer() {
                 <div className="mb-2 sm:mb-0">
                   <div className="flex flex-col gap-4 sm:gap-4">
                     <button
-                      onClick={() => handleSelect("ua")}
+                      onClick={() => onChange("ua")}
                       disabled={currentLocale === "ua"}
                       className={`text-left transition-colors ${
                         currentLocale === "ua"
@@ -228,7 +244,7 @@ export default function Footer() {
                       {t("lang.ua")}
                     </button>
                     <button
-                      onClick={() => handleSelect("ru")}
+                      onClick={() => onChange("ru")}
                       disabled={currentLocale === "ru"}
                       className={`text-left transition-colors ${
                         currentLocale === "ru"
@@ -239,7 +255,7 @@ export default function Footer() {
                       {t("lang.ru")}
                     </button>
                     <button
-                      onClick={() => handleSelect("en")}
+                      onClick={() => onChange("en")}
                       disabled={currentLocale === "en"}
                       className={`text-left transition-colors ${
                         currentLocale === "en"

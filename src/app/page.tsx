@@ -1,3 +1,5 @@
+"use client";
+
 import dynamic from "next/dynamic";
 
 const Hero = dynamic(() => import("@/features/hero"));
@@ -8,6 +10,7 @@ const EquipmentIntegration = dynamic(
 const FunctionalFeatures = dynamic(
   () => import("@/features/functional-features"),
   {
+    ssr: false,
     loading: () => (
       <div className="h-60 animate-pulse bg-slate-100 rounded-lg"></div>
     ),

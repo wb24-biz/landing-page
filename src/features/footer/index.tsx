@@ -4,19 +4,20 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import { Button } from "@/shared/ui/kit/button";
 import { Input } from "@/shared/ui/kit/input";
 import { Textarea } from "@/shared/ui/kit/textarea";
-import { Locale, useLocale, useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useContactForm } from "../hero/model/use-contact-form";
-import { setUserLocale } from "@/i18n/locale";
+import { useLocaleContext } from "@/i18n/client-provider";
 import { locales } from "@/i18n/config";
 
 export default function Footer() {
   const router = useRouter();
   const pathname = usePathname();
   const currentLocale = useLocale();
+  const { setLocale } = useLocaleContext();
   const t = useTranslations("Footer");
   const [isPending, startTransition] = useTransition();
   const [formData, setFormData] = useState({ contact: "", message: "" });
@@ -33,10 +34,9 @@ export default function Footer() {
 
   function onChange(value: string) {
     // Type-safe validation that the value is a valid locale
-    if (locales.includes(value as any)) {
-      const locale = value as Locale;
+    if ((locales as readonly string[]).includes(value)) {
       startTransition(() => {
-        setUserLocale(locale as any);
+        setLocale(value);
       });
     }
   }

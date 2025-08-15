@@ -33,9 +33,10 @@ const fetchTariffs = async (): Promise<TariffOption[]> => {
   );
 };
 
-export function useFetchTariffs() {
+export function useFetchTariffs(enabled: boolean = true) {
   return useQuery<TariffOption[], Error>({
     queryKey: ["tariffs"],
     queryFn: fetchTariffs,
+    enabled,
   });
 }

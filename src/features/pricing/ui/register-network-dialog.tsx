@@ -76,7 +76,7 @@ export function RegisterNetworkDialog({
     data: tariffs,
     isLoading: isLoadingTariffs,
     error: tariffsError,
-  } = useFetchTariffs();
+  } = useFetchTariffs(open);
 
   const {
     data: countries,
@@ -297,13 +297,13 @@ export function RegisterNetworkDialog({
                                 {t("tariffPlaceholder")}
                               </option>
                               {isLoadingTariffs ? (
-                                <div className="px-2 py-1.5 text-gray-500">
+                                <option value="loading" disabled>
                                   {t("loadingTariffs")}
-                                </div>
+                                </option>
                               ) : tariffsError ? (
-                                <div className="px-2 py-1.5 text-red-500">
+                                <option value="error" disabled>
                                   {t("errorTariffs")}
-                                </div>
+                                </option>
                               ) : (
                                 tariffs?.map((tariff: TariffOption) => {
                                   // Use translated name if available, fallback to the name from API

@@ -1,14 +1,14 @@
 "use client";
 
 import { locales } from "@/i18n/config";
-import { setUserLocale } from "@/i18n/locale";
+import { useLocaleContext } from "@/i18n/client-provider";
 import { cn } from "@/shared/lib/utils";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/shared/ui/kit/popover";
-import { Locale, useLocale } from "next-intl";
+import { Locale } from "next-intl";
 import { useTransition } from "react";
 
 const languageLabels: Record<string, string> = {
@@ -18,15 +18,15 @@ const languageLabels: Record<string, string> = {
 };
 
 export default function LanguageSelector() {
-  const currentLocale = useLocale();
+  const { locale: currentLocale, setLocale } = useLocaleContext();
   const [isPending, startTransition] = useTransition();
 
   function onChange(value: string) {
     // Type-safe validation that the value is a valid locale
-    if (locales.includes(value as any)) {
+    if ((locales as readonly string[]).includes(value)) {
       const locale = value as Locale;
       startTransition(() => {
-        setUserLocale(locale as any);
+        setLocale(locale);
       });
     }
   }

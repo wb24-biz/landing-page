@@ -3,6 +3,8 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   distDir: "dist",
+  output: "export", // Static export
+  trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -12,69 +14,13 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    dangerouslyAllowSVG: false,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
-          {
-            key: "X-XSS-Protection",
-            value: "1; mode=block",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin",
-          },
-        ],
-      },
-      {
-        source: "/images/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/icons/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/:path*\\.(png|jpg|jpeg|gif|webp|svg|ico)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-    ];
-  },
-  async redirects() {
-    return [
-      {
-        source: "/home",
-        destination: "/",
-        permanent: true,
-      },
-    ];
+  experimental: {
+    gzipSize: true,
   },
 };
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 export default withNextIntl(nextConfig);

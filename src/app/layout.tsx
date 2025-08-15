@@ -2,7 +2,9 @@ import { StructuredData } from "@/components/seo/structured-data";
 import Footer from "@/features/footer";
 import { Header } from "@/features/header";
 import type { Metadata, Viewport } from "next";
-import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
+import { defaultLocale } from "@/i18n/config";
+import { LocaleScript } from "@/i18n/locale-script";
 import { Golos_Text } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -15,7 +17,7 @@ const golosText = Golos_Text({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getLocale();
+  const locale = defaultLocale;
   const t = await getTranslations({ locale, namespace: "SEO" });
   // const baseUrl = "http://test24.wb24.biz";
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://wb24.biz";
@@ -83,22 +85,29 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const locale = await getLocale();
-  const messages = await getMessages();
+  const locale = defaultLocale;
+  
+  // Load all messages for static build
+  const allMessages = {
+    en: (await import("../../messages/en.json")).default,
+    ua: (await import("../../messages/ua.json")).default,  
+    ru: (await import("../../messages/ru.json")).default,
+  };
 
   return (
     <html
-      lang={locale}
+      lang="ua" // Will be updated by script before content renders
       className="scrollbar-thumb-sky-700 scrollbar-track-sky-300"
     >
       <head>
+        <LocaleScript />
         <StructuredData locale={locale} />
       </head>
       <body
         className={`${golosText.variable} antialiased`}
         suppressHydrationWarning
       >
-        <Providers locale={locale} messages={messages}>
+        <Providers locale={locale} messages={allMessages}>
           <Header />
           {children}
           <Footer />

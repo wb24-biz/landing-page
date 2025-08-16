@@ -118,27 +118,27 @@ export function RegisterNetworkDialog({
         }}
       >
         <div className="fixed inset-0 bg-[#00235BE5]" aria-hidden="true" />
-        <div className="fixed inset-0 flex items-center justify-center p-4">
-          <DialogPanel className="w-full max-w-[900px] transform overflow-hidden rounded-4xl bg-white px-4 py-6 md:p-14 text-left align-middle shadow-xl transition-all relative">
-            <DialogTitle className="text-4xl text-[#00235B] font-extrabold text-center mb-2 ">
+        <div className="fixed inset-0 flex items-center justify-center p-2 sm:p-4">
+          <DialogPanel className="max-w-[600px] sm:max-w-[550px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[750px] transform overflow-hidden rounded-2xl sm:rounded-3xl bg-white px-3 py-4 sm:px-6 sm:py-8 lg:p-14 text-left align-middle shadow-xl transition-all relative">
+            <button
+              type="button"
+              onClick={() => {
+                onOpenChange(false);
+                setTariffId(null);
+                reset();
+              }}
+              className="absolute cursor-pointer top-4 right-4 text-gray-400 hover:text-gray-500 transition-all z-10"
+            >
+              <span className="sr-only">{t("closeButtonSR")}</span>
+              <X
+                className="h-6 w-6 md:h-8 md:w-8 hover:text-[#136EFF]"
+                aria-hidden="true"
+              />
+            </button>
+            <DialogTitle className="text-2xl sm:text-3xl lg:text-4xl text-[#00235B] font-extrabold text-center mb-2 ">
               {t("title")}
-              <button
-                type="button"
-                onClick={() => {
-                  onOpenChange(false);
-                  setTariffId(null);
-                  reset();
-                }}
-                className="absolute cursor-pointer top-4 right-6 text-gray-400 hover:text-gray-500 transition-all"
-              >
-                <span className="sr-only">{t("closeButtonSR")}</span>
-                <X
-                  className="h-8 w-8 hover:text-[#136EFF]"
-                  aria-hidden="true"
-                />
-              </button>
             </DialogTitle>
-            <div className="text-xl text-center mb-8 text-[#00235B]">
+            <div className="text-base sm:text-lg lg:text-xl text-center mb-4 sm:mb-6 text-[#00235B]">
               {t("subtitle")}
             </div>
             <form
@@ -146,12 +146,12 @@ export function RegisterNetworkDialog({
               onSubmit={handleSubmit(onSubmit)}
               noValidate
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
                 <div className="md:col-span-2">
                   <Input
                     {...register("registrarName")}
                     placeholder={t("registrarNamePlaceholder")}
-                    className="h-12 text-xl placeholder:text-lg "
+                    className="h-10 sm:h-12 text-base sm:text-lg lg:text-xl placeholder:text-sm sm:placeholder:text-lg"
                     aria-invalid={errors.registrarName ? "true" : "false"}
                   />
                   {errors.registrarName && (
@@ -165,7 +165,7 @@ export function RegisterNetworkDialog({
                     {...register("email")}
                     placeholder={t("emailPlaceholder")}
                     type="email"
-                    className="h-12 placeholder:text-lg text-xl"
+                    className="h-10 sm:h-12 text-base sm:text-lg lg:text-xl placeholder:text-sm sm:placeholder:text-lg"
                     aria-invalid={errors.email ? "true" : "false"}
                   />
                   {errors.email && (
@@ -178,7 +178,7 @@ export function RegisterNetworkDialog({
                   <Input
                     {...register("phone")}
                     placeholder={t("phonePlaceholder")}
-                    className="h-12 placeholder:text-lg text-xl"
+                    className="h-10 sm:h-12 text-base sm:text-lg lg:text-xl placeholder:text-sm sm:placeholder:text-lg"
                     aria-invalid={errors.phone ? "true" : "false"}
                   />
                   {errors.phone && (
@@ -191,7 +191,7 @@ export function RegisterNetworkDialog({
                   <Input
                     {...register("networkName")}
                     placeholder={t("networkNamePlaceholder")}
-                    className="h-12 placeholder:text-lg text-xl"
+                    className="h-10 sm:h-12 text-base sm:text-lg lg:text-xl placeholder:text-sm sm:placeholder:text-lg"
                     aria-invalid={errors.networkName ? "true" : "false"}
                   />
                   {errors.networkName && (
@@ -214,7 +214,7 @@ export function RegisterNetworkDialog({
                                 isLoadingMachineTypes || !!machineTypesError
                               }
                               className={cn(
-                                "h-12 placeholder:text-muted-foreground placeholder:text-lg text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
+                                "h-10 sm:h-12 placeholder:text-muted-foreground placeholder:text-sm sm:placeholder:text-lg text-base sm:text-lg lg:text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
                                 "focus:border-[#136EFF] [&:not(:placeholder-shown)]:border-[#136EFF]",
                                 "*:text-black",
                                 "disabled:opacity-50"
@@ -261,7 +261,7 @@ export function RegisterNetworkDialog({
                               )}
                             </Select>
                             <ChevronDownIcon
-                              className="group pointer-events-none absolute top-4.5 right-2.5 size-4 fill-white/60"
+                              className="group pointer-events-none absolute top-1/2 -translate-y-1/2 right-2.5 size-4 fill-white/60"
                               aria-hidden="true"
                             />
                           </div>
@@ -280,7 +280,7 @@ export function RegisterNetworkDialog({
                     control={control}
                     name="tariff"
                     render={({ field }) => (
-                      <div className="w-full max-w-md">
+                      <div className="w-full max-w-lg">
                         <Field>
                           <div className="relative">
                             <Select
@@ -288,7 +288,7 @@ export function RegisterNetworkDialog({
                               onChange={field.onChange}
                               disabled={isLoadingTariffs || !!tariffsError}
                               className={cn(
-                                "h-12 placeholder:text-lg text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
+                                "h-10 sm:h-12 placeholder:text-sm sm:placeholder:text-lg text-base sm:text-lg lg:text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
                                 "focus:border-[#136EFF] [&:not(:placeholder-shown)]:border-[#136EFF]",
                                 "*:text-black"
                               )}
@@ -329,7 +329,7 @@ export function RegisterNetworkDialog({
                               )}
                             </Select>
                             <ChevronDownIcon
-                              className="group pointer-events-none absolute top-4.5 right-2.5 size-4 fill-white/60"
+                              className="group pointer-events-none absolute top-1/2 -translate-y-1/2 right-2.5 size-4 fill-white/60"
                               aria-hidden="true"
                             />
                           </div>
@@ -355,7 +355,7 @@ export function RegisterNetworkDialog({
                               {...countryField}
                               disabled={isLoadingCountries || !!countriesError}
                               className={cn(
-                                "h-12 placeholder:text-lg text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
+                                "h-10 sm:h-12 placeholder:text-sm sm:placeholder:text-lg text-base sm:text-lg lg:text-xl border block w-full appearance-none rounded-lg px-3 py-1.5 text-black",
                                 "focus:border-[#136EFF] [&:not(:placeholder-shown)]:border-[#136EFF]",
                                 "*:text-black",
                                 "disabled:opacity-50"
@@ -405,7 +405,7 @@ export function RegisterNetworkDialog({
                               )}
                             </Select>
                             <ChevronDownIcon
-                              className="group pointer-events-none absolute top-4.5 right-2.5 size-4 fill-white/60"
+                              className="group pointer-events-none absolute top-1/2 -translate-y-1/2 right-2.5 size-4 fill-white/60"
                               aria-hidden="true"
                             />
                           </div>
@@ -420,12 +420,12 @@ export function RegisterNetworkDialog({
                   )}
                 </div>
               </div>
-              <div className="mb-6">
+              <div className="mb-4 sm:mb-6">
                 <Textarea
                   {...register("additional")}
                   placeholder={t("additionalInfoPlaceholder")}
-                  rows={10}
-                  className="placeholder:text-lg text-xl w-full"
+                  rows={6}
+                  className="placeholder:text-sm sm:placeholder:text-lg text-base sm:text-lg lg:text-xl w-full"
                   aria-invalid={errors.additional ? "true" : "false"}
                 />
                 {errors.additional && (
@@ -437,9 +437,9 @@ export function RegisterNetworkDialog({
               <div className="flex justify-center">
                 <Button
                   type="submit"
-                  size="xl"
+                  size="lg"
                   variant="primaryBlue"
-                  className="font-bold text-lg"
+                  className="font-bold text-base sm:text-lg"
                   disabled={
                     isSubmitting || connectRegistrationMutation.isPending
                   }

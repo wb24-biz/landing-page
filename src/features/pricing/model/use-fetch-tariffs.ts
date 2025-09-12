@@ -17,7 +17,7 @@ interface TariffsApiResponse {
 
 const fetchTariffs = async (): Promise<TariffOption[]> => {
   const response = await axios.get<TariffsApiResponse>(
-    `${CONFIG.API_BASE_URL}/tariffs`,
+    `${CONFIG.API_BASE_URL}/tariff`,
     {
       headers: {
         Accept: "application/json",

@@ -261,7 +261,7 @@
       },
       "2": {
         "name": "Standard",
-        "description": "<p>1 network of machines</p><p>from 1 machine</p><p>3 users</p><p>12 months. Order history storage</p><br><br>0.12 $/day per machine"
+        "description": "<p>1 network of machines</p><p>from 1 machine</p><p>3 users</p><p>12 months. Order history storage</p><br><br>0.12 €/day per machine"
       },
       "3": {
         "name": "Premium",
@@ -271,7 +271,7 @@
     "plans": {
       "0": {
         "title": "Free",
-        "price": "$0",
+        "price": "€0",
         "period": "",
         "description": [
           "1 machine",
@@ -283,8 +283,8 @@
         "note": "evaluate all features and pay nothing"
       },
       "1": {
-        "title": "Standard",
-        "price": "$0.12",
+        "title": "Optimal",
+        "price": "€0.10",
         "period": "per machine per day",
         "description": [
           "from 1 machine",
@@ -301,12 +301,9 @@
       },
       "2": {
         "title": "Premium",
-        "price": "$3",
+        "price": "€2,6",
         "period": "per machine per month",
-        "description": [
-          "from 30 machines",
-          "all Standard plan features"
-        ],
+        "description": ["from 30 machines", "all Standard plan features"],
         "buttonLabel": "Connect",
         "note": ""
       }

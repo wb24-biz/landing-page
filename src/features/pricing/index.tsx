@@ -44,7 +44,7 @@ export default function PricingPlans() {
       const descriptions = t.raw(`${planStructure.baseKey}.description`);
       if (Array.isArray(descriptions)) {
         planDescriptions = descriptions.filter(
-          (item): item is string => typeof item === "string"
+          (item): item is string => typeof item === "string",
         );
       } else {
         throw new Error("Descriptions are not in array format.");
@@ -66,7 +66,7 @@ export default function PricingPlans() {
       tariff_id: planStructure.tariff_id,
       title: safeT(
         `${planStructure.baseKey}.title`,
-        planStructure.baseKey.split(".").pop() || "Plan"
+        planStructure.baseKey.split(".").pop() || "Plan",
       ),
       price: safeT(`${planStructure.baseKey}.price`, "$0"),
       period: safeT(`${planStructure.baseKey}.period`, ""),
@@ -85,7 +85,7 @@ export default function PricingPlans() {
       {/* Wrapper адаптив: горизонтальний скрол на моб, 1/2/3 колонки */}
       <div
         className="
-            flex flex-col 
+            flex flex-col
             lg:flex-row
             gap-4 sm:gap-6
             items-stretch
@@ -103,18 +103,18 @@ export default function PricingPlans() {
               "flex-1 min-w-[90vw] sm:min-w-[320px] md:min-w-[320px] max-w-full bg-white rounded-3xl border transition-all duration-300 flex flex-col items-center px-6 sm:px-6 py-3 sm:py-8",
               plan.highlight
                 ? "bg-[#136EFF1A] relative z-10 border-[#136EFF1A]"
-                : "border-[#D7DDE9]"
+                : "border-[#D7DDE9]",
             )}
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[32px] sm:text-3xl font-normal">
                 {plan.title}
               </span>
-              {plan.highlight && plan.note && (
+              {/*{plan.highlight && plan.note && (
                 <span className="text-xs font-bold mb-2 text-[#FC9433] ml-1">
                   {plan.note}
                 </span>
-              )}
+              )}*/}
             </div>
             <ul className="mt-4 mb-6 space-y-2 w-full">
               {plan.description.map((desc, i) => (
@@ -159,7 +159,7 @@ export default function PricingPlans() {
       <p className="text-xs sm:text-sm text-gray-600 mt-2 px-2 md:px-4 lg:px-0">
         {safeT(
           "individualTariffNote",
-          "* individual tariff possible by agreement"
+          "* individual tariff possible by agreement",
         )}
       </p>
 

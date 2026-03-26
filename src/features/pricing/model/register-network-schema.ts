@@ -1,35 +1,56 @@
 import { z } from "zod";
 
-export const registerNetworkSchema = z.object({
-  registrarName: z.string().min(1, "Ім'я реєстратора є обов'язковим"),
-  email: z
-    .string()
-    .email("Неправильний формат електронної адреси")
-    .min(1, "Електронна адреса є обов'язковою"),
-  phone: z.string().optional().or(z.literal("")), // Allow empty string or make it truly optional
-  networkName: z.string().min(1, "Найменування мережі є обов'язковим"),
-  networkType: z
-    .string()
-    .min(1, "Тип мережі є обов'язковим")
-    .refine((val: string) => /^\d+$/.test(val), {
-      message: "Тип мережі повинен бути числовим ID",
-    }),
-  tariff: z
-    .string()
-    .min(1, "Тариф є обов'язковим")
-    .refine((val: string) => /^\d+$/.test(val), {
-      message: "Тариф повинен бути числовим ID",
-    }),
-  country: z
-    .string()
-    .min(1, "Країна є обов'язковою")
-    .refine((val: string) => /^\d+$/.test(val), {
-      message: "Країна повинна бути числовим ID",
-    }),
-  additional: z.string().optional().or(z.literal("")), // Allow empty string
-});
+export interface RegisterNetworkMessages {
+  registrarNameRequired: string;
+  emailInvalid: string;
+  emailRequired: string;
+  phoneInvalid: string;
+  networkNameRequired: string;
+  networkTypeRequired: string;
+  networkTypeNumeric: string;
+  tariffRequired: string;
+  tariffNumeric: string;
+  countryRequired: string;
+  countryNumeric: string;
+}
 
-export type RegisterNetworkFormData = z.infer<typeof registerNetworkSchema>;
+export function createRegisterNetworkSchema(m: RegisterNetworkMessages) {
+  return z.object({
+    registrarName: z.string().min(1, m.registrarNameRequired),
+    email: z.string().email(m.emailInvalid).min(1, m.emailRequired),
+    phone: z
+      .string()
+      .optional()
+      .or(z.literal(""))
+      .refine((val) => !val || /^\+\d{7,15}$/.test(val), {
+        message: m.phoneInvalid,
+      }),
+    networkName: z.string().min(1, m.networkNameRequired),
+    networkType: z
+      .string()
+      .min(1, m.networkTypeRequired)
+      .refine((val: string) => /^\d+$/.test(val), {
+        message: m.networkTypeNumeric,
+      }),
+    tariff: z
+      .string()
+      .min(1, m.tariffRequired)
+      .refine((val: string) => /^\d+$/.test(val), {
+        message: m.tariffNumeric,
+      }),
+    country: z
+      .string()
+      .min(1, m.countryRequired)
+      .refine((val: string) => /^\d+$/.test(val), {
+        message: m.countryNumeric,
+      }),
+    additional: z.string().optional().or(z.literal("")),
+  });
+}
+
+export type RegisterNetworkFormData = z.infer<
+  ReturnType<typeof createRegisterNetworkSchema>
+>;
 
 // This is the structure your API expects
 export interface RegisterNetworkApiPayload {

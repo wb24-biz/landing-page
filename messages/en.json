@@ -357,7 +357,20 @@
     "errorCountries": "Error loading countries",
     "additionalInfoPlaceholder": "Additional information",
     "submittingButton": "Submitting...",
-    "submitButton": "Submit"
+    "submitButton": "Submit",
+    "validation": {
+      "registrarNameRequired": "Registrar name is required",
+      "emailInvalid": "Invalid email format",
+      "emailRequired": "Email is required",
+      "phoneInvalid": "Phone number must start with + and contain 7 to 15 digits",
+      "networkNameRequired": "Network name is required",
+      "networkTypeRequired": "Network type is required",
+      "networkTypeNumeric": "Network type must be a numeric ID",
+      "tariffRequired": "Tariff is required",
+      "tariffNumeric": "Tariff must be a numeric ID",
+      "countryRequired": "Country is required",
+      "countryNumeric": "Country must be a numeric ID"
+    }
   },
   "Header": {
     "loginButton": "Login"

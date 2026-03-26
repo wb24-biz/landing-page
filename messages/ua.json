@@ -355,7 +355,20 @@
     "errorCountries": "Помилка завантаження країн",
     "additionalInfoPlaceholder": "Додаткова інформація",
     "submittingButton": "Відправка...",
-    "submitButton": "Відправити"
+    "submitButton": "Відправити",
+    "validation": {
+      "registrarNameRequired": "Ім'я реєстратора є обов'язковим",
+      "emailInvalid": "Неправильний формат електронної адреси",
+      "emailRequired": "Електронна адреса є обов'язковою",
+      "phoneInvalid": "Номер телефону повинен починатися з + та містити від 7 до 15 цифр",
+      "networkNameRequired": "Найменування мережі є обов'язковим",
+      "networkTypeRequired": "Тип мережі є обов'язковим",
+      "networkTypeNumeric": "Тип мережі повинен бути числовим ID",
+      "tariffRequired": "Тариф є обов'язковим",
+      "tariffNumeric": "Тариф повинен бути числовим ID",
+      "countryRequired": "Країна є обов'язковою",
+      "countryNumeric": "Країна повинна бути числовим ID"
+    }
   },
   "Header": {
     "loginButton": "Увійти"

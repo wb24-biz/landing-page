@@ -13,12 +13,12 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDownIcon, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useMemo } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import {
   RegisterNetworkFormData,
-  registerNetworkSchema,
+  createRegisterNetworkSchema,
 } from "../model/register-network-schema";
 import { useConnectRegistration } from "../model/use-connect-registration";
 import { CountryOption, useFetchCountries } from "../model/use-fetch-countries";
@@ -40,9 +40,28 @@ export function RegisterNetworkDialog({
   setTariffId: (tariff_id: number | null) => void;
 }) {
   const t = useTranslations("RegisterNetworkDialog");
+  const vt = useTranslations("RegisterNetworkDialog.validation");
   const machineTypesT = useTranslations("MachineTypes");
   const countriesT = useTranslations("Countries");
   const tariffOptionsT = useTranslations("PricingPlans.TariffOptions");
+
+  const schema = useMemo(
+    () =>
+      createRegisterNetworkSchema({
+        registrarNameRequired: vt("registrarNameRequired"),
+        emailInvalid: vt("emailInvalid"),
+        emailRequired: vt("emailRequired"),
+        phoneInvalid: vt("phoneInvalid"),
+        networkNameRequired: vt("networkNameRequired"),
+        networkTypeRequired: vt("networkTypeRequired"),
+        networkTypeNumeric: vt("networkTypeNumeric"),
+        tariffRequired: vt("tariffRequired"),
+        tariffNumeric: vt("tariffNumeric"),
+        countryRequired: vt("countryRequired"),
+        countryNumeric: vt("countryNumeric"),
+      }),
+    [vt]
+  );
 
   const {
     register,
@@ -52,7 +71,7 @@ export function RegisterNetworkDialog({
     control,
     setValue,
   } = useForm<RegisterNetworkFormData>({
-    resolver: zodResolver(registerNetworkSchema),
+    resolver: zodResolver(schema),
     defaultValues: {
       registrarName: "",
       email: "",

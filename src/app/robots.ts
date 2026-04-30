@@ -3,13 +3,12 @@ import { MetadataRoute } from "next";
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "http://wb24.biz";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://wb24.biz";
 
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: "/private/", // Example: disallow a private directory
     },
     sitemap: `${baseUrl}/sitemap.xml`,
   };

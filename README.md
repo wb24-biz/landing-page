@@ -1,113 +1,120 @@
-# landing-page wb24.biz
+# WB24 Landing Page
 
-Запрос для формы регистрации
-https://dev.wb24.biz/swaggerui/#/Registration/post_signup_new
+Лендінг для платформи **WB24** — хмарного сервісу керування вендинговими автоматами (телеметрія, онлайн-оплата, фіскалізація через ПРРО).
 
-# Installing
-Покрокова інструкція з розгортання Next.js на VPS
-1. Підготовка VPS
+Сайт: [https://wb24.biz](https://wb24.biz)
 
-    ОС: Зазвичай Ubuntu 22.04 LTS.
+## Стек
 
-    Доступ: Підключись по SSH
+- **Next.js 15** (App Router) + **React 19** + **TypeScript**
+- **Static export** (`output: "export"`) — сайт генерується як статичні HTML/JS/CSS і роздається через Nginx
+- **Tailwind CSS v4** + **shadcn/ui** (Radix-based, New York style)
+- **next-intl** — мультимовність (`ua` за замовчуванням, `en`, `ru`), перемикання на клієнті через `localStorage`
+- **React Query** + **Axios** — робота з API
+- **React Hook Form** + **Zod** — форми та валідація
+- **Sonner** — toast-нотифікації
 
-    ssh username@your_server_ip
+## Архітектура
 
-2. Встановлення Node.js та npm
+Screaming Architecture — фічі організовані за доменом у `src/features/`:
 
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt-get install -y nodejs
-node -v
-npm -v
+```
+src/
+  app/            Next.js App Router (layout, page, robots, sitemap)
+  features/       Доменні модулі (hero, pricing, telemetry, ...)
+    {feature}/
+      index.tsx     публічний експорт
+      model/        хуки, схеми, бізнес-логіка
+      ui/           презентаційні компоненти
+  shared/
+    api/          React Query клієнт, Axios
+    lib/          утиліти (cn, тощо)
+    model/        конфіг (CONFIG.API_BASE_URL)
+    ui/kit/       shadcn/ui компоненти
+  i18n/           next-intl, routing, locale-script
+  components/seo/ structured-data (JSON-LD)
+messages/         en.json, ua.json, ru.json
+```
 
-3. (Рекомендовано) Встанови git
+## Команди
 
-sudo apt-get install git
+```bash
+npm run dev      # dev-сервер з Turbopack (http://localhost:3000)
+npm run build    # статична збірка в ./dist
+npm run lint     # ESLint
+npm run serve    # локально роздати ./dist через npx serve
+```
 
-4. Передача коду на сервер
+## Змінні оточення
 
-    Через git:
+Створи `.env` (або `.env.local`):
 
-    git clone <ваш-репозиторій>
-    cd <назва-папки>
+```env
+NEXT_PUBLIC_API_BASE_URL="https://my.wb24.biz/api/v1"
+NEXT_PUBLIC_API_DEV_URL="https://dev.wb24.biz/api/v1"
+NEXT_PUBLIC_BASE_URL="https://wb24.biz"
+```
 
-    Або завантаж через SFTP (FileZilla, WinSCP) чи SCP.
+`NEXT_PUBLIC_BASE_URL` використовується в `sitemap.xml`, `robots.txt`, canonical-посиланнях, OG-метатегах та JSON-LD.
 
-5. Встановлення залежностей
+## i18n
 
-npm install
+- Локалі: `ua` (default), `en`, `ru`
+- Перемикання — клієнтське, локаль зберігається в `localStorage` (ключ `NEXT_LOCALE`)
+- Щоб не було flash of wrong language, `src/i18n/locale-script.tsx` встановлює `<html lang>` до гідрації
+- При додаванні нових текстів — оновлюй усі три файли в `messages/`
 
-6. Білд або запуск
+## API
 
-    Білд (для продакшену, якщо потрібен SSR):
+Хуки лежать у `src/features/{feature}/model/` (наприклад, `use-fetch-tariffs.ts`). Запити йдуть через Axios на `CONFIG.API_BASE_URL`. Zod-схеми форм (наприклад, `register-network-schema.ts`) містять локалізовані повідомлення про помилки.
 
-npm run build
+Документація API: [https://dev.wb24.biz/swaggerui/](https://dev.wb24.biz/swaggerui/)
 
-Запуск:
+## SEO
 
-    npm start
+- `src/app/sitemap.ts` → `/sitemap.xml`
+- `src/app/robots.ts` → `/robots.txt`
+- `src/components/seo/structured-data.tsx` — JSON-LD: Organization, Service, SoftwareApplication, FAQPage
+- Open Graph + Twitter Card налаштовані в `src/app/layout.tsx`
+- Сайт повністю пререндериться при білді — контент доступний краулерам без виконання JS (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot тощо)
 
-    або (якщо в тебе start викликає production сервер).
+## Деплой
 
-7. Налаштування процес-менеджера (PM2)
+Автоматично через GitHub Actions ([.github/workflows](.github/workflows)):
 
-    PM2 забезпечує автозапуск та моніторинг процесу.
+1. Push або PR в `main` → `yarn install` → `yarn build`
+2. `rsync ./dist/ → user@host:/opt/landing24/`
+3. На сервері Nginx роздає статику з `/opt/landing24/`, SSL через certbot
 
-sudo npm install -g pm2
-pm2 start npm --name "next-app" -- start
-pm2 save
-pm2 startup
+### Секрети GitHub
 
-Скопіюй команду, що видасть pm2 startup, та виконай її.
-8. (Рекомендовано) Домен + HTTPS (Nginx як reverse proxy)
+- `LANDING_SSH_HOST`, `LANDING_SSH_PORT`, `LANDING_SSH_USER`
+- `LANDING_SSH_PRIVATE_KEY`
 
-a) Встанови Nginx:
+### Налаштування сервера (один раз)
 
-sudo apt install nginx
+```bash
+sudo apt update && sudo apt install -y nginx certbot python3-certbot-nginx
+sudo mkdir -p /opt/landing24 && sudo chown $USER:$USER /opt/landing24
+```
 
-b) Додай проксі:
-Відкрий файл /etc/nginx/sites-available/default і зміни (або створи новий під домен):
+Конфіг Nginx (`/etc/nginx/sites-available/wb24.biz`):
 
+```nginx
 server {
     listen 80;
-    server_name yourdomain.com www.yourdomain.com;
+    server_name wb24.biz www.wb24.biz;
+    root /opt/landing24;
+    index index.html;
 
     location / {
-        proxy_pass http://localhost:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
+        try_files $uri $uri/ $uri.html =404;
     }
 }
+```
 
-c) Перезапусти Nginx:
-
-sudo systemctl restart nginx
-
-d) SSL (через certbot):
-
-sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx
-
-9. Підтримка й оновлення
-
-    Оновлення коду:
-
-    git pull
-    npm install
-    npm run build
-    pm2 restart next-app
-
-Важливі деталі
-
-    Port 3000 — стандартний для Next.js, проксі на 80/443 робить додаток публічно доступним.
-
-    Захисти SSH — зміни порт, вимкни root-login, використовуй ключі.
-
-    env-файли — не забудь скопіювати .env.production!
-
-    PM2 логування:
-
-pm2 logs
+```bash
+sudo ln -s /etc/nginx/sites-available/wb24.biz /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+sudo certbot --nginx -d wb24.biz -d www.wb24.biz
+```

@@ -1,120 +1,36 @@
-# WB24 Landing Page
+📊 Індустріальний вендинг подвоїться до 2035 року — IoT і AI стають must-have для виробників
 
-Лендінг для платформи **WB24** — хмарного сервісу керування вендинговими автоматами (телеметрія, онлайн-оплата, фіскалізація через ПРРО).
-
-Сайт: [https://wb24.biz](https://wb24.biz)
-
-## Стек
-
-- **Next.js 15** (App Router) + **React 19** + **TypeScript**
-- **Static export** (`output: "export"`) — сайт генерується як статичні HTML/JS/CSS і роздається через Nginx
-- **Tailwind CSS v4** + **shadcn/ui** (Radix-based, New York style)
-- **next-intl** — мультимовність (`ua` за замовчуванням, `en`, `ru`), перемикання на клієнті через `localStorage`
-- **React Query** + **Axios** — робота з API
-- **React Hook Form** + **Zod** — форми та валідація
-- **Sonner** — toast-нотифікації
-
-## Архітектура
-
-Screaming Architecture — фічі організовані за доменом у `src/features/`:
-
-```
-src/
-  app/            Next.js App Router (layout, page, robots, sitemap)
-  features/       Доменні модулі (hero, pricing, telemetry, ...)
-    {feature}/
-      index.tsx     публічний експорт
-      model/        хуки, схеми, бізнес-логіка
-      ui/           презентаційні компоненти
-  shared/
-    api/          React Query клієнт, Axios
-    lib/          утиліти (cn, тощо)
-    model/        конфіг (CONFIG.API_BASE_URL)
-    ui/kit/       shadcn/ui компоненти
-  i18n/           next-intl, routing, locale-script
-  components/seo/ structured-data (JSON-LD)
-messages/         en.json, ua.json, ru.json
-```
-
-## Команди
-
-```bash
-npm run dev      # dev-сервер з Turbopack (http://localhost:3000)
-npm run build    # статична збірка в ./dist
-npm run lint     # ESLint
-npm run serve    # локально роздати ./dist через npx serve
-```
-
-## Змінні оточення
-
-Створи `.env` (або `.env.local`):
-
-```env
-NEXT_PUBLIC_API_BASE_URL="https://my.wb24.biz/api/v1"
-NEXT_PUBLIC_API_DEV_URL="https://dev.wb24.biz/api/v1"
-NEXT_PUBLIC_BASE_URL="https://wb24.biz"
-```
-
-`NEXT_PUBLIC_BASE_URL` використовується в `sitemap.xml`, `robots.txt`, canonical-посиланнях, OG-метатегах та JSON-LD.
-
-## i18n
-
-- Локалі: `ua` (default), `en`, `ru`
-- Перемикання — клієнтське, локаль зберігається в `localStorage` (ключ `NEXT_LOCALE`)
-- Щоб не було flash of wrong language, `src/i18n/locale-script.tsx` встановлює `<html lang>` до гідрації
-- При додаванні нових текстів — оновлюй усі три файли в `messages/`
-
-## API
-
-Хуки лежать у `src/features/{feature}/model/` (наприклад, `use-fetch-tariffs.ts`). Запити йдуть через Axios на `CONFIG.API_BASE_URL`. Zod-схеми форм (наприклад, `register-network-schema.ts`) містять локалізовані повідомлення про помилки.
-
-Документація API: [https://dev.wb24.biz/swaggerui/](https://dev.wb24.biz/swaggerui/)
-
-## SEO
-
-- `src/app/sitemap.ts` → `/sitemap.xml`
-- `src/app/robots.ts` → `/robots.txt`
-- `src/components/seo/structured-data.tsx` — JSON-LD: Organization, Service, SoftwareApplication, FAQPage
-- Open Graph + Twitter Card налаштовані в `src/app/layout.tsx`
-- Сайт повністю пререндериться при білді — контент доступний краулерам без виконання JS (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot тощо)
-
-## Деплой
-
-Автоматично через GitHub Actions ([.github/workflows](.github/workflows)):
-
-1. Push або PR в `main` → `yarn install` → `yarn build`
-2. `rsync ./dist/ → user@host:/opt/landing24/`
-3. На сервері Nginx роздає статику з `/opt/landing24/`, SSL через certbot
-
-### Секрети GitHub
-
-- `LANDING_SSH_HOST`, `LANDING_SSH_PORT`, `LANDING_SSH_USER`
-- `LANDING_SSH_PRIVATE_KEY`
-
-### Налаштування сервера (один раз)
-
-```bash
-sudo apt update && sudo apt install -y nginx certbot python3-certbot-nginx
-sudo mkdir -p /opt/landing24 && sudo chown $USER:$USER /opt/landing24
-```
-
-Конфіг Nginx (`/etc/nginx/sites-available/wb24.biz`):
-
-```nginx
-server {
-    listen 80;
-    server_name wb24.biz www.wb24.biz;
-    root /opt/landing24;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ $uri.html =404;
-    }
-}
-```
-
-```bash
-sudo ln -s /etc/nginx/sites-available/wb24.biz /etc/nginx/sites-enabled/
-sudo nginx -t && sudo systemctl reload nginx
-sudo certbot --nginx -d wb24.biz -d www.wb24.biz
-```
+Глобальний ринок індустріального вендингу — автоматів для видачі інструментів, засобів індивідуального захисту й витратки на виробництвах — виросте з USD 1,5 млрд у 2025 році до USD 3,1 млрд у 2035-му. Це CAGR (середньорічний темп зростання) 7,2%. Чисто механічні дозатори остаточно витісняються — нова базова конфігурація включає телеметрію, аналітику та інтеграцію з корпоративними системами.
+🔧 Що саме видають ці автомати
+Це не FMCG-вендинг із кавою чи снеками. Індустріальний автомат стоїть у цеху, на складі, на нафтовій платформі — і дозує те, без чого не працює виробництво:
+— Засоби індивідуального захисту (ЗІЗ): рукавички, окуляри, респіратори, навушники
+— Ріжучий інструмент, свердла, фрези, біти
+— Кріплення (fasteners): болти, гвинти, заклепки
+— MRO-витратку (Maintenance, Repair & Operations — обслуговування й ремонт): мастила, ганчірки, фільтри
+— Дорогий або калібрувальний інструмент із індивідуальним обліком
+Корпуси діляться на чотири типи: карусельні (для дрібних деталей), спіральні coil-автомати (універсал для ЗІЗ і дрібного інструменту), секційні шафи-локери (для дорогих позицій з індивідуальним доступом) і вертикальні драверні системи (для важких або габаритних предметів). Електромеханіка тримає ~44% ринку — робочий компроміс між надійністю та ціною.
+📡 Технологічний мінімум 2026 року
+Те, що ще п'ять років тому було «премієм», тепер базова комплектація:
+— IoT-телеметрія (Internet of Things, інтернет речей) — автомат у реальному часі звітує про залишки, видачу, стан компонентів
+— RFID-облік (Radio-Frequency Identification, радіочастотна ідентифікація) — кожен інструмент має мітку, система знає, хто і коли його взяв
+— AI-аналітика для передбачуваного обслуговування (predictive maintenance) — система прогнозує, коли поповнити автомат і коли йому потрібен сервіс
+— Хмарна платформа для віддаленого моніторингу всього парку
+— Edge-контролер — невеликий процесор у самому автоматі, що обробляє дані локально, не чекаючи відповіді з хмари
+— Біометрична автентифікація замість карток і PIN-кодів
+🔌 Інтеграція з ERP — must-have для корпоративних тендерів
+ERP (Enterprise Resource Planning) — це системи планування ресурсів підприємства, типу SAP або Oracle. Великі замовники вимагають, щоб автомат «розмовляв» із їхнім ERP напряму: коли запас падає до мінімуму, система сама генерує заявку на закупівлю.
+Показовий приклад — лінійка CribMaster від Stanley Black & Decker. Інтеграція з SAP/Oracle скорочує трудовитрати на поповнення на 40% і прибирає людський фактор із замовлень. Для виробника це означає просту річ: open API (відкритий програмний інтерфейс) і підтримка стандартних протоколів — це більше не конкурентна перевага, а вхідний квиток на тендер.
+🛠 Ретрофіт легасі-парку — окрема ніша
+Цікавий тренд для постачальників компонентів: апгрейд старих автоматів замість їхньої заміни. У старий coil-корпус ставлять edge-контролер, vision-сенсори (камери з розпізнаванням) і модуль зв'язку з хмарою. Вартість конверсії — на 60% нижча за повну заміну кабінету.
+Це окреме вікно для українських і CEE-виробників: робити kit-и, які перетворюють «дурну» механіку на смарт-пристрій. Менший вхідний капекс, швидший цикл розробки, чіткий B2B-канал продажу.
+🔒 Кібербезпека — нова інженерна задача
+У 2023 році виробничий сектор пережив 68 підтверджених кіберінцидентів — найбільше серед усіх галузей. Автомат, що стоїть у заводській мережі й має доступ до ERP, — потенційна точка входу для атаки.
+Що тепер очікують від виробника:
+— Шифрування зв'язку (сучасні стандарти TLS — Transport Layer Security)
+— Сегментація мережі, ізольований VLAN (віртуальна локальна мережа)
+— Підписані firmware-оновлення (щоб не можна було залити підмінну прошивку)
+— Аудит-трейл (журнал) кожної операції видачі
+Виробники, що з коробки дають security-hardening, закривають корпоративні тендери, куди hardware-only гравці вже не проходять.
+📐 Що це означає для R&D-команд (Research & Development — розробка) виробників
+Базовий чек-лист нового продукту 2026+:
+— IoT-плата, RFID-рідер, хмарний конектор, 

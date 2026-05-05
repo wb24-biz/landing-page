@@ -1,6 +1,7 @@
 import { StructuredData } from "@/components/seo/structured-data";
 import Footer from "@/features/footer";
 import { Header } from "@/features/header";
+import { ScrollToTop } from "@/features/scroll-to-top";
 import type { Metadata, Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 import { defaultLocale } from "@/i18n/config";
@@ -111,6 +112,7 @@ export default async function RootLayout({
           <Header />
           {children}
           <Footer />
+          <ScrollToTop />
           <Toaster richColors />
         </Providers>
       </body>

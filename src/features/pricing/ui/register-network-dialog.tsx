@@ -43,7 +43,6 @@ export function RegisterNetworkDialog({
   const vt = useTranslations("RegisterNetworkDialog.validation");
   const machineTypesT = useTranslations("MachineTypes");
   const countriesT = useTranslations("Countries");
-  const tariffOptionsT = useTranslations("PricingPlans.TariffOptions");
 
   const schema = useMemo(
     () =>
@@ -324,27 +323,15 @@ export function RegisterNetworkDialog({
                                   {t("errorTariffs")}
                                 </option>
                               ) : (
-                                tariffs?.map((tariff: TariffOption) => {
-                                  // Use translated name if available, fallback to the name from API
-                                  const translatedName = tariffOptionsT(
-                                    `${tariff.tariff_id}.name`
-                                  );
-                                  const displayName = translatedName?.includes(
-                                    "TariffOptions."
-                                  )
-                                    ? tariff.name
-                                    : translatedName || tariff.name;
-
-                                  return (
-                                    <option
-                                      key={tariff.tariff_id}
-                                      value={String(tariff.tariff_id)}
-                                      className="text-lg px-2 py-1.5 rounded-md data-[hover]:bg-blue-100 data-[selected]:bg-blue-500 data-[selected]:text-white cursor-pointer"
-                                    >
-                                      {displayName}
-                                    </option>
-                                  );
-                                })
+                                tariffs?.map((tariff: TariffOption) => (
+                                  <option
+                                    key={tariff.tariff_id}
+                                    value={String(tariff.tariff_id)}
+                                    className="text-lg px-2 py-1.5 rounded-md data-[hover]:bg-blue-100 data-[selected]:bg-blue-500 data-[selected]:text-white cursor-pointer"
+                                  >
+                                    {tariff.name}
+                                  </option>
+                                ))
                               )}
                             </Select>
                             <ChevronDownIcon

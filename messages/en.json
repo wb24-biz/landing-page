@@ -137,8 +137,11 @@
       "line1": "If you have any questions",
       "line2": "or need additional information"
     },
+    "integrations": {
+      "title": "Payment systems and certifications"
+    },
     "description": "Software for vending machine management",
-    "copyright": "All rights reserved. ©2025",
+    "copyright": "©wb24.biz 2025 - {year}. All rights reserved",
     "contact_title": "If you have any questions or need additional information",
     "email": "info@wb24.biz",
     "telegram": "@wb24_biz_bot",
@@ -260,7 +263,7 @@
         "description": "<p>1 network of machines</p><p>1 machine</p><p>1 user</p><p>1 cash register (PRRO)</p><p>100 days. Order history storage</p><br><br>0 UAH/machine"
       },
       "2": {
-        "name": "Standard",
+        "name": "Optimal",
         "description": "<p>1 network of machines</p><p>from 1 machine</p><p>3 users</p><p>12 months. Order history storage</p><br><br>0.12 €/day per machine"
       },
       "3": {
@@ -303,7 +306,7 @@
         "title": "Premium",
         "price": "€2,6",
         "period": "per machine per month",
-        "description": ["from 30 machines", "all Standard plan features"],
+        "description": ["from 30 machines", "all Optimal plan features"],
         "buttonLabel": "Connect",
         "note": ""
       }
@@ -374,5 +377,8 @@
   },
   "Header": {
     "loginButton": "Login"
+  },
+  "ScrollToTop": {
+    "ariaLabel": "Scroll to top"
   }
 }

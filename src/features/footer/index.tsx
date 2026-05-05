@@ -31,6 +31,14 @@ export default function Footer() {
     { label: t("nav.contacts"), to: "contacts" },
   ];
 
+  const integrations = [
+    { src: "/images/integrations/visa_dark_footer_new.svg", alt: "Visa", width: 87, height: 28 },
+    { src: "/images/integrations/mc_check.svg", alt: "Mastercard", width: 45, height: 28 },
+    { src: "/images/integrations/mono.svg", alt: "monobank", width: 144, height: 32 },
+    { src: "/images/integrations/logo_liqpay_white_color.svg", alt: "LiqPay", width: 255, height: 53 },
+    { src: "/images/integrations/vchasno-kasa-logo.svg", alt: "Vchasno Kasa", width: 101, height: 40 },
+  ];
+
 
   function onChange(value: string) {
     // Type-safe validation that the value is a valid locale
@@ -137,7 +145,7 @@ export default function Footer() {
                 </p>
 
                 <div className="text-xs sm:text-sm text-white/60">
-                  {t("copyright")}
+                  {t("copyright", { year: new Date().getFullYear() })}
                 </div>
               </div>
             </div>
@@ -323,25 +331,28 @@ export default function Footer() {
                 </p>
 
                 <div className="text-xs sm:text-sm text-white/60">
-                  {t("copyright")}
+                  {t("copyright", { year: new Date().getFullYear() })}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Фоновий блок адаптивний */}
-          {/* <div
-            className="
-            absolute 
-            inset-x-2 
-            inset-y-0 
-            rounded-3xl 
-            bg-[#00235B] 
-            z-0
-            md:inset-x-4 md:inset-y-4 
-            lg:inset-x-6 lg:inset-y-0
-          "
-          /> */}
+        </div>
+        <div className="relative z-10 px-4 md:px-8 lg:px-0 pb-6">
+          <div className="border-t border-white/10 pt-6">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 sm:gap-x-8">
+              {integrations.map((item) => (
+                <Image
+                  key={item.alt}
+                  src={item.src}
+                  width={item.width}
+                  height={item.height}
+                  alt={item.alt}
+                  className="h-7 sm:h-8 w-auto opacity-80 hover:opacity-100 transition-opacity"
+                />
+              ))}
+            </div>
+          </div>
         </div>
         {/* Фонові SVG елементи (адаптив розміри) */}
         <div className="absolute h-full inset-x-4 md:inset-x-8 lg:inset-x-10 top-0 lg:-bottom-18 z-[1]">

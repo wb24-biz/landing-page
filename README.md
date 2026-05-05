@@ -1,36 +1,97 @@
-📊 Індустріальний вендинг подвоїться до 2035 року — IoT і AI стають must-have для виробників
+# WB24 Landing
 
-Глобальний ринок індустріального вендингу — автоматів для видачі інструментів, засобів індивідуального захисту й витратки на виробництвах — виросте з USD 1,5 млрд у 2025 році до USD 3,1 млрд у 2035-му. Це CAGR (середньорічний темп зростання) 7,2%. Чисто механічні дозатори остаточно витісняються — нова базова конфігурація включає телеметрію, аналітику та інтеграцію з корпоративними системами.
-🔧 Що саме видають ці автомати
-Це не FMCG-вендинг із кавою чи снеками. Індустріальний автомат стоїть у цеху, на складі, на нафтовій платформі — і дозує те, без чого не працює виробництво:
-— Засоби індивідуального захисту (ЗІЗ): рукавички, окуляри, респіратори, навушники
-— Ріжучий інструмент, свердла, фрези, біти
-— Кріплення (fasteners): болти, гвинти, заклепки
-— MRO-витратку (Maintenance, Repair & Operations — обслуговування й ремонт): мастила, ганчірки, фільтри
-— Дорогий або калібрувальний інструмент із індивідуальним обліком
-Корпуси діляться на чотири типи: карусельні (для дрібних деталей), спіральні coil-автомати (універсал для ЗІЗ і дрібного інструменту), секційні шафи-локери (для дорогих позицій з індивідуальним доступом) і вертикальні драверні системи (для важких або габаритних предметів). Електромеханіка тримає ~44% ринку — робочий компроміс між надійністю та ціною.
-📡 Технологічний мінімум 2026 року
-Те, що ще п'ять років тому було «премієм», тепер базова комплектація:
-— IoT-телеметрія (Internet of Things, інтернет речей) — автомат у реальному часі звітує про залишки, видачу, стан компонентів
-— RFID-облік (Radio-Frequency Identification, радіочастотна ідентифікація) — кожен інструмент має мітку, система знає, хто і коли його взяв
-— AI-аналітика для передбачуваного обслуговування (predictive maintenance) — система прогнозує, коли поповнити автомат і коли йому потрібен сервіс
-— Хмарна платформа для віддаленого моніторингу всього парку
-— Edge-контролер — невеликий процесор у самому автоматі, що обробляє дані локально, не чекаючи відповіді з хмари
-— Біометрична автентифікація замість карток і PIN-кодів
-🔌 Інтеграція з ERP — must-have для корпоративних тендерів
-ERP (Enterprise Resource Planning) — це системи планування ресурсів підприємства, типу SAP або Oracle. Великі замовники вимагають, щоб автомат «розмовляв» із їхнім ERP напряму: коли запас падає до мінімуму, система сама генерує заявку на закупівлю.
-Показовий приклад — лінійка CribMaster від Stanley Black & Decker. Інтеграція з SAP/Oracle скорочує трудовитрати на поповнення на 40% і прибирає людський фактор із замовлень. Для виробника це означає просту річ: open API (відкритий програмний інтерфейс) і підтримка стандартних протоколів — це більше не конкурентна перевага, а вхідний квиток на тендер.
-🛠 Ретрофіт легасі-парку — окрема ніша
-Цікавий тренд для постачальників компонентів: апгрейд старих автоматів замість їхньої заміни. У старий coil-корпус ставлять edge-контролер, vision-сенсори (камери з розпізнаванням) і модуль зв'язку з хмарою. Вартість конверсії — на 60% нижча за повну заміну кабінету.
-Це окреме вікно для українських і CEE-виробників: робити kit-и, які перетворюють «дурну» механіку на смарт-пристрій. Менший вхідний капекс, швидший цикл розробки, чіткий B2B-канал продажу.
-🔒 Кібербезпека — нова інженерна задача
-У 2023 році виробничий сектор пережив 68 підтверджених кіберінцидентів — найбільше серед усіх галузей. Автомат, що стоїть у заводській мережі й має доступ до ERP, — потенційна точка входу для атаки.
-Що тепер очікують від виробника:
-— Шифрування зв'язку (сучасні стандарти TLS — Transport Layer Security)
-— Сегментація мережі, ізольований VLAN (віртуальна локальна мережа)
-— Підписані firmware-оновлення (щоб не можна було залити підмінну прошивку)
-— Аудит-трейл (журнал) кожної операції видачі
-Виробники, що з коробки дають security-hardening, закривають корпоративні тендери, куди hardware-only гравці вже не проходять.
-📐 Що це означає для R&D-команд (Research & Development — розробка) виробників
-Базовий чек-лист нового продукту 2026+:
-— IoT-плата, RFID-рідер, хмарний конектор, 
+Multilingual landing page for [WB24](https://wb24.biz) — a cloud platform for vending machine management with telemetry, online payments and fiscalization (PRRO).
+
+Built as a fully static Next.js site exported to plain HTML/JS — no SSR or ISR at runtime.
+
+## Tech stack
+
+- **Next.js 15** (App Router) + **React 19** + **TypeScript** (strict)
+- **Tailwind CSS v4** + **shadcn/ui** (New York, Radix-based) + **CVA** for variants
+- **next-intl** for i18n (Ukrainian default, English, Russian)
+- **React Query** + **Axios** for API state
+- **React Hook Form** + **Zod** for forms
+- **Sonner** for toasts
+
+## Requirements
+
+- Node.js 20+
+- npm (local) / yarn (CI)
+
+## Getting started
+
+```bash
+npm install
+cp .env.example .env.local   # fill in API endpoints
+npm run dev                  # http://localhost:3000
+```
+
+## Commands
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Dev server with Turbopack |
+| `npm run build` | Static export to `./dist` |
+| `npm run lint` | ESLint |
+| `npm run serve` | Serve `./dist` locally via `npx serve` |
+
+There is no test suite — `npm test` just runs `next build`.
+
+## Project structure
+
+Screaming Architecture — features are organized by domain:
+
+```
+src/
+├── app/                  # Next.js App Router entry (layout, page)
+├── features/             # Domain features
+│   ├── header/
+│   ├── hero/
+│   ├── pricing/
+│   ├── footer/
+│   └── ...
+│       ├── index.tsx     # public export
+│       ├── model/        # hooks, schemas, business logic
+│       └── ui/           # presentational components
+├── shared/
+│   ├── ui/kit/           # shadcn/ui components
+│   ├── api/              # React Query client config
+│   ├── lib/utils.ts      # cn() and helpers
+│   └── model/config.ts   # CONFIG.API_BASE_URL from env
+├── i18n/                 # next-intl setup, locale persistence
+└── components/seo/       # SEO / structured data
+
+messages/                 # Translation JSON (en, ua, ru)
+public/                   # Static assets (logos, icons, integrations)
+```
+
+## i18n
+
+Default locale is `ua`. Locale is persisted in `localStorage` and injected pre-hydration via `src/i18n/locale-script.tsx` to prevent a flash of wrong language. Locales: `ua`, `en`, `ru`.
+
+When adding translatable text, update **all three** message files in `messages/`. In components, use `useTranslations("Namespace")`.
+
+## API
+
+API hooks live in feature `model/` directories (e.g. `use-fetch-tariffs.ts`, `use-connect-registration.ts`) and use Axios against `CONFIG.API_BASE_URL`. Form schemas are co-located (e.g. `register-network-schema.ts`) with localized error messages.
+
+## Environment variables
+
+```
+NEXT_PUBLIC_API_BASE_URL    # production API endpoint
+NEXT_PUBLIC_API_DEV_URL     # dev API endpoint
+NEXT_PUBLIC_BASE_URL        # site base URL (used in SEO and sitemap)
+```
+
+## Static export
+
+`next.config.ts` sets `output: "export"` and `distDir: "dist"`. The homepage (`src/app/page.tsx`) loads feature sections via `next/dynamic` with `{ ssr: false }`, so all interactive content is client-rendered.
+
+## Deployment
+
+GitHub Actions CI on push or PR to `main`:
+
+1. `yarn install && yarn build`
+2. `rsync` the resulting `./dist` to the production VPS at `/opt/landing24/`
+
+Nginx on the server reverse-proxies the static site with SSL provisioned via certbot.

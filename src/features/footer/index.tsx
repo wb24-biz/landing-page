@@ -291,6 +291,18 @@ export default function Footer() {
                           alt="Facebook"
                         />
                       </Link>
+                      <Link
+                        href="https://github.com/wb24-biz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          src="/images/github.svg"
+                          width={36}
+                          height={36}
+                          alt="GitHub"
+                        />
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -310,6 +322,18 @@ export default function Footer() {
                       width={36}
                       height={36}
                       alt="Facebook"
+                    />
+                  </Link>
+                  <Link
+                    href="https://github.com/wb24-biz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      src="/images/github.svg"
+                      width={36}
+                      height={36}
+                      alt="GitHub"
                     />
                   </Link>
                 </div>

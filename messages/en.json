@@ -102,8 +102,8 @@
     "price_value": "200 USD",
     "tft_price_value": "85 USD",
     "service_fee": "Service fee",
-    "service_fee_value": "Per tariff",
-    "tft_service_fee_value": "Per acquiring tariff",
+    "service_fee_value": "Per license",
+    "tft_service_fee_value": "Per acquiring license",
     "desc1": "Module for data exchange, management and transmission to wb24.biz service",
     "desc1_full": "GSM-wb24 telemetry module solves the task of complete control of the state and management of the vending machine, and data transmission to the wb24.biz service. Connecting an acquiring terminal and other equipment allows you to make payments via nfc/QR, fiscalize receipts displayed on the screen",
     "tft_desc": "Contactless reader and information-payment terminal for cashless payments with NFC/QR support, fiscalization and receipt issuing",
@@ -256,7 +256,7 @@
   },
   "PricingPlans": {
     "mainTitle": "Pricing",
-    "individualTariffNote": "* individual tariff possible by agreement",
+    "individualTariffNote": "* individual license possible by agreement",
     "TariffOptions": {
       "1": {
         "name": "Free",
@@ -352,9 +352,9 @@
     "networkTypePlaceholder": "Select network type*",
     "loadingMachineTypes": "Loading types...",
     "errorMachineTypes": "Error loading types",
-    "tariffPlaceholder": "Select tariff*",
-    "loadingTariffs": "Loading tariffs...",
-    "errorTariffs": "Error loading tariffs",
+    "tariffPlaceholder": "Select license*",
+    "loadingTariffs": "Loading licenses...",
+    "errorTariffs": "Error loading licenses",
     "countryPlaceholder": "Select country*",
     "loadingCountries": "Loading countries...",
     "errorCountries": "Error loading countries",
@@ -369,8 +369,8 @@
       "networkNameRequired": "Network name is required",
       "networkTypeRequired": "Network type is required",
       "networkTypeNumeric": "Network type must be a numeric ID",
-      "tariffRequired": "Tariff is required",
-      "tariffNumeric": "Tariff must be a numeric ID",
+      "tariffRequired": "License is required",
+      "tariffNumeric": "License must be a numeric ID",
       "countryRequired": "Country is required",
       "countryNumeric": "Country must be a numeric ID"
     }

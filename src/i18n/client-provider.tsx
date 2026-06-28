@@ -1,14 +1,27 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { defaultLocale, Locale, locales } from "./config";
 import { setUserLocale as setStorageLocale } from "./locale";
+
+// Derive the locale from the URL for the statically pre-rendered localized
+// routes (/en, /ru). On those routes the locale is "locked" to the URL so the
+// SSG output and hydration both stay in that language. The default locale lives
+// at "/" and keeps the client-side (localStorage) switcher.
+function localeFromPathname(pathname: string | null): Locale | null {
+  if (!pathname) return null;
+  if (pathname === "/en" || pathname.startsWith("/en/")) return "en";
+  if (pathname === "/ru" || pathname.startsWith("/ru/")) return "ru";
+  return null;
+}
 
 interface LocaleContextType {
   locale: string;
   setLocale: (locale: string) => void;
   messages: Record<string, any>;
+  locked: boolean;
 }
 
 const LocaleContext = createContext<LocaleContextType | null>(null);
@@ -27,26 +40,33 @@ interface LocaleProviderProps {
 }
 
 export function LocaleProvider({ children, initialMessages }: LocaleProviderProps) {
-  const [locale, setLocaleState] = useState<Locale>(() => {
-    // Get initial locale from window global set by script
+  const pathname = usePathname();
+  const urlLocale = localeFromPathname(pathname);
+  const locked = urlLocale !== null;
+
+  // Resolve the locale once: URL wins on localized routes, otherwise the
+  // pre-hydration localStorage value, otherwise the default.
+  const resolveInitial = (): Locale => {
+    if (urlLocale) return urlLocale;
     if (typeof window !== "undefined" && (window as any).__INITIAL_LOCALE__) {
       const initialLocale = (window as any).__INITIAL_LOCALE__ as Locale;
-      if (locales.includes(initialLocale)) {
-        return initialLocale;
-      }
+      if (locales.includes(initialLocale)) return initialLocale;
     }
     return defaultLocale;
-  });
-  
-  const [messages, setMessages] = useState<Record<string, any>>(() => {
-    if (typeof window !== "undefined" && (window as any).__INITIAL_LOCALE__) {
-      const initialLocale = (window as any).__INITIAL_LOCALE__ as Locale;
-      if (locales.includes(initialLocale)) {
-        return initialMessages[initialLocale] || {};
-      }
+  };
+
+  const [locale, setLocaleState] = useState<Locale>(resolveInitial);
+  const [messages, setMessages] = useState<Record<string, any>>(
+    () => initialMessages[resolveInitial()] || initialMessages[defaultLocale] || {}
+  );
+
+  // On locked (URL-based) routes, make sure the document language matches.
+  useEffect(() => {
+    if (locked && urlLocale) {
+      document.documentElement.lang = urlLocale;
+      document.documentElement.setAttribute("data-locale", urlLocale);
     }
-    return initialMessages[defaultLocale] || {};
-  });
+  }, [locked, urlLocale]);
 
   const setLocale = (newLocale: string) => {
     if ((locales as readonly string[]).includes(newLocale)) {
@@ -67,6 +87,7 @@ export function LocaleProvider({ children, initialMessages }: LocaleProviderProp
     locale,
     setLocale,
     messages,
+    locked,
   };
 
   return (

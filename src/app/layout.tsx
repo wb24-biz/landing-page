@@ -3,7 +3,6 @@ import Footer from "@/features/footer";
 import { Header } from "@/features/header";
 import { ScrollToTop } from "@/features/scroll-to-top";
 import type { Metadata, Viewport } from "next";
-import { getTranslations } from "next-intl/server";
 import { defaultLocale } from "@/i18n/config";
 import { LocaleScript } from "@/i18n/locale-script";
 import { Golos_Text } from "next/font/google";
@@ -17,63 +16,23 @@ const golosText = Golos_Text({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const locale = defaultLocale;
-  const t = await getTranslations({ locale, namespace: "SEO" });
-  // const baseUrl = "http://test24.wb24.biz";
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://wb24.biz";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://wb24.biz";
 
-  return {
-    metadataBase: new URL(baseUrl),
-    title: t("title"),
-    description: t("description"),
-    keywords: t("keywords"),
-    alternates: {
-      canonical: baseUrl,
-      languages: {
-        'uk': baseUrl,
-        'en': baseUrl,
-        'ru': baseUrl,
-        'x-default': baseUrl,
-      },
-    },
-    authors: [{ name: "WB24", url: baseUrl }],
-    icons: {
-      icon: [
-        { url: "/favicon.ico" },
-        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      ],
-      apple: [{ url: "/apple-touch-icon.png", type: "image/png" }],
-    },
-    manifest: "/site.webmanifest",
-    openGraph: {
-      title: t("title"),
-      description: t("description"),
-      url: baseUrl,
-      siteName: "WB24 Platform",
-      images: [
-        {
-          url: `${baseUrl}/graph.png`,
-          width: 1200,
-          height: 630,
-          alt: "WB24 Platform Analytics Dashboard",
-          type: "image/png",
-        },
-      ],
-      type: "website",
-      locale: locale,
-      countryName: "Ukraine",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("title"),
-      description: t("description"),
-      images: [`${baseUrl}/graph.png`],
-      creator: "@wb24_biz_bot",
-    },
-  };
-}
+// Locale-independent metadata. Per-route title/description/canonical/hreflang
+// are provided by each page via buildMetadata().
+export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
+  authors: [{ name: "WB24", url: baseUrl }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", type: "image/png" }],
+  },
+  manifest: "/site.webmanifest",
+};
 
 export const viewport: Viewport = {
   themeColor: "#ffffff",
@@ -102,13 +61,13 @@ export default async function RootLayout({
     >
       <head>
         <LocaleScript />
-        <StructuredData locale={locale} />
       </head>
       <body
         className={`${golosText.variable} antialiased`}
         suppressHydrationWarning
       >
         <Providers locale={locale} messages={allMessages}>
+          <StructuredData />
           <Header />
           {children}
           <Footer />

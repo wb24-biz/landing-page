@@ -1,28 +1,12 @@
-import EquipmentIntegration from "@/features/equipment-integration";
-import Faq from "@/features/faq";
-import FunctionalFeatures from "@/features/functional-features";
-import Hero from "@/features/hero";
-import PricingPlans from "@/features/pricing";
-import TelemetryCategoriesGrid from "@/features/telemetry";
+import type { Metadata } from "next";
+import { defaultLocale } from "@/i18n/config";
+import { buildMetadata } from "@/shared/seo/build-metadata";
+import { HomeSections } from "./home-sections";
+
+export function generateMetadata(): Promise<Metadata> {
+  return buildMetadata(defaultLocale);
+}
 
 export default function Home() {
-  return (
-    <main className="mx-auto">
-      <section id="service">
-        <Hero />
-      </section>
-      <TelemetryCategoriesGrid />
-      <section
-        id="functional"
-        className="py-16 rounded-[40px] my-12 bg-[url('/images/frame.svg')] bg-center bg-no-repeat bg-cover"
-      >
-        <FunctionalFeatures />
-      </section>
-      <EquipmentIntegration />
-      <section id="pricing" className="mx-auto container py-12">
-        <PricingPlans />
-      </section>
-      <Faq />
-    </main>
-  );
+  return <HomeSections />;
 }

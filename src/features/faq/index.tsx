@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 
 // Order of questions rendered on the page and mirrored in the FAQPage schema.

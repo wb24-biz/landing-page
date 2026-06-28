@@ -32,7 +32,7 @@ WB24 lets vending operators monitor a single machine or a large network 24/7, ac
 - Attractions: toy machines, arcade games
 
 ## Hardware
-- GSM-WB24 / Kit Box Master telemetry controller — full machine control, acquiring terminal connection, cloud fiscalization, loyalty and promotions
+- GSM-WB24 telemetry module — full machine control, acquiring terminal connection, cloud fiscalization, loyalty and promotions
 - TFT module — contactless reader and info/payment terminal for cashless NFC/QR payments with fiscalization and on-screen receipts (2.8" TFT screen, RS485/UART; overhead or built-in)
 
 ## Pricing

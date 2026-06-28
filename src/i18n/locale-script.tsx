@@ -5,7 +5,17 @@ export function LocaleScript() {
         __html: `
           (function() {
             try {
-              var locale = localStorage.getItem('NEXT_LOCALE') || 'ua';
+              var path = location.pathname;
+              var locale;
+              // Localized routes (/en, /ru) are locked to the URL; "/" uses the
+              // stored preference so the in-place language switcher keeps working.
+              if (path === '/en' || path.indexOf('/en/') === 0) {
+                locale = 'en';
+              } else if (path === '/ru' || path.indexOf('/ru/') === 0) {
+                locale = 'ru';
+              } else {
+                locale = localStorage.getItem('NEXT_LOCALE') || 'ua';
+              }
               var locales = ['en', 'ua', 'ru'];
               if (locales.includes(locale)) {
                 // Set lang before any content renders

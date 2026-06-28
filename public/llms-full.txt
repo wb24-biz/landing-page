@@ -37,7 +37,7 @@ Owner, Manager, Dispatcher, Repair Master — each user only sees information ma
 
 ## Hardware
 - GSM-WB24 module: exchange, management and data transfer to the wb24.biz service via GSM/WiFi.
-- Kit Box Master telemetry controller: complete control and management of the vending machine, connection of the acquiring terminal and other equipment, cloud fiscalization of sales, and loyalty systems and promotions.
+- GSM-WB24 telemetry module: complete control and management of the vending machine, connection of the acquiring terminal and other equipment, cloud fiscalization of sales, and loyalty systems and promotions.
 - TFT module: contactless reader and information/payment terminal for cashless payments with NFC/QR support, fiscalization and receipt issuing. Overhead case or built into the machine case. TFT screen 2.8", RS485/UART. Overhead W/H/D 115/82/20mm; built-in W/H/D 75/92/15mm.
 
 ## Pricing (plans)

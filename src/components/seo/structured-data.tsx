@@ -1,8 +1,10 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import { FAQ_IDS } from "@/features/faq";
 
 interface StructuredDataProps {
-  locale: string;
+  locale?: string;
 }
 
 export function StructuredData({ locale }: StructuredDataProps) {

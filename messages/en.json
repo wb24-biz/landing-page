@@ -89,7 +89,7 @@
     "button_tft": "TFT module",
     "gsm_desc": "module for exchange, management, and data transfer to the wb24.biz service",
     "tft_desc": "contactless reader and information/payment terminal for cashless payments with NFC/QR support, fiscalization, and receipt issuing",
-    "desc1_full": "The Kit Box Master telemetry controller provides complete control and management of the vending machine, connection of the acquiring terminal and other equipment, cloud fiscalization of sales, and application of loyalty systems and promotions.",
+    "desc1_full": "The GSM-WB24 telemetry module provides complete control and management of the vending machine, connection of the acquiring terminal and other equipment, cloud fiscalization of sales, and application of loyalty systems and promotions.",
     "tft_full_desc": "Can be both in an overhead case and built into the machine case. Connecting an acquiring terminal allows you to make payments via nfc/QR, fiscalize receipts displayed on the screen.",
     "tft_2": "TFT screen 2,8\"",
     "tft_3": "RS485/UART",
@@ -416,7 +416,7 @@
       },
       "hardware": {
         "question": "What hardware does WB24 offer?",
-        "answer": "WB24 offers the GSM-WB24 module and the Kit Box Master telemetry controller for full machine control, acquiring-terminal connection and cloud fiscalization, plus a TFT module — a contactless NFC/QR payment and information terminal with a 2.8\" screen, available as an overhead case or built in."
+        "answer": "WB24 offers the GSM-WB24 telemetry module for full machine control, acquiring-terminal connection and cloud fiscalization, plus a TFT module — a contactless NFC/QR payment and information terminal with a 2.8\" screen, available as an overhead case or built in."
       },
       "alerts": {
         "question": "How does WB24 notify operators about failures?",

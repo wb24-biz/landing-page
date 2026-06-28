@@ -1,6 +1,6 @@
 "use client";
 
-import { locales } from "@/i18n/config";
+import { defaultLocale, locales } from "@/i18n/config";
 import { useLocaleContext } from "@/i18n/client-provider";
 import { cn } from "@/shared/lib/utils";
 import {
@@ -18,17 +18,24 @@ const languageLabels: Record<string, string> = {
 };
 
 export default function LanguageSelector() {
-  const { locale: currentLocale, setLocale } = useLocaleContext();
+  const { locale: currentLocale, setLocale, locked } = useLocaleContext();
   const [isPending, startTransition] = useTransition();
 
   function onChange(value: string) {
     // Type-safe validation that the value is a valid locale
-    if ((locales as readonly string[]).includes(value)) {
-      const locale = value as Locale;
-      startTransition(() => {
-        setLocale(locale);
-      });
+    if (!(locales as readonly string[]).includes(value)) return;
+    const locale = value as Locale;
+
+    // On the statically pre-rendered localized routes (/en, /ru) the locale is
+    // bound to the URL, so switch by navigating to the matching page.
+    if (locked) {
+      window.location.href = locale === defaultLocale ? "/" : `/${locale}/`;
+      return;
     }
+
+    startTransition(() => {
+      setLocale(locale);
+    });
   }
 
   return (

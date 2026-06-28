@@ -1,11 +1,17 @@
 import { getRequestConfig } from "next-intl/server";
-import { getUserLocale } from "./locale";
+import { defaultLocale, locales } from "./config";
 
-export default getRequestConfig(async () => {
-  const locale = getUserLocale();
+export default getRequestConfig(async ({ locale, requestLocale }) => {
+  // `locale` is set when an explicit value is passed (e.g. getTranslations in
+  // buildMetadata); otherwise fall back to the matched segment / default.
+  const requested = locale ?? (await requestLocale);
+  const resolved =
+    requested && (locales as readonly string[]).includes(requested)
+      ? requested
+      : defaultLocale;
 
   return {
-    locale,
-    messages: (await import(`../../messages/${locale}.json`)).default,
+    locale: resolved,
+    messages: (await import(`../../messages/${resolved}.json`)).default,
   };
 });

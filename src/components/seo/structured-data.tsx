@@ -10,19 +10,26 @@ interface StructuredDataProps {
 export function StructuredData({ locale }: StructuredDataProps) {
   const t = useTranslations("SEO");
   const tFaq = useTranslations("Faq");
-  
+
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://wb24.biz";
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "WB24",
     alternateName: "WB24 Platform",
-    url: process.env.NEXT_PUBLIC_BASE_URL || "https://wb24.biz",
-    logo: `${process.env.NEXT_PUBLIC_BASE_URL || "https://wb24.biz"}/android-chrome-512x512.png`,
+    url: baseUrl,
+    logo: `${baseUrl}/android-chrome-512x512.png`,
     description: t("description"),
+    email: "info@wb24.biz",
     foundingLocation: {
       "@type": "Place",
       name: "Ukraine"
     },
+    areaServed: [
+      { "@type": "Country", name: "Ukraine" },
+      { "@type": "Country", name: "Moldova" }
+    ],
     sameAs: [
       "https://t.me/wb24_biz_bot",
       "https://www.facebook.com/wb24biz",
@@ -30,7 +37,6 @@ export function StructuredData({ locale }: StructuredDataProps) {
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+380",
       contactType: "Customer Service",
       email: "info@wb24.biz",
       availableLanguage: ["Ukrainian", "Russian", "English"]
@@ -87,16 +93,58 @@ export function StructuredData({ locale }: StructuredDataProps) {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "WB24 Platform",
+    url: baseUrl,
     description: t("description"),
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web Browser",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-      description: "Free tier available"
-    },
+    inLanguage: ["uk", "en", "ru"],
+    featureList: [
+      "Real-time telemetry and 24/7 monitoring",
+      "Cashless online payments via internet acquiring (QR/NFC, Visa, MasterCard, Google Pay, Apple Pay)",
+      "Sales fiscalization via a software PRRO with QR receipts",
+      "Instant Telegram alerts for failures and required service",
+      "Remote goods release, restart, settings and software updates",
+      "Network and equipment sales analytics",
+      "Role-based access control",
+      "Temperature monitoring and control"
+    ],
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Free",
+        price: "0",
+        priceCurrency: "EUR",
+        description: "1 machine, 1 user, 1 cash register (PRRO), up to 100 days of order history"
+      },
+      {
+        "@type": "Offer",
+        name: "Optimal",
+        price: "0.10",
+        priceCurrency: "EUR",
+        description: "Per machine per day — workgroups, acquiring and Telegram integrations, up to 15 months of order history"
+      },
+      {
+        "@type": "Offer",
+        name: "Premium",
+        price: "2.60",
+        priceCurrency: "EUR",
+        description: "Per machine per month, from 30 machines — all Optimal features"
+      }
+    ],
     creator: {
+      "@type": "Organization",
+      name: "WB24"
+    }
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "WB24 Platform",
+    alternateName: "WB24",
+    url: baseUrl,
+    inLanguage: ["uk", "en", "ru"],
+    publisher: {
       "@type": "Organization",
       name: "WB24"
     }
@@ -135,6 +183,12 @@ export function StructuredData({ locale }: StructuredDataProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(softwareSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema),
         }}
       />
       <script

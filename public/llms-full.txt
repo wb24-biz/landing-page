@@ -1,0 +1,65 @@
+# WB24 — Vending Management Platform (full reference)
+
+> WB24 (wb24.biz) is a cloud platform for managing and automating a vending business: real-time telemetry and monitoring, cashless online payments via internet acquiring (the customer opens the payment page by scanning a QR code or tapping an NFC tag, then pays with Visa, MasterCard, Google Pay or Apple Pay — no physical payment terminal), sales fiscalization via a software PRRO with QR receipts, and an open API. Built for vending operators in Ukraine and Moldova and works with any vending equipment supporting MDB, Executive or DEX/UCS protocols. Interface available in Ukrainian (default), English and Russian.
+
+## Overview
+WB24 Platform is software for vending management in real time, 24/7. It lets operators monitor a single vending machine or large networks across many directions, optimize and minimize equipment downtime, significantly reduce maintenance costs and increase revenue. Equipment can be connected and integrated via API, or operators can use a ready-made hardware solution developed specifically for the service.
+
+## Telemetry and management — supported directions
+- Drinking water vending machines (water machines)
+- Coffee machines
+- Self-service car washes (Car Wash)
+- Technical fluids vending machines (technical fluids, oils, antifreeze, etc.)
+- Snack vending machines (drinks, food, toys, condomats, flowers, micro-markets)
+- Service vending machines (tickets, information, photo, copy, automatic storage lockers, post/parcel machines)
+- Self-service laundries (laundromat)
+- Attractions (toy machines, arcade games, etc.)
+
+## Functional features (complete list)
+- Accept payments via acquiring: all available acquiring systems (Visa, MasterCard, Google Pay, Apple Pay).
+- Fiscalize sales to meet local law: sales fiscalization and fiscal receipt issuance for legal compliance.
+- Emergency alerts: timely Telegram notifications about emergency and abnormal situations for fast response and less downtime.
+- Service alerts: user-configured automated notifications about required service and product replenishment.
+- Analytics: decisions based on equipment operation statistics and sales volumes for the right marketing decisions.
+- Access control: configure and restrict information access for partners and employees per their status and responsibilities.
+- Remote release: remotely release goods in the required quantity during equipment failures to reduce customer dissatisfaction.
+- Remote restart: remotely restart equipment when an error can only be fixed by rebooting.
+- Remote software updates: fix software errors and apply updates remotely through the personal account.
+- Real-time sales tracking: stay up to date with sales volumes to respond quickly to demand changes.
+- Inventory monitoring: track product, consumables and ingredient availability to avoid downtime and increase sales.
+- Failure tracking: receive timely information about failures and emergencies for prompt resolution.
+- Security: respond quickly to hacking and vandalism attempts to protect equipment.
+- Remote settings: change equipment settings remotely without visiting the location.
+- Temperature control: manage temperature and react to critical temperature changes and leaks to prevent damage/deterioration.
+
+## Roles
+Owner, Manager, Dispatcher, Repair Master — each user only sees information matching their status and responsibilities. Access is managed from a computer, tablet or smartphone.
+
+## Hardware
+- GSM-WB24 module: exchange, management and data transfer to the wb24.biz service via GSM/WiFi.
+- Kit Box Master telemetry controller: complete control and management of the vending machine, connection of the acquiring terminal and other equipment, cloud fiscalization of sales, and loyalty systems and promotions.
+- TFT module: contactless reader and information/payment terminal for cashless payments with NFC/QR support, fiscalization and receipt issuing. Overhead case or built into the machine case. TFT screen 2.8", RS485/UART. Overhead W/H/D 115/82/20mm; built-in W/H/D 75/92/15mm.
+
+## Pricing (plans)
+- Free — €0. 1 machine, 1 user, 1 cash register (SaaS POS / PRRO), up to 100 days of order history storage. Lets you evaluate almost all features and pay nothing.
+- Optimal — from €0.10 per machine per day. Bestseller. From 1 machine, from 1 user, from 1 cash register (SaaS POS), up to 15 months of order history, workgroups, acquiring integrations, Telegram integration, intelligent service maintenance.
+- Premium — from €2.60 per machine per month. From 30 machines, all Optimal plan features.
+- Individual license possible by agreement.
+
+## FAQ
+- Do I need a physical fiscal recorder (RRO)? No — WB24 currently supports a software PRRO with QR receipts, compliant with the legislation of Ukraine and Moldova.
+- Which machine types are supported? Any machine that has the MDB, Executive or DEX/UCS protocol.
+- Does it work without internet? Yes — the module caches operations and transmits them when the connection is restored.
+
+## Integration
+- Open API for connecting and integrating existing equipment.
+- Acquiring and Telegram integrations.
+
+## Company and contacts
+- Operator: WB24, Ukraine.
+- Website: https://wb24.biz
+- Email: info@wb24.biz
+- Telegram bot: https://t.me/wb24_biz_bot
+- Facebook: https://www.facebook.com/wb24biz
+- YouTube: https://www.youtube.com/@wb24biz
+- Support languages: Ukrainian, Russian, English.

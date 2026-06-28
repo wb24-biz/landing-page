@@ -60,6 +60,9 @@ const Hero = () => {
               <p className="mb-3 text-balance text-[20px] font-semibold tracking-tight text-white md:text-xl lg:text-left lg:text-[24px]">
                 {t("subtitle")}
               </p>
+              <p className="mb-3 max-w-xl text-balance text-sm font-normal leading-relaxed text-white/80 lg:text-left lg:text-base">
+                {t("intro")}
+              </p>
               <FeatureList />
               <div className="mt-6 md:mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <ScrollLink

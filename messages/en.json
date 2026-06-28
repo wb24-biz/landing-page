@@ -1,8 +1,8 @@
 {
   "SEO": {
     "title": "WB24 — Smart vending service with telemetry, payment and fiscalization",
-    "description": "WB24 is a cloud platform for automating the vending business in Ukraine. Real-time telemetry, online payment (NFC, QR, PayPass), fiscalization through PRRO, API for integration with CRM and 1C.",
-    "keywords": "vending fiscalization, vending machine fiscalization, PRRO for vending, machine monitoring, telemetry for vending machines, personal account for vending, online payments, PayPass for machines, payment by phone, QR checks, NFC payments, storage rooms, automatic storage lockers, parcel terminals, micromarkets, wb24"
+    "description": "WB24 is a cloud platform for automating the vending business in Ukraine and Moldova. Real-time telemetry, online payment via internet acquiring (QR/NFC, cards, Google Pay, Apple Pay), fiscalization through PRRO, open API.",
+    "keywords": "vending fiscalization, vending machine fiscalization, PRRO for vending, machine monitoring, telemetry for vending machines, personal account for vending, online payments, payment by phone, QR checks, NFC payments, storage rooms, automatic storage lockers, parcel terminals, micromarkets, wb24"
   },
   "HomePage": {
     "title": "Hello world!",
@@ -11,6 +11,7 @@
   "Hero": {
     "title": "WB24 Platform —",
     "subtitle": "Software for vending management\nreal-time 24/7",
+    "intro": "WB24 is a cloud platform for managing vending machines: real-time telemetry, online payment via internet acquiring (QR/NFC) and sales fiscalization.",
     "cta_primary": "Connect",
     "cta_secondary": "Contact us",
     "squadList": {
@@ -380,5 +381,51 @@
   },
   "ScrollToTop": {
     "ariaLabel": "Scroll to top"
+  },
+  "Faq": {
+    "title": "Frequently asked questions",
+    "description": "Answers about WB24 — vending telemetry, payments, fiscalization and pricing.",
+    "items": {
+      "what": {
+        "question": "What is WB24?",
+        "answer": "WB24 is a cloud platform for managing and automating a vending business. It provides real-time telemetry and monitoring, cashless online payments and sales fiscalization. WB24 works with a single machine or a large network 24/7."
+      },
+      "machines": {
+        "question": "Which vending machines does WB24 support?",
+        "answer": "Any vending machine with the MDB, Executive or DEX/UCS protocol: coffee and water machines, snack machines and micro-markets, self-service car washes and laundries, technical-fluid machines, parcel terminals, automatic storage lockers and attractions. You can connect your own equipment via API or use ready-made WB24 hardware."
+      },
+      "rro": {
+        "question": "Do I need a fiscal recorder (RRO) for vending?",
+        "answer": "Currently WB24 supports a software PRRO with QR receipts shown on screen, so a separate physical RRO is not required. Fiscalization complies with the legislation of Ukraine and Moldova."
+      },
+      "payments": {
+        "question": "How can customers pay at a vending machine with WB24?",
+        "answer": "WB24 works through internet acquiring — no physical payment terminal is used on the machine. The customer scans a QR code on the machine's screen or taps their phone on the NFC tag to open the acquiring operator's payment page, and pays online (Visa/MasterCard cards, Google Pay, Apple Pay)."
+      },
+      "offline": {
+        "question": "Does WB24 work without an internet connection?",
+        "answer": "Yes. The on-machine module caches operations while offline and transmits them automatically once the connection is restored, so no sales data is lost."
+      },
+      "price": {
+        "question": "How much does WB24 cost?",
+        "answer": "WB24 has a free plan (€0) for 1 machine, 1 user and 1 cash register with up to 100 days of order history. The Optimal plan starts at €0.10 per machine per day and adds workgroups, acquiring and Telegram integrations. The Premium plan starts at €2.60 per machine per month from 30 machines. An individual license is available by agreement."
+      },
+      "integration": {
+        "question": "Can I integrate WB24 with my own software?",
+        "answer": "Yes. WB24 has an open API and integrates with acquiring systems and Telegram. You can connect existing equipment via the API or use a ready-made WB24 solution."
+      },
+      "hardware": {
+        "question": "What hardware does WB24 offer?",
+        "answer": "WB24 offers the GSM-WB24 module and the Kit Box Master telemetry controller for full machine control, acquiring-terminal connection and cloud fiscalization, plus a TFT module — a contactless NFC/QR payment and information terminal with a 2.8\" screen, available as an overhead case or built in."
+      },
+      "alerts": {
+        "question": "How does WB24 notify operators about failures?",
+        "answer": "WB24 sends instant Telegram notifications about failures, emergencies, vandalism attempts and required service or replenishment, so operators can respond quickly and minimize downtime."
+      },
+      "languages": {
+        "question": "What languages and regions does WB24 support?",
+        "answer": "WB24 is built for vending operators in Ukraine and Moldova, and the interface is available in Ukrainian, English and Russian. Customer support is provided in all three languages."
+      }
+    }
   }
 }

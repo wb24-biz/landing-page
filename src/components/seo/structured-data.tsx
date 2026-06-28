@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { FAQ_IDS } from "@/features/faq";
 
 interface StructuredDataProps {
   locale: string;
@@ -6,6 +7,7 @@ interface StructuredDataProps {
 
 export function StructuredData({ locale }: StructuredDataProps) {
   const t = useTranslations("SEO");
+  const tFaq = useTranslations("Faq");
   
   const organizationSchema = {
     "@context": "https://schema.org",
@@ -43,10 +45,10 @@ export function StructuredData({ locale }: StructuredDataProps) {
       name: "WB24"
     },
     serviceType: "Vending Machine Management Software",
-    areaServed: {
-      "@type": "Country",
-      name: "Ukraine"
-    },
+    areaServed: [
+      { "@type": "Country", name: "Ukraine" },
+      { "@type": "Country", name: "Moldova" }
+    ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Vending Services",
@@ -64,7 +66,7 @@ export function StructuredData({ locale }: StructuredDataProps) {
           itemOffered: {
             "@type": "Service",
             name: "Payment Processing",
-            description: "Online payment via NFC, QR, PayPass"
+            description: "Online payment via internet acquiring — QR code or NFC tag opens the acquiring operator's payment page (Visa, MasterCard, Google Pay, Apple Pay)"
           }
         },
         {
@@ -98,35 +100,19 @@ export function StructuredData({ locale }: StructuredDataProps) {
     }
   };
 
+  // Built from the same translations as the visible FAQ section so the schema
+  // and on-page Q&A always stay in sync (good for rich results and GEO).
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Чи потрібен фіскальний реєстратор?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "WB24 підтримує як фізичні РРО, так і ПРРО — вибирайте потрібний варіант."
-        }
+    mainEntity: FAQ_IDS.map((id) => ({
+      "@type": "Question",
+      name: tFaq(`items.${id}.question`),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: tFaq(`items.${id}.answer`),
       },
-      {
-        "@type": "Question",
-        name: "Які типи автоматів підтримуються?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Будь-які, що мають MDB, Executive або протокол DEX/UCS."
-        }
-      },
-      {
-        "@type": "Question",
-        name: "Чи працює без інтернету?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Так, модуль кешує операції і передає при відновленні зв'язку."
-        }
-      }
-    ]
+    })),
   };
 
   return (

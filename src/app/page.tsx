@@ -1,4 +1,5 @@
 import EquipmentIntegration from "@/features/equipment-integration";
+import Faq from "@/features/faq";
 import FunctionalFeatures from "@/features/functional-features";
 import Hero from "@/features/hero";
 import PricingPlans from "@/features/pricing";
@@ -21,6 +22,7 @@ export default function Home() {
       <section id="pricing" className="mx-auto container py-12">
         <PricingPlans />
       </section>
+      <Faq />
     </main>
   );
 }

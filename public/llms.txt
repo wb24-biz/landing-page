@@ -1,0 +1,57 @@
+# WB24 — Vending Management Platform
+
+> WB24 (wb24.biz) is a cloud platform for managing and automating a vending business: real-time telemetry and monitoring, cashless online payments via internet acquiring (the customer opens the payment page by scanning a QR code or tapping an NFC tag, then pays with Visa, MasterCard, Google Pay or Apple Pay — no physical payment terminal), sales fiscalization via a software PRRO with QR receipts, and an open API. Built for vending operators in Ukraine and Moldova and works with any vending equipment that supports MDB, Executive or DEX/UCS protocols.
+
+WB24 lets vending operators monitor a single machine or a large network 24/7, accept cashless payments, fiscalize sales to comply with local law, get instant Telegram alerts about failures, replenish stock on time, and reduce equipment downtime and maintenance costs. Available in Ukrainian (default), English and Russian.
+
+## What it is
+- Product: WB24 Platform — Software-as-a-Service for vending machine management and telemetry
+- Operator: WB24, Ukraine
+- Languages: Ukrainian (default), English, Russian
+- Equipment compatibility: any vending machine with MDB, Executive or DEX/UCS protocol; connect via API or ready-made WB24 hardware
+- Works offline: the on-machine module caches operations and syncs when the connection is restored
+
+## Key features
+- Real-time sales tracking and ingredient/stock control 24/7
+- Cashless online payments via internet acquiring: the customer opens the acquiring operator's payment page by QR code or NFC tag, then pays online with Visa, MasterCard, Google Pay or Apple Pay (no physical payment terminal on the machine)
+- Sales fiscalization with QR receipts via a software PRRO (compliant with the legislation of Ukraine and Moldova)
+- Instant Telegram notifications about failures, emergencies, vandalism and required service
+- Remote actions: release goods, restart equipment, change settings and update software without a site visit
+- Network and equipment analytics for marketing and operational decisions
+- Role-based access control for partners and employees (owner, manager, dispatcher, repair master)
+- Temperature monitoring and control with critical-change and leak alerts
+
+## Supported machine types
+- Drinking water vending machines
+- Coffee machines
+- Self-service car washes
+- Technical fluids vending machines (oils, antifreeze, etc.)
+- Snack machines, micro-markets, drinks, condomats, flower machines
+- Service machines: tickets, info, photo/copy, parcel terminals, automatic storage lockers
+- Self-service laundries
+- Attractions: toy machines, arcade games
+
+## Hardware
+- GSM-WB24 / Kit Box Master telemetry controller — full machine control, acquiring terminal connection, cloud fiscalization, loyalty and promotions
+- TFT module — contactless reader and info/payment terminal for cashless NFC/QR payments with fiscalization and on-screen receipts (2.8" TFT screen, RS485/UART; overhead or built-in)
+
+## Pricing
+- Free — €0: 1 machine, 1 user, 1 cash register (PRRO), up to 100 days of order history. Evaluate almost all features at no cost.
+- Optimal — from €0.10 per machine per day (bestseller): from 1 machine, workgroups, acquiring integrations, Telegram integration, intelligent service maintenance, up to 15 months of order history.
+- Premium — from €2.60 per machine per month: from 30 machines, all Optimal features.
+- Individual license available by agreement.
+
+## FAQ
+- Do I need a physical fiscal recorder? No — WB24 currently supports a software PRRO with QR receipts, compliant with the legislation of Ukraine and Moldova.
+- Which machine types are supported? Any machine with MDB, Executive or DEX/UCS protocol.
+- Does it work without internet? Yes — the module caches operations and transmits them when the connection is restored.
+
+## Links
+- Website: https://wb24.biz
+- Telegram bot: https://t.me/wb24_biz_bot
+- Facebook: https://www.facebook.com/wb24biz
+- YouTube: https://www.youtube.com/@wb24biz
+
+## Contact
+- Email: info@wb24.biz
+- Support languages: Ukrainian, Russian, English
